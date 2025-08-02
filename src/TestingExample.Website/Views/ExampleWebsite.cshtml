@@ -1,0 +1,14 @@
+﻿@using TestingExample.Website.Homepage
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits UmbracoViewPage<ExtendedExampleWebsite>
+@{
+	Layout = null;
+}
+<h1>@Model.Name</h1>
+@foreach(var card in Model.Cards)
+{
+	<article class="card">
+		<h2>@card.Title</h2>
+		<p>@card.Introduction</p>
+	</article>
+}

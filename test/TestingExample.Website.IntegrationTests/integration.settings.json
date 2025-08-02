@@ -1,0 +1,67 @@
+{
+    // Only log warnings and errors, to reduce clutter in the logs
+    //   Change the default log level here to see more information in the build pipeline if needed
+    "Serilog": {
+        "Using": [ "TestingExample.Website.IntegrationTests" ],
+        "MinimumLevel": {
+            "Default": "Warning"
+        },
+        "WriteTo": [
+            {
+                "Name": "Async",
+                "Args": {
+                    "configure": [
+                        {
+                            "Name": "Console"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "Umbraco": {
+        "CMS": {
+
+            // Set an unattended install so that Umbraco gets installed on the in-memory database
+            "Unattended": {
+                "UpgradeUnattended": true,
+                "InstallUnattended": true,
+                "UnattendedUserName": "Test",
+                "UnattendedUserEmail": "test@test.nl",
+                "UnattendedUserPassword": "1234567890"
+            },
+            "Hosting": {
+                "Debug": true
+            },
+
+            // Use SqlMainDomLock so that we don't rely on filesystem while testing
+            "Global": {
+                "MainDomLock": "SqlMainDomLock"
+            },
+
+            // We most certainly do not want to change the models while testing, so no modelsbuilder
+            "ModelsBuilder": {
+                "ModelsMode": "Nothing"
+            },
+
+      // Use the default lucene directory factory, because that's the most reliable option for integration tests
+      "Examine": {
+        "LuceneDirectoryFactory": "Default"
+      },
+
+      // Configure the umbraco application url (which should always be configured anyway) to test anything that requires absolute urls
+      "WebRouting": {
+        "UmbracoApplicationUrl": "https://infocaster.net/umbraco"
+      }
+    }
+  },
+
+    "uSync": {
+        "Settings": {
+            // uSync import on boot doesn't work very well in integration tests. We disable it explicitly and start the import via code.
+            "ImportOnFirstBoot": false,
+            "ImportOnBoot": false,
+            "ExportOnSave": "None"
+        }
+    }
+}
