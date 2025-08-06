@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+		<PackageReference Include="Duende.IdentityModel" Version="7.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.7" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
 		<PackageReference Include="Scrutor" Version="6.1.0" />

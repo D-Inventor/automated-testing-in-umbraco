@@ -36,3 +36,11 @@ Specifically for xUnit v3, a compromise was necessary. In short: type finder set
   }
 }
 ```
+
+## Running tests on the backoffice
+
+The management api is protected, so you can't simply call an endpoint and get a response. You need an authenticated backoffice user to fetch a result from a backoffice api endpoint.
+
+### Relevant source code
+- [Example test that tests a backoffice endpoint](./BackofficeApiTests.cs)
+- [The BackofficeCredentialsProvider authenticates an HttpClient so that it can acces backoffice APIs](./Website/BackofficeCredentialsProvider.cs)
