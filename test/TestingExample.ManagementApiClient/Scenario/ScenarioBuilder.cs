@@ -49,7 +49,8 @@ public class ScenarioBuilder(Uri baseUri, IDocumentClient documentClient)
             {
                 foreach (var url in urlInfo.UrlInfos)
                 {
-                    var uri = Uri.TryCreate(url.Url, UriKind.Absolute, out var parsedUri) ? parsedUri
+                    var uri = Uri.TryCreate(url.Url, UriKind.Absolute, out var parsedUri) && (parsedUri.Scheme == Uri.UriSchemeHttp || parsedUri.Scheme == Uri.UriSchemeHttps)
+                        ? parsedUri
                         : new Uri(BaseUri, url.Url);
 
                     var locale = url.Culture is not null ? Locale.Culture(url.Culture) : Locale.Invariant;
