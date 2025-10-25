@@ -6,18 +6,18 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace TestingExample.Website.Subpage;
 
-public class ExampleSubpageController(
+public class ContentPageController(
     ILogger<RenderController> logger,
     ICompositeViewEngine compositeViewEngine,
     IUmbracoContextAccessor umbracoContextAccessor,
-    ExampleSubpageRequestHandler requestHandler)
+    ContentPageRequestHandler requestHandler)
     : RenderController(logger, compositeViewEngine, umbracoContextAccessor)
 {
-    private readonly ExampleSubpageRequestHandler _requestHandler = requestHandler;
+    private readonly ContentPageRequestHandler _requestHandler = requestHandler;
 
-    public IActionResult ExampleSubpage()
+    public IActionResult ContentPage()
     {
-        return CurrentPage is ExampleSubpage subPage
+        return CurrentPage is ContentPage subPage
             ? CurrentTemplate(_requestHandler.CreateSubpageViewModel(subPage))
             : NotFound();
     }

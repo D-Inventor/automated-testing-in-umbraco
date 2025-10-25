@@ -5,11 +5,11 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 namespace TestingExample.Website.Subpage;
 
 [HideFromTypeFinder]
-public class ExtendedExampleSubpage(
-    ExampleSubpage content,
+public class ExtendedContentPage(
+    ContentPage content,
     IPublishedValueFallback publishedValueFallback,
     LinkToHomepage? parentLink)
-    : ExampleSubpage(content, publishedValueFallback)
+    : ContentPage(content, publishedValueFallback)
 {
     public LinkToHomepage? ParentLink { get; } = parentLink;
 }

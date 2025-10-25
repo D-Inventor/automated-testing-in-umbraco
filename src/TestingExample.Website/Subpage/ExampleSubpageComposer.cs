@@ -2,10 +2,10 @@ using Umbraco.Cms.Core.Composing;
 
 namespace TestingExample.Website.Subpage;
 
-public class ExampleSubpageComposer : IComposer
+public class ContentPageComposer : IComposer
 {
     public void Compose(IUmbracoBuilder builder)
     {
-        builder.Services.AddScoped<ExampleSubpageRequestHandler>();
+        builder.Services.AddScoped<ContentPageRequestHandler>();
     }
 }

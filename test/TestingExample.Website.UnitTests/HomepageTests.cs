@@ -1,48 +1,52 @@
 using NSubstitute;
-using TestingExample.Website.Homepage;
+
+using TestingExample.Website.Home;
 using TestingExample.Website.UnitTests.PublishedContent;
+
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
-namespace TestingExample.Website.UnitTests
+namespace TestingExample.Website.UnitTests;
+
+public class HomepageTests
 {
-    public class HomepageTests
+    private readonly Homepage _homepage;
+    private readonly FakePublishedContentOperations _publishedContentOperations = new ();
+    private readonly HomepageRequestHandler _requestHandler;
+
+    public HomepageTests()
     {
-        private readonly ExampleWebsite _homepage;
-        private readonly FakePublishedContentOperations _publishedContentOperations = new ();
-        private readonly ExampleWebsiteRequestHandler _requestHandler;
+        _homepage = FakePublishedContent.Generate<Homepage>();
+        _requestHandler = new(Substitute.For<IPublishedValueFallback>(), _publishedContentOperations);
+    }
 
-        public HomepageTests()
-        {
-            _homepage = FakePublishedContent.Generate<ExampleWebsite>();
-            _requestHandler = new(Substitute.For<IPublishedValueFallback>(), _publishedContentOperations);
-        }
+    [Fact]
+    public void ShouldCreateHomepageViewModel()
+    {
+        // given / when
+        var result = _requestHandler.CreateHomepageViewModel(_homepage);
 
-        [Fact]
-        public void ShouldCreateHomepageViewModel()
-        {
-            // given / when
-            var result = _requestHandler.CreateHomepageViewModel(_homepage);
+        // then
+        Assert.NotNull(result);
+    }
 
-            // then
-            Assert.NotNull(result);
-        }
+    [Fact]
+    public void ShouldCreateCardsForSelectedPages()
+    {
+        // given
+        var detailpage1 = FakePublishedContent.Generate<ContentPage>();
+        var detailpage2 = FakePublishedContent.Generate<ContentPage>();
+        _homepage.PropertyValues()
+            .Set(item => item.FeaturedContent, [detailpage1, detailpage2]);
 
-        [Fact]
-        public void ShouldCreateCardsForSubPages()
-        {
-            // given
-            var subPage1 = FakePublishedContent.Generate<ExampleSubpage>();
-            var subPage2 = FakePublishedContent.Generate<ExampleSubpage>();
-            _publishedContentOperations.SetChildren(_homepage, [subPage1, subPage2]);
+        _publishedContentOperations.SetChildren(_homepage, [detailpage1, detailpage2]);
 
-            // when
-            var result = _requestHandler.CreateHomepageViewModel(_homepage);
+        // when
+        var result = _requestHandler.CreateHomepageViewModel(_homepage);
 
-            // then
-            Assert.Collection(result.Cards,
-                card => Assert.Equal(subPage1.Name, card.Title),
-                card => Assert.Equal(subPage2.Name, card.Title));
-        }
+        // then
+        Assert.Collection(result.Cards,
+            card => Assert.Equal(detailpage1.Name, card.Title),
+            card => Assert.Equal(detailpage2.Name, card.Title));
     }
 }

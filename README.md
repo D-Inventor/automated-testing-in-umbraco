@@ -11,6 +11,7 @@ The most important tools that are used in the automated tests are as follows:
 | [xUnit v3](https://xunit.net/?tabs=cs)         | The testing framework. You can use any testing framework that you like though                                                                                                                                                                                               |
 | [NSubstitute](https://nsubstitute.github.io/)  | Library for mocking. Any mocking library will work. This project doesn't do extensive mocking, but for example `IPublishedValueFallback` is a mandatory parameter for any published content item, even if you don't actually use it. It's just convenient to insert a mock. |
 | [Test Containers](https://testcontainers.com/) | Automatically creates docker containers while running tests. It is used to create an empty SQL Server database that is automatically cleaned up after testing. It is required to have **Docker Desktop** installed and running while running these tests.                   |
+| [Playwright](https://playwright.dev/dotnet/)   | Framework for browser automation. After setting up a content scenario, playwright can open a browser and actually visit the website and make assertions based on content and behaviour in a realistic user interaction.                                                     |
 
 For a more exhaustive list of tools, I recommend checking out the .csproj files in each testing project.
 
@@ -20,6 +21,7 @@ Use this project as a reference to understand how to get started with automated 
 
 - [Unit testing project](./test/TestingExample.Website.UnitTests/)
 - [Integration testing project](./test/TestingExample.Website.IntegrationTests/)
+- [End-to-end / functional testing project](./test/TestingExample.Website.FunctionalTests/)
 
 ## Running this project locally
 
@@ -30,3 +32,7 @@ dotnet test
 ```
 
 Alternatively, you can use your automated test explorer in your IDE.
+
+| ℹ️ Note on running end-to-end tests |
+|---|
+| Running end-to-end tests is more complicated than running the unit tests and integration tests in this project. The end-to-end tests will likely fail when you run them with the dotnet test command. For detailed instructions, check out the readme in the FunctionTests test project |

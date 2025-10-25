@@ -1,7 +1,8 @@
-using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
+
 using TestingExample.Website.IntegrationTests.Database;
 using TestingExample.Website.IntegrationTests.Website;
+
 using Umbraco.Cms.Core.Security;
 using Umbraco.Cms.Core.Services;
 
@@ -27,7 +28,9 @@ public class WebsiteFixture(IDatabaseResource database) : IAsyncLifetime
 
     public HttpClient CreateAnonymousClient()
     {
-        return Website.CreateClient();
+        var client = Website.CreateClient();
+        client.BaseAddress = new Uri("https://localhost:44376");
+        return client;
     }
 
     public async Task<HttpClient> CreateBackofficeClientAsync(CancellationToken cancellationToken = default)
