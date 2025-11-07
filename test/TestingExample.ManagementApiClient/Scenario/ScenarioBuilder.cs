@@ -2,10 +2,11 @@ using TestingExample.ManagementApiClient.Scenario.Model;
 
 namespace TestingExample.ManagementApiClient.Scenario;
 
-public class ScenarioBuilder(Uri baseUri, IDocumentClient documentClient)
+public class ScenarioBuilder(Uri baseUri, IDocumentClient documentClient, ICacheClient cacheClient)
 {
     private readonly Dictionary<Guid, PageModel> _pages = [];
     private readonly IDocumentClient _documentClient = documentClient;
+    private readonly ICacheClient _cacheClient = cacheClient;
 
     public Uri BaseUri { get; } = baseUri;
 
@@ -27,6 +28,7 @@ public class ScenarioBuilder(Uri baseUri, IDocumentClient documentClient)
     public async Task BuildAsync(CancellationToken cancellationToken = default)
     {
         await _documentClient.ClearDocumentsAsync(cancellationToken);
+        await _cacheClient.PostPublishedCacheReloadAsync(cancellationToken);
 
         foreach (var page in _pages.Values.OrderBy(page => page.Level))
         {

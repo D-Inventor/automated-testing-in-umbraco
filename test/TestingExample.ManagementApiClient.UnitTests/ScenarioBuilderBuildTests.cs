@@ -24,7 +24,7 @@ public class ScenarioBuilderBuildTests
     public ScenarioBuilderBuildTests()
     {
         _spy = new DocumentClientSpy();
-        _scenario = new ScenarioBuilder(new Uri("https://example.com"), _spy);
+        _scenario = new ScenarioBuilder(new Uri("https://example.com"), _spy, new CacheClientStub());
     }
 
     [Fact]
@@ -168,7 +168,7 @@ public class ScenarioBuilderBuildTests
         // given
         var pageId = Guid.Parse("1a235bf2-b566-4e83-8984-2cba3411601e");
         var scenario = new ScenarioBuilder(new Uri("https://example.com"), new DocumentClientMock()
-            .WithUrlFor(pageId, "en-US", "https://example.com/"));
+            .WithUrlFor(pageId, "en-US", "https://example.com/"), new CacheClientStub());
         var page = scenario.Add<ExampleContentModel>(id: pageId, contentType: DefaultContentType)
             .HasVariation(Variation.Culture("en-US"), "English variant");
 
@@ -185,7 +185,7 @@ public class ScenarioBuilderBuildTests
         // given
         var pageId = Guid.Parse("1a235bf2-b566-4e83-8984-2cba3411601e");
         var scenario = new ScenarioBuilder(new Uri("https://example.com"), new DocumentClientMock()
-            .WithUrlFor(pageId, "en-US", "/privacy-policy"));
+            .WithUrlFor(pageId, "en-US", "/privacy-policy"), new CacheClientStub());
         var page = scenario.Add<ExampleContentModel>(id: pageId, contentType: DefaultContentType)
             .HasVariation(Variation.Culture("en-US"), "English variant");
 

@@ -28,6 +28,13 @@ public partial class TemplateClient : ITemplateClient
     }
 }
 
+public interface ICacheClient
+{
+    Task PostPublishedCacheReloadAsync(CancellationToken cancellationToken);
+}
+
+public partial class Published_CacheClient : ICacheClient;
+
 public interface IDocumentClient
 {
     Task PostDocumentAsync(CreateDocumentRequestModel? body, CancellationToken cancellationToken);
@@ -39,6 +46,13 @@ public interface IDocumentClient
 
 public partial class DocumentClient : IDocumentClient
 {
-    public Task ClearDocumentsAsync(CancellationToken cancellationToken)
-        => ClearAsync(cancellationToken);
+    public async Task ClearDocumentsAsync(CancellationToken cancellationToken)
+    {
+        var documents = await GetTreeDocumentRootAsync(skip: 0, take: 100, dataTypeId: null, cancellationToken: cancellationToken);
+
+        foreach (var document in documents.Items)
+        {
+            await DeleteDocumentByIdAsync(document.Id, cancellationToken: cancellationToken);
+        }
+    }
 }

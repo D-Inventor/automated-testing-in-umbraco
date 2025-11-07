@@ -20,7 +20,7 @@ public class ScenarioBuilderAddTests
 
     public ScenarioBuilderAddTests()
     {
-        _scenario = new(new Uri("https://example.com"), new DocumentClientDummy());
+        _scenario = new(new Uri("https://example.com"), new DocumentClientDummy(), new CacheClientStub());
     }
 
     [Fact]

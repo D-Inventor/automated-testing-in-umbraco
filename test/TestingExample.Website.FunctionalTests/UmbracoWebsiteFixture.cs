@@ -34,7 +34,8 @@ public class UmbracoWebsiteFixture
     public ScenarioBuilder NewScenario()
     {
         var documentClient = new DocumentClient(_tokenManager, HttpClient);
-        return new ScenarioBuilder(BaseAddress, documentClient);
+        var cacheClient = new Published_CacheClient(_tokenManager, HttpClient);
+        return new ScenarioBuilder(BaseAddress, documentClient, cacheClient);
     }
 
     protected virtual void Dispose(bool disposing)
