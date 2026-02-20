@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
     <RootNamespace>TestingExample.Website.IntegrationTests</RootNamespace>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <!--
     To enable the Microsoft Testing Platform 'dotnet test' experience, add property:
       <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
@@ -16,6 +16,7 @@
     For more information on Microsoft Testing Platform support in xUnit.net, please visit:
       https://xunit.net/docs/getting-started/v3/microsoft-testing-platform
     -->
+    <UserSecretsId>e3c23a3b-2931-4d63-bac4-5d0990825d4a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,13 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
-		<PackageReference Include="Duende.IdentityModel" Version="7.1.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.10" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
-		<PackageReference Include="Scrutor" Version="6.1.0" />
-		<PackageReference Include="Testcontainers.MsSql" Version="4.7.0" />
-		<PackageReference Include="Testcontainers.XunitV3" Version="4.7.0" />
-    <PackageReference Include="xunit.v3" Version="3.1.0" />
+		<PackageReference Include="Duende.IdentityModel" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+		<PackageReference Include="Scrutor" Version="7.0.0" />
+		<PackageReference Include="Testcontainers.MsSql" Version="4.10.0" />
+		<PackageReference Include="Testcontainers.XunitV3" Version="4.10.0" />
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

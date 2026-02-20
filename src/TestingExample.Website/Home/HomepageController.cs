@@ -19,7 +19,7 @@ public class HomepageController(
     public IActionResult Homepage()
     {
         return CurrentPage is Homepage Homepage
-            ? CurrentTemplate(_requestHandler.CreateHomepageViewModel(Homepage))
+            ? CurrentTemplate<Homepage>(_requestHandler.CreateHomepageViewModel(Homepage))
             : NotFound();
     }
 }

@@ -53,9 +53,8 @@ public sealed class BackofficeCredentialsProvider(IUserService userService, IBac
         var result = new BackofficeCredentials("umbraco-back-office-" + Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
         var clientCredentialResult = await _clientCredentialService.SaveAsync(user.Key, result.ClientId, result.ClientSecret);
 
-        if (!clientCredentialResult.Success) throw new InvalidOperationException("Failed to create backoffice client credentials.");
-
-        return result;
+        return clientCredentialResult.Success ? result
+            : throw new InvalidOperationException("Failed to create backoffice client credentials.");
     }
 
     private record BackofficeCredentials(string ClientId, string ClientSecret);

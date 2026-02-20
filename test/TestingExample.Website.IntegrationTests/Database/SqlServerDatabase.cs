@@ -10,8 +10,7 @@ internal sealed class SqlServerDatabase : IDatabaseResource
 
     public SqlServerDatabase()
     {
-        _dbContainer = new MsSqlBuilder()
-            .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
+        _dbContainer = new MsSqlBuilder(image: "mcr.microsoft.com/mssql/server:2022-latest")
             .WithEnvironment("ACCEPT_EULA", "Y")
             .Build();
     }
@@ -24,12 +23,7 @@ internal sealed class SqlServerDatabase : IDatabaseResource
     {
         await _dbContainer.StartAsync();
 
-        // NOTE: entity framework cannot properly clean up all the tables on the default connection string
-        // This connection string connects to a 'different' database on which ef core can do everything that it needs 
-        _connectionString = new SqlConnectionStringBuilder(_dbContainer.GetConnectionString())
-        {
-            InitialCatalog = Guid.NewGuid().ToString("D")
-        }.ToString();
+        _connectionString = _dbContainer.GetConnectionString();
     }
 
     public async ValueTask DisposeAsync()

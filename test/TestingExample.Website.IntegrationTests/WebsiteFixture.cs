@@ -36,6 +36,7 @@ public class WebsiteFixture(IDatabaseResource database) : IAsyncLifetime
     public async Task<HttpClient> CreateBackofficeClientAsync(CancellationToken cancellationToken = default)
     {
         var client = Website.CreateClient();
+        client.BaseAddress = new Uri("https://localhost:44376");
         await BackofficeCredentialsProvider.AuthenticateAsBackofficeUserAsync(client, cancellationToken);
         return client;
     }

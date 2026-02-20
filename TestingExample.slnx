@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/TestingExample.Website/TestingExample.Website.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/TestingExample.ManagementApiClient.UnitTests/TestingExample.ManagementApiClient.UnitTests.csproj" />
+    <Project Path="test/TestingExample.ManagementApiClient/TestingExample.ManagementApiClient.csproj" />
+    <Project Path="test/TestingExample.Website.FunctionalTests/TestingExample.Website.FunctionalTests.csproj" />
+    <Project Path="test/TestingExample.Website.IntegrationTests/TestingExample.Website.IntegrationTests.csproj" />
+    <Project Path="test/TestingExample.Website.UnitTests/TestingExample.Website.UnitTests.csproj" />
+  </Folder>
+</Solution>

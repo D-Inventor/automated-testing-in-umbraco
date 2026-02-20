@@ -8,7 +8,7 @@ public class DocumentClientMock() : IDocumentClient
     public DocumentClientMock WithUrlFor(Guid pageId, string? culture, string url)
     {
         var response = _responses.TryGetValue(pageId, out var item) ? item : new DocumentUrlInfoResponseModel(pageId, []);
-        _responses[pageId] = response with { UrlInfos = [.. response.UrlInfos, new DocumentUrlInfoModel(culture, url)] };
+        _responses[pageId] = response with { UrlInfos = [.. response.UrlInfos, new DocumentUrlInfoModel(culture, null, "umbDocumentUrlProvider", url)] };
 
         return this;
     }
