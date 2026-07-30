@@ -89,7 +89,7 @@ public class WebsiteResource(IDatabaseResource databaseResource)
          */
         ServiceDescriptor sd = services.First(s => s.ImplementationType == typeof(RebuildOnStartupHandler));
         services.Remove(sd);
-        services.Add(new UniqueServiceDescriptor(typeof(INotificationHandler<UmbracoRequestBeginNotification>), typeof(CustomRebuildOnStartupHandler), ServiceLifetime.Transient));
+        services.Add(new UniqueServiceDescriptor(typeof(INotificationAsyncHandler<UmbracoRequestBeginNotification>), typeof(CustomRebuildOnStartupHandler), ServiceLifetime.Transient));
         services.AddSingleton<CustomRebuildOnStartupHandlerState>();
 
         // Add a configuration to move the examine index files into RAM.

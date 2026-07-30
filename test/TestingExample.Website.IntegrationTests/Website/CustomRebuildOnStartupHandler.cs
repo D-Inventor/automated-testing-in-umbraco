@@ -4,6 +4,7 @@ using Umbraco.Cms.Core.Notifications;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Sync;
 using Umbraco.Cms.Infrastructure.Examine;
+using Umbraco.Cms.Infrastructure.Models;
 
 namespace TestingExample.Website.IntegrationTests.Website;
 
@@ -15,30 +16,42 @@ public sealed class CustomRebuildOnStartupHandler(
     IIndexRebuilder backgroundIndexRebuilder,
     IRuntimeState runtimeState,
     CustomRebuildOnStartupHandlerState state)
-    : INotificationHandler<UmbracoRequestBeginNotification>
+    : INotificationAsyncHandler<UmbracoRequestBeginNotification>
 {
-    // This method should be a copy of the method in the original handler,
-    //    except using the singleton state object instead of static fields
-    public void Handle(UmbracoRequestBeginNotification notification)
+    // This method is an async version of the original handler,
+    //    using the singleton state object instead of static fields
+    public async Task HandleAsync(UmbracoRequestBeginNotification notification, CancellationToken cancellationToken)
     {
         if (runtimeState.Level != RuntimeLevel.Run)
         {
             return;
         }
 
-        LazyInitializer.EnsureInitialized(
-            ref state._isReady,
-            ref state._isReadSet,
-            ref state._isReadyLock,
-            () =>
+        if (!state._isReady)
+        {
+            Task? initTask = null;
+            lock (state._isReadyLock)
             {
-                SyncBootState bootState = syncBootStateAccessor.GetSyncBootState();
+                if (!state._isReady)
+                {
+                    initTask = InitializeAsync();
+                }
+            }
 
-                backgroundIndexRebuilder.RebuildIndexes(
-                    bootState != SyncBootState.ColdBoot,
-                    TimeSpan.Zero);
+            if (initTask != null)
+                await initTask;
+        }
+    }
 
-                return true;
-            });
+    private Task<Attempt<IndexRebuildResult>> InitializeAsync()
+    {
+        state._isReady = true;
+
+        SyncBootState bootState = syncBootStateAccessor.GetSyncBootState();
+
+        return backgroundIndexRebuilder.RebuildIndexesAsync(
+            bootState != SyncBootState.ColdBoot,
+            null,
+            useBackgroundThread: false);
     }
 }
