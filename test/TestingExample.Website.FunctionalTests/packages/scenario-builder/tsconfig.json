@@ -8,8 +8,9 @@
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
     "exactOptionalPropertyTypes": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "vitest.config.ts"]
+  "include": ["src/**/*"]
 }

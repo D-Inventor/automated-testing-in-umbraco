@@ -9,10 +9,13 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-client": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 openapi-ts"
   },
   "devDependencies": {
-    "typescript": "^7.0.2",
+    "@hey-api/openapi-ts": "0.99.0",
+    "cross-env": "^10.1.0",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.10"
   }
 }

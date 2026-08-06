@@ -6,3 +6,4 @@ umbraco-package-schema.json
 [Oo]bj
 
 node_modules
+openapi-ts-error-*.log
