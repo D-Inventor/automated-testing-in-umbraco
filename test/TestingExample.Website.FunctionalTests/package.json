@@ -1,0 +1,21 @@
+{
+  "name": "testingexample-functional-tests-root",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "pnpm run test:unit && pnpm run test:e2e",
+    "test:unit": "pnpm --filter scenario-builder test",
+    "test:e2e": "pnpm --filter functional-tests test",
+    "lint": "eslint packages",
+    "lint:fix": "eslint packages --fix",
+    "format": "prettier --write packages",
+    "format:check": "prettier --check packages"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
+    "typescript-eslint": "^8.66.0"
+  }
+}
