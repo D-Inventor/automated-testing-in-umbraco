@@ -4,7 +4,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace TestingExample.Website.UnitTests.PublishedContent;
 
-internal class FakePublishedElement(Guid? key = null)
+internal class FakePublishedElement(int id, string name, Guid? key = null)
     : IPublishedElement
 {
     private readonly Dictionary<string, IPublishedProperty> _properties = [];
@@ -14,6 +14,24 @@ internal class FakePublishedElement(Guid? key = null)
     public Guid Key { get; } = key ?? Guid.NewGuid();
 
     public IEnumerable<IPublishedProperty> Properties => _properties.Values;
+
+    public int Id { get; } = id;
+
+    public string Name { get; } = name;
+
+    public int SortOrder { get; set; }
+
+    public int CreatorId { get; set; }
+
+    public DateTime CreateDate { get; set; }
+
+    public int WriterId { get; set; }
+
+    public DateTime UpdateDate { get; set; }
+
+    public IReadOnlyDictionary<string, PublishedCultureInfo> Cultures { get; } = new Dictionary<string, PublishedCultureInfo>();
+
+    public PublishedItemType ItemType { get; } = PublishedItemType.Content;
 
     public IPublishedProperty? GetProperty(string alias)
     {
@@ -44,6 +62,16 @@ internal class FakePublishedElement(Guid? key = null)
     public PropertyValueBuilder<TContent> PropertyValuesFor<TContent>()
         where TContent : IPublishedElement
         => new(this);
+
+    public bool IsDraft(string? culture = null)
+    {
+        return false;
+    }
+
+    public bool IsPublished(string? culture = null)
+    {
+        return false;
+    }
 
     public sealed class PropertyValueBuilder<TContent>(FakePublishedElement content)
         where TContent : IPublishedElement

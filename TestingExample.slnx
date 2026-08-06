@@ -8,6 +8,7 @@
     <Project Path="src/TestingExample.Website/TestingExample.Website.csproj" />
   </Folder>
   <Folder Name="/test/">
+    <Project Path="test/TestingExample.ManagementApiClient.Generator/TestingExample.ManagementApiClient.Generator.csproj" />
     <Project Path="test/TestingExample.ManagementApiClient.UnitTests/TestingExample.ManagementApiClient.UnitTests.csproj" />
     <Project Path="test/TestingExample.ManagementApiClient/TestingExample.ManagementApiClient.csproj" />
     <Project Path="test/TestingExample.Website.FunctionalTests/TestingExample.Website.FunctionalTests.csproj" />
