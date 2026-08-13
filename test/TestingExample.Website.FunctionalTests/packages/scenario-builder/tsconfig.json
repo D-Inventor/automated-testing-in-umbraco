@@ -10,7 +10,10 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
     "exactOptionalPropertyTypes": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*"]
 }

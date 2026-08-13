@@ -9,4 +9,6 @@ export class Scenario {
   constructor(options: ScenarioOptions) {
     this.url = `${options.baseUrl}${options.path}`;
   }
+
+  public get<T>(key: string): T {}
 }
