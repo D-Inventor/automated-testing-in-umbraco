@@ -178,11 +178,11 @@ describe('Scenario', () => {
 
     const parent = new TestContentType(apiScenario);
     parent.hasParent(grandparent);
-    parent.hasOrder(1);
+    parent.hasOrder(99);
 
     const child = new TestContentType(apiScenario);
     child.hasParent(parent);
-    child.hasOrder(99); // Higher order than parent
+    child.hasOrder(1); // Higher order than parent
 
     // when
     vi.clearAllMocks();
@@ -192,8 +192,8 @@ describe('Scenario', () => {
     const callOrder = vi.mocked(postDocument).mock.calls;
     expect(callOrder).toHaveLength(3);
     expect(callOrder[0]![0]!.body!.id).toBe(grandparent.id); // level 0
-    expect(callOrder[1]![0]!.body!.id).toBe(parent.id); // level 1, order 1
-    expect(callOrder[2]![0]!.body!.id).toBe(child.id); // level 2, order 99
+    expect(callOrder[1]![0]!.body!.id).toBe(parent.id); // level 1, order 99
+    expect(callOrder[2]![0]!.body!.id).toBe(child.id); // level 2, order 1
   });
 });
 
