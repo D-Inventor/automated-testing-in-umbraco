@@ -15,6 +15,14 @@ export default tseslint.config(
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    rules: {
+      'no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: /^_/,
+        },
+      ],
+    },
   },
   // must be last so Prettier formatting rules win over ESLint formatting rules
   eslintConfigPrettier,

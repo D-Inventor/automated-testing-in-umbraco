@@ -9,7 +9,7 @@ test.describe('homepage', () => {
     await build(scenario);
 
     // when
-    await page.goto(scenario.website.url(EnglishCulture));
+    await page.goto(urlFor(scenario.website, EnglishCulture));
 
     // then
     await expect(page).toHaveTitle('welcome to the website');
