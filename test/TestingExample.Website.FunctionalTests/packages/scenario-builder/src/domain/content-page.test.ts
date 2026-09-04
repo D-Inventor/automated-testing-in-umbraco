@@ -39,7 +39,7 @@ describe('ContentPage', () => {
     expect(scenario.registered_content[0]!.documentType).toBe(TestContentType.contenttype);
   });
 
-  it('should assign parent when hasParent is called', () => {
+  it('should assign parent', () => {
     // given
     const scenario = new SpyScenario();
     const parent = new TestContentType(scenario);
@@ -53,7 +53,7 @@ describe('ContentPage', () => {
     expect(childItem!.parent).toBe(parent.id);
   });
 
-  it('should add domain when hasDomain is called', () => {
+  it('should add domain', () => {
     // given
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
@@ -69,7 +69,7 @@ describe('ContentPage', () => {
     expect(contentItem!.domains![0]).toEqual({ culture, url: url.toString() });
   });
 
-  it('should add variant when hasVariation is called', () => {
+  it('should add variant', () => {
     // given
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
@@ -85,7 +85,7 @@ describe('ContentPage', () => {
     expect(contentItem!.variants[0]).toEqual({ variation, name });
   });
 
-  it('should mark variation as published when isPublishedIn is called', () => {
+  it('should mark variation as published', () => {
     // given
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
@@ -102,7 +102,7 @@ describe('ContentPage', () => {
     expect(contentItem!.published![0]).toEqual(variation);
   });
 
-  it('should throw error when publishing a variation that has not been added', () => {
+  it("should fail to publish a variant that the content doesn't have", () => {
     // given
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
@@ -169,5 +169,29 @@ describe('ContentPage', () => {
     expect(parent1.level).toBe(0);
     expect(parent2.level).toBe(1);
     expect(child.level).toBe(2);
+  });
+
+  it('should have order 0 by default', () => {
+    // given
+    const scenario = new SpyScenario();
+    const content = new TestContentType(scenario);
+
+    // then
+    expect(content.order).toBe(0);
+  });
+
+  it('should set order', () => {
+    // given
+    const scenario = new SpyScenario();
+    const content = new TestContentType(scenario);
+    const orderValue = 5;
+
+    // when
+    content.hasOrder(orderValue);
+
+    // then
+    const contentItem = scenario.registered_content.find((item) => item.id === content.id);
+    expect(contentItem!.order).toBe(orderValue);
+    expect(content.order).toBe(orderValue);
   });
 });

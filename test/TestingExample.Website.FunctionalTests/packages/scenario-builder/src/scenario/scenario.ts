@@ -20,7 +20,11 @@ export class ApiScenario implements Scenario {
   }
 
   public async build(): Promise<void> {
-    for (const item of Object.values(this.added)) {
+    const sortedItems = Object.values(this.added).sort(
+      (a, b) => (a.level ?? 0) - (b.level ?? 0) || (a.order ?? 0) - (b.order ?? 0),
+    );
+
+    for (const item of sortedItems) {
       await postDocument({
         body: convertToContentPostRequest(item),
       });

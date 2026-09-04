@@ -23,6 +23,7 @@ export class ContentPage {
       domains: [],
       published: [],
       level: 0,
+      order: 0,
     };
     this.scenario.add(this.contentItem);
   }
@@ -57,6 +58,14 @@ export class ContentPage {
 
   get level(): number {
     return this.contentItem.level ?? 0;
+  }
+
+  hasOrder(orderValue: number): void {
+    this.contentItem.order = orderValue;
+  }
+
+  get order(): number {
+    return this.contentItem.order;
   }
 
   hasDomain(culture: string, url: URL): void {

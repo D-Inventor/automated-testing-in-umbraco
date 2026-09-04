@@ -15,6 +15,7 @@ export type ContentItem = {
   domains: ContentItemDomain[];
   published: Variation[];
   level: number;
+  order: number;
 };
 
 export type ContentItemVariant = {
