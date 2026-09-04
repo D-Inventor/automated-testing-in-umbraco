@@ -65,14 +65,16 @@ describe('Scenario', () => {
   it('creates new domains', async () => {
     // given
     const scenario = new ApiScenario();
-    scenario.add(createMinimalContentItem('c9a7115f-11c7-410f-98eb-a48f0da125cb'));
+    const contentItem = createMinimalContentItem('c9a7115f-11c7-410f-98eb-a48f0da125cb');
+    contentItem.domains = [
+      {
+        culture: 'nl',
+        url: 'https://localhost:44384/',
+      },
+    ];
+    scenario.add(contentItem);
 
     // when
-    scenario.addDomain({
-      culture: 'nl',
-      url: 'https://localhost:44384/',
-      content: 'c9a7115f-11c7-410f-98eb-a48f0da125cb',
-    });
     await scenario.build();
 
     // then

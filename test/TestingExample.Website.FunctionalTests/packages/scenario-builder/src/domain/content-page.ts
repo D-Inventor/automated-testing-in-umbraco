@@ -18,6 +18,8 @@ export class ContentPage {
       documentType: this.contenttype,
       values: [],
       variants: [],
+      domains: [],
+      published: [],
     };
     this.scenario.add(this.contentItem);
   }
@@ -25,9 +27,26 @@ export class ContentPage {
   hasParent(parent: ContentPage): void {
     this.contentItem.parent = parent.id;
   }
-  hasDomain(culture: Culture, url: URL): void {}
-  hasVariation(variation: Variation, name: string): void {}
-  isPublishedIn(variation: Variation): void {}
+
+  hasDomain(culture: string, url: URL): void {
+    this.contentItem.domains!.push({ culture, url: url.toString() });
+  }
+
+  hasVariation(variation: Variation, name: string): void {
+    this.contentItem.variants.push({ variation, name });
+  }
+
+  isPublishedIn(variation: Variation): void {
+    const hasVariant = this.contentItem.variants.some(
+      (v) => v.variation.culture === variation.culture && v.variation.segment === variation.segment,
+    );
+    if (!hasVariant) {
+      throw new Error(
+        `Variation not added: culture="${variation.culture}", segment=${variation.segment}`,
+      );
+    }
+    this.contentItem.published!.push(variation);
+  }
 
   get id(): string {
     return this.contentItem.id;

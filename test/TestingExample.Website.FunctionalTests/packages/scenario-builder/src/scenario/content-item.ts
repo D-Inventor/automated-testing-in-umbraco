@@ -1,5 +1,10 @@
 import type { Variation } from '@/domain/variation';
 
+export type ContentItemDomain = {
+  culture: string;
+  url: string;
+};
+
 export type ContentItem = {
   id: string;
   parent?: string;
@@ -7,6 +12,8 @@ export type ContentItem = {
   template?: string;
   values: ContentItemValue[];
   variants: ContentItemVariant[];
+  domains?: ContentItemDomain[];
+  published?: Variation[];
 };
 
 export type ContentItemVariant = {

@@ -7,7 +7,6 @@ import {
   type ReferenceByIdModel,
 } from '@/client';
 import type { ContentItem, ContentItemValue, ContentItemVariant } from '@/scenario/content-item';
-import type { DomainItem } from '@/scenario/domain-item';
 
 export interface Scenario {
   add(content: ContentItem): void;
@@ -15,18 +14,9 @@ export interface Scenario {
 
 export class ApiScenario implements Scenario {
   private added: Record<string, ContentItem> = {};
-  private addedDomains: Record<string, DomainItem[]> = {};
 
   public add(content: ContentItem) {
     this.added[content.id] = content;
-  }
-
-  public addDomain(domain: DomainItem) {
-    if (!(domain.content in this.addedDomains)) {
-      this.addedDomains[domain.content] = [];
-    }
-
-    this.addedDomains[domain.content]!.push(domain);
   }
 
   public async build(): Promise<void> {
@@ -34,20 +24,20 @@ export class ApiScenario implements Scenario {
       await postDocument({
         body: convertToContentPostRequest(item),
       });
-    }
 
-    for (const item of Object.keys(this.addedDomains)) {
-      await putDocumentByIdDomains({
-        path: {
-          id: item,
-        },
-        body: {
-          domains: this.addedDomains[item]!.map((domain) => ({
-            domainName: domain.url,
-            isoCode: domain.culture,
-          })),
-        },
-      });
+      if (item.domains && item.domains.length > 0) {
+        await putDocumentByIdDomains({
+          path: {
+            id: item.id,
+          },
+          body: {
+            domains: item.domains.map((domain) => ({
+              domainName: domain.url,
+              isoCode: domain.culture,
+            })),
+          },
+        });
+      }
     }
   }
 }

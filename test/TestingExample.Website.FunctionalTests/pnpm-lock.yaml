@@ -45,6 +45,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.99.0
         version: 0.99.0(typescript@5.9.3)
+      '@types/node':
+        specifier: ^26.1.2
+        version: 26.1.2
       cross-env:
         specifier: ^10.1.0
         version: 10.1.0
