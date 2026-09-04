@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import type { ContentItem } from '@/scenario/content-item';
-import type { Culture, Variation } from './variation';
+import type { Variation } from './variation';
 
 export interface Scenario {
   add(content: ContentItem): void;
@@ -8,6 +8,8 @@ export interface Scenario {
 
 export class ContentPage {
   private contentItem: ContentItem;
+  private parentPage: ContentPage | undefined;
+  private children: ContentPage[] = [];
 
   constructor(
     private scenario: Scenario,
@@ -20,12 +22,41 @@ export class ContentPage {
       variants: [],
       domains: [],
       published: [],
+      level: 0,
     };
     this.scenario.add(this.contentItem);
   }
 
   hasParent(parent: ContentPage): void {
+    if (this.parentPage) {
+      this.parentPage.children = this.parentPage.children.filter((c) => c !== this);
+    }
+
+    this.parentPage = parent;
     this.contentItem.parent = parent.id;
+
+    parent.children.push(this);
+
+    this.updateLevel();
+  }
+
+  private updateLevel(): void {
+    const newLevel = (this.parentPage?.level ?? -1) + 1;
+
+    if (this.contentItem.level !== newLevel) {
+      this.contentItem.level = newLevel;
+      this.notifyLevelHasChanged();
+    }
+  }
+
+  private notifyLevelHasChanged(): void {
+    for (const child of this.children) {
+      child.updateLevel();
+    }
+  }
+
+  get level(): number {
+    return this.contentItem.level ?? 0;
   }
 
   hasDomain(culture: string, url: URL): void {

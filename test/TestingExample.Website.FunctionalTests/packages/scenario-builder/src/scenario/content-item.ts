@@ -12,8 +12,9 @@ export type ContentItem = {
   template?: string;
   values: ContentItemValue[];
   variants: ContentItemVariant[];
-  domains?: ContentItemDomain[];
-  published?: Variation[];
+  domains: ContentItemDomain[];
+  published: Variation[];
+  level: number;
 };
 
 export type ContentItemVariant = {

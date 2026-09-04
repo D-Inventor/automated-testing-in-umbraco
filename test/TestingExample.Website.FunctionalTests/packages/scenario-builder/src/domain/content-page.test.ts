@@ -111,4 +111,63 @@ describe('ContentPage', () => {
     // when & then
     expect(() => content.isPublishedIn(variation)).toThrow();
   });
+
+  it('should have level 0 by default', () => {
+    // given
+    const scenario = new SpyScenario();
+    const content = new TestContentType(scenario);
+
+    // then
+    expect(content.level).toBe(0);
+  });
+
+  it('should calculate level based on parent', () => {
+    // given
+    const scenario = new SpyScenario();
+    const parent = new TestContentType(scenario);
+    const child = new TestContentType(scenario);
+
+    // when
+    child.hasParent(parent);
+
+    // then
+    expect(child.level).toBe(1);
+  });
+
+  it('should update child level when parent level changes', () => {
+    // given
+    const scenario = new SpyScenario();
+    const grandparent = new TestContentType(scenario);
+    const parent = new TestContentType(scenario);
+    const child = new TestContentType(scenario);
+
+    parent.hasParent(grandparent);
+    child.hasParent(parent);
+
+    // when
+    grandparent.hasParent(new TestContentType(scenario));
+
+    // then
+    expect(parent.level).toBe(2);
+    expect(child.level).toBe(3);
+  });
+
+  it('should update level when changing parent', () => {
+    // given
+    const scenario = new SpyScenario();
+    const parent1 = new TestContentType(scenario);
+    const parent2 = new TestContentType(scenario);
+    parent2.hasParent(parent1);
+    const child = new TestContentType(scenario);
+
+    child.hasParent(parent1);
+
+    // when
+    child.hasParent(parent2);
+
+    // then
+    expect(parent1.level).toBe(0);
+    expect(parent2.level).toBe(1);
+    expect(child.level).toBe(2);
+  });
 });

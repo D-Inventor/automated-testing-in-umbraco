@@ -33,6 +33,9 @@ describe('Scenario', () => {
           name: 'Example content',
         },
       ],
+      domains: [],
+      published: [],
+      level: 0,
     });
     await scenario.build();
 
@@ -100,5 +103,8 @@ function createMinimalContentItem(id: string): ContentItem {
     documentType: 'fc6c106e-3453-43ae-b77d-4ab748d650dc',
     values: [],
     variants: [],
+    domains: [],
+    published: [],
+    level: 0,
   };
 }
