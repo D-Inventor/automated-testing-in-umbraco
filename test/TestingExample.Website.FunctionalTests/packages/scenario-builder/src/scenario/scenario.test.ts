@@ -45,6 +45,7 @@ describe('Scenario', () => {
       domains: [],
       published: [],
       level: 0,
+      order: 0,
     });
     await scenario.build();
 
