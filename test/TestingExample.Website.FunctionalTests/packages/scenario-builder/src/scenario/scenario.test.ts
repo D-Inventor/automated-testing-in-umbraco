@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
-import { ApiScenario } from '@/scenario/scenario';
-import type { ContentItem } from '@/scenario/content-item';
-import { postDocument, putDocumentByIdDomains } from '@/client';
-import { cultureVariant } from '@/domain/variation';
-import { ContentPage, type Scenario } from '@/domain/content-page';
+import { ApiScenario } from './scenario';
+import type { ContentItem } from './content-item';
+import { postDocument, putDocumentByIdDomains } from '../client';
+import { cultureVariant } from '../domain/variation';
+import { ContentPage, type Scenario } from '../domain/content-page';
 
-vi.mock('@/client', () => ({
+vi.mock('../client', () => ({
   postDocument: vi.fn().mockResolvedValue(undefined),
   putDocumentByIdDomains: vi.fn().mockResolvedValue(undefined),
 }));

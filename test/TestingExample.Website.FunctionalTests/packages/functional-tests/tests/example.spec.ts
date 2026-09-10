@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { Scenario } from 'scenario-builder';
+import { ApiScenario } from 'scenario-builder';
 
 test('navigates to the home page using a Scenario', async ({ page }) => {
-  const scenario = new Scenario({ baseUrl: 'https://playwright.dev', path: '/' });
+  const scenario = new ApiScenario();
 
-  await page.goto(scenario.url);
+  await page.goto('https://playwright.dev');
 
   await expect(page).toHaveTitle(/Playwright/);
 });

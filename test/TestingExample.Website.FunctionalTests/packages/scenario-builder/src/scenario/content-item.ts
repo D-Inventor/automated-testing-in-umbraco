@@ -1,4 +1,4 @@
-import type { Variation } from '@/domain/variation';
+import type { Variation } from '../domain/variation';
 
 export type ContentItemDomain = {
   culture: string;

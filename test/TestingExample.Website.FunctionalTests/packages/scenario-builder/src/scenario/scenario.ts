@@ -5,11 +5,13 @@ import {
   type DocumentValueModel,
   type DocumentVariantRequestModel,
   type ReferenceByIdModel,
-} from '@/client';
-import type { ContentItem, ContentItemValue, ContentItemVariant } from '@/scenario/content-item';
+} from '../client';
+import type { ContentItem, ContentItemValue, ContentItemVariant } from './content-item';
 
 export interface Scenario {
   add(content: ContentItem): void;
+
+  build(): Promise<void>;
 }
 
 export class ApiScenario implements Scenario {

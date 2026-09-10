@@ -1,12 +1,22 @@
-import { Scenario } from 'scenario-builder';
+import { ApiScenario, InvariantSegment, type Scenario, type Variation } from 'scenario-builder';
 import { Homepage } from './domain/homepage';
 import { Website } from './domain/website';
 import { ContentRoot } from './domain/content-root';
 import { SystemPages } from './domain/system-pages';
 import { DetailPage } from './domain/detail-page';
 
-export function basicScenario(): Scenario {
-  let scenario = new Scenario({ baseUrl: 'https://playwright.dev', path: '/' });
+export const EnglishCulture = 'en-US';
+export const English: Variation = { culture: EnglishCulture, segment: InvariantSegment };
+
+type BasicScenario = {
+  platform: Website;
+  website: ContentRoot;
+  homepage: Homepage;
+  systemPages: SystemPages;
+};
+
+export function basicScenario(): { content: BasicScenario; scenario: Scenario } {
+  let scenario = new ApiScenario();
 
   const platform = new Website(scenario);
   platform.hasVariation(English, 'Test website');
@@ -51,5 +61,13 @@ export function basicScenario(): Scenario {
   homepage.hasHeader(English, { title: 'Welcome to our website' });
   homepage.isPublishedIn(English);
 
-  return scenario;
+  return {
+    content: {
+      platform: platform,
+      website: website,
+      homepage: homepage,
+      systemPages: systemPages,
+    },
+    scenario: scenario,
+  };
 }

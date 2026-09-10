@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import type { ContentItem } from '@/scenario/content-item';
+import type { ContentItem } from '../scenario/content-item';
 import type { Variation } from './variation';
 
 export interface Scenario {
@@ -86,6 +86,21 @@ export class ContentPage {
       );
     }
     this.contentItem.published!.push(variation);
+  }
+
+  hasValue(variation: Variation, alias: string, value: unknown): void {
+    const existingValue = this.contentItem.values.find(
+      (v) =>
+        v.alias === alias &&
+        v.variation.culture === variation.culture &&
+        v.variation.segment === variation.segment,
+    );
+
+    if (existingValue) {
+      existingValue.value = value;
+    } else {
+      this.contentItem.values.push({ variation, alias, value });
+    }
   }
 
   get id(): string {

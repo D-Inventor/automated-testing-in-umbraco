@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ContentPage, type Scenario } from './content-page';
-import type { ContentItem } from '@/scenario/content-item';
+import type { ContentItem } from '../scenario/content-item';
 import { cultureVariant } from './variation';
 
 class TestContentType extends ContentPage {
@@ -193,5 +193,42 @@ describe('ContentPage', () => {
     const contentItem = scenario.registered_content.find((item) => item.id === content.id);
     expect(contentItem!.order).toBe(orderValue);
     expect(content.order).toBe(orderValue);
+  });
+
+  it('should add value for a variation', () => {
+    // given
+    const scenario = new SpyScenario();
+    const content = new TestContentType(scenario);
+    const variation = cultureVariant('en');
+    const alias = 'heading';
+    const value = 'Welcome to our site';
+
+    // when
+    content.hasValue(variation, alias, value);
+
+    // then
+    const contentItem = scenario.registered_content.find((item) => item.id === content.id);
+    expect(contentItem!.values).toHaveLength(1);
+    expect(contentItem!.values[0]).toEqual({ variation, alias, value });
+  });
+
+  it('should override existing value with same alias and variation', () => {
+    // given
+    const scenario = new SpyScenario();
+    const content = new TestContentType(scenario);
+    const variation = cultureVariant('en');
+    const alias = 'heading';
+    const initialValue = 'Welcome to our site';
+    const newValue = 'Updated heading';
+
+    content.hasValue(variation, alias, initialValue);
+
+    // when
+    content.hasValue(variation, alias, newValue);
+
+    // then
+    const contentItem = scenario.registered_content.find((item) => item.id === content.id);
+    expect(contentItem!.values).toHaveLength(1);
+    expect(contentItem!.values[0]).toEqual({ variation, alias, value: newValue });
   });
 });

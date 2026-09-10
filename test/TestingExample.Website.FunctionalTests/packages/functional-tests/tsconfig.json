@@ -6,18 +6,11 @@
     "strict": true,
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "skipLibCheck": true,
     "paths": {
-      "@scenario/*": [
-        "./scenario/*"
-      ]
+      "@scenario/*": ["./scenario/*"]
     }
   },
-  "include": [
-    "scenario/**/*",
-    "tests/**/*"
-  ],
+  "include": ["scenario/**/*", "tests/**/*"]
 }
