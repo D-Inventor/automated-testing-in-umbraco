@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".":  {
+    ".": {
       "import": "./src/index.ts",
       "types": "./src/index.ts"
     }
@@ -19,6 +19,7 @@
     "@hey-api/openapi-ts": "0.99.0",
     "@types/node": "^26.1.2",
     "cross-env": "^10.1.0",
+    "openid-client": "^6.8.8",
     "typescript": "^5.9.3",
     "vitest": "^4.1.10"
   }

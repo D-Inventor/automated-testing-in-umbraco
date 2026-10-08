@@ -16,7 +16,7 @@ type BasicScenario = {
 };
 
 export function basicScenario(): { content: BasicScenario; scenario: Scenario } {
-  let scenario = new ApiScenario();
+  const scenario = new ApiScenario();
 
   const platform = new Website(scenario);
   platform.hasVariation(English, 'Test website');
@@ -48,7 +48,7 @@ export function basicScenario(): { content: BasicScenario; scenario: Scenario } 
   const website = new ContentRoot(scenario);
   website.hasVariation(English, 'website');
   website.hasParent(platform);
-  website.hasDomain(EnglishCulture, 'https://localhost:44356');
+  website.hasDomain(EnglishCulture, new URL('https://localhost:44356'));
   website.hasErrorPages(English, {
     notFound: notFoundPage,
     serverError: serverErrorPage,

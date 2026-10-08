@@ -1,12 +1,15 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import { globalIgnores } from 'eslint/config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default tseslint.config(
+export default defineConfig(
   eslint.configs.recommended,
   tseslint.configs.recommended,
   {
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
     languageOptions: {
       parserOptions: {
         projectService: {
@@ -16,18 +19,14 @@ export default tseslint.config(
       },
     },
     rules: {
-      'no-unused-vars': [
+      '@typescript-eslint/no-unused-vars': [
         'error',
         {
-          argsIgnorePattern: /^_/,
+          argsIgnorePattern: '^_',
         },
       ],
     },
   },
-  // must be last so Prettier formatting rules win over ESLint formatting rules
   eslintConfigPrettier,
-  globalIgnores([
-    'packages/scenario-builder/src/client/client',
-    'packages/scenario-builder/src/client/core',
-  ]),
+  globalIgnores(['packages/scenario-builder/src/client']),
 );

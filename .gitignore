@@ -8,3 +8,4 @@ umbraco-package-schema.json
 node_modules
 openapi-ts-error-*.log
 dist
+.env

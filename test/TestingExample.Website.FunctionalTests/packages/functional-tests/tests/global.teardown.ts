@@ -1,6 +1,6 @@
 import { test as teardown } from '@playwright/test';
 
-teardown('Delete test content', async ({}) => {
+teardown('Delete test content', async () => {
   // TODO: Add your teardown logic here
   // Example:
   // - Stop your web server

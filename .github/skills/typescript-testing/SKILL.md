@@ -1,15 +1,25 @@
 ---
 name: typescript-testing
-description: 'Use when you need to run or write tests in typescript'
+description: >
+  Use this for any typescript testing task: writing, adding, editing, running or executing
+  unit or integration tests
+user-invocable: false
 ---
 
-## Write tests in Typescript
-- A test name starts with 'Should' and describes the expected behaviour in at most 7 words
-- Do NOT implement the feature, write just enough so that the test can run
-- After writing a test, run the test
+## Constraints
+- Do NOT implement the feature
+- Avoid console commands
+
+## Workflow for writing tests
+1. Read other tests to understand the conventions
+2. Search for relevant source code to understand how to write the test
+2. Write the test with #tool:edit
+3. Run the test to make sure that it executes
+
+## How to write tests in Typescript
+- Write just enough so that the test can run
 - At best, the test fails on the assertion at the end
 - At second best, the test fails on an error in the system under test
 
-## Run tests in Typescript
-Tests in typescript should be executed using #tool:execute/runTests .
-Avoid console commands.
+## How to run tests in Typescript
+- Run the test using #tool:execute/runTests

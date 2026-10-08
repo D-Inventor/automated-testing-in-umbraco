@@ -6,9 +6,12 @@ import { cultureVariant } from '../domain/variation';
 import { ContentPage, type Scenario } from '../domain/content-page';
 
 vi.mock('../client', () => ({
-  postDocument: vi.fn().mockResolvedValue(undefined),
-  putDocumentByIdDomains: vi.fn().mockResolvedValue(undefined),
+  postDocument: vi.fn(),
+  putDocumentByIdDomains: vi.fn(),
 }));
+
+vi.mocked(postDocument).mockResolvedValue({ data: undefined, error: undefined });
+vi.mocked(putDocumentByIdDomains).mockResolvedValue({ data: undefined, error: undefined });
 
 class TestContentType extends ContentPage {
   public static contenttype = 'fd4a241b-f3fe-4870-81cd-58fa96f029b9';
@@ -78,7 +81,7 @@ describe('Scenario', () => {
   it('should create new domains', async () => {
     // given
     const scenario = new ApiScenario();
-    const contentItem = createMinimalContentItem('c9a7115f-11c7-410f-98eb-a48f0da125cb');
+    const contentItem = createMinimalContentItem({ id: 'c9a7115f-11c7-410f-98eb-a48f0da125cb' });
     contentItem.domains = [
       {
         culture: 'nl',
@@ -195,11 +198,34 @@ describe('Scenario', () => {
     expect(callOrder[1]![0]!.body!.id).toBe(parent.id); // level 1, order 99
     expect(callOrder[2]![0]!.body!.id).toBe(child.id); // level 2, order 1
   });
+
+  it('should throw when postDocument fails', async () => {
+    // given
+    vi.mocked(postDocument).mockRejectedValueOnce(new Error('Failed to post the document'));
+    const apiScenario = new ApiScenario();
+    apiScenario.add(createMinimalContentItem({ id: 'e5de3c64-30bb-47e5-9705-43b078515c4f' }));
+
+    // when & then
+    await expect(apiScenario.build()).rejects.toThrow('Failed to post the document');
+  });
+
+  it('should throw when putDocumentByIdDomains fails', async () => {
+    vi.mocked(putDocumentByIdDomains).mockRejectedValueOnce(
+      new Error('Failed to configure domains'),
+    );
+    const apiScenario = new ApiScenario();
+    apiScenario.add(
+      createMinimalContentItem({ domains: [{ culture: 'en', url: 'https://example.com' }] }),
+    );
+
+    // when & then
+    await expect(apiScenario.build()).rejects.toThrow('Failed to configure domains');
+  });
 });
 
-function createMinimalContentItem(id: string): ContentItem {
+function createMinimalContentItem(values: Partial<ContentItem>): ContentItem {
   return {
-    id: id,
+    id: 'e5de3c64-30bb-47e5-9705-43b078515c4f',
     documentType: 'fc6c106e-3453-43ae-b77d-4ab748d650dc',
     values: [],
     variants: [],
@@ -207,5 +233,6 @@ function createMinimalContentItem(id: string): ContentItem {
     published: [],
     level: 0,
     order: 0,
+    ...values,
   };
 }

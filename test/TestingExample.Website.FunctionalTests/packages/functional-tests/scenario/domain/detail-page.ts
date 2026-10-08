@@ -10,5 +10,5 @@ export class DetailPage extends ContentPage {
     super(scenario, 'cd9e9f2c-64f3-4723-9bd8-d5d362544dd5');
   }
 
-  public hasHeader(variation: Variation, header: DetailPageHeader) {}
+  public hasHeader(_variation: Variation, _header: DetailPageHeader) {}
 }

@@ -11,4 +11,6 @@
     "eslint.workingDirectories": [
         "test/TestingExample.Website.FunctionalTests/"
     ],
+    "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
+    "chat.useAgentSkills": true,
 }

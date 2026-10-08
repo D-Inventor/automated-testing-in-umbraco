@@ -10,5 +10,5 @@ export class ContentRoot extends ContentPage {
     super(scenario, '97001531-6692-4e9c-a64a-3295c86b981d');
   }
 
-  public hasErrorPages(variation: Variation, errorPages: ContentRootErrorPages) {}
+  public hasErrorPages(_variation: Variation, _errorPages: ContentRootErrorPages) {}
 }

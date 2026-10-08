@@ -1544,7 +1544,7 @@ export type Options<
  *
  * Gets a paginated collection containing the English and localized names of all available cultures.
  */
-export const getCulture = <ThrowOnError extends boolean = false>(
+export const getCulture = <ThrowOnError extends boolean = true>(
   options?: Options<GetCultureData, ThrowOnError>,
 ): RequestResult<GetCultureResponses, GetCultureErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetCultureResponses, GetCultureErrors, ThrowOnError>({
@@ -1558,7 +1558,7 @@ export const getCulture = <ThrowOnError extends boolean = false>(
  *
  * Creates a new data type with the configuration specified in the request model.
  */
-export const postDataType = <ThrowOnError extends boolean = false>(
+export const postDataType = <ThrowOnError extends boolean = true>(
   options: Options<PostDataTypeData, ThrowOnError>,
 ): RequestResult<PostDataTypeResponses, PostDataTypeErrors, ThrowOnError> =>
   (options.client ?? client).post<PostDataTypeResponses, PostDataTypeErrors, ThrowOnError>({
@@ -1576,7 +1576,7 @@ export const postDataType = <ThrowOnError extends boolean = false>(
  *
  * Deletes a data type identified by the provided Id.
  */
-export const deleteDataTypeById = <ThrowOnError extends boolean = false>(
+export const deleteDataTypeById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDataTypeByIdData, ThrowOnError>,
 ): RequestResult<DeleteDataTypeByIdResponses, DeleteDataTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -1594,7 +1594,7 @@ export const deleteDataTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a data type identified by the provided Id.
  */
-export const getDataTypeById = <ThrowOnError extends boolean = false>(
+export const getDataTypeById = <ThrowOnError extends boolean = true>(
   options: Options<GetDataTypeByIdData, ThrowOnError>,
 ): RequestResult<GetDataTypeByIdResponses, GetDataTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetDataTypeByIdResponses, GetDataTypeByIdErrors, ThrowOnError>({
@@ -1608,7 +1608,7 @@ export const getDataTypeById = <ThrowOnError extends boolean = false>(
  *
  * Updates a data type identified by the provided Id with the details from the request model.
  */
-export const putDataTypeById = <ThrowOnError extends boolean = false>(
+export const putDataTypeById = <ThrowOnError extends boolean = true>(
   options: Options<PutDataTypeByIdData, ThrowOnError>,
 ): RequestResult<PutDataTypeByIdResponses, PutDataTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutDataTypeByIdResponses, PutDataTypeByIdErrors, ThrowOnError>({
@@ -1626,7 +1626,7 @@ export const putDataTypeById = <ThrowOnError extends boolean = false>(
  *
  * Creates a duplicate of an existing data type identified by the provided unique Id. The copied data type will be given a new Id and have ' (copy)' appended to its name. Optionally, the copy can be placed in a specific container by providing a target container Id.
  */
-export const postDataTypeByIdCopy = <ThrowOnError extends boolean = false>(
+export const postDataTypeByIdCopy = <ThrowOnError extends boolean = true>(
   options: Options<PostDataTypeByIdCopyData, ThrowOnError>,
 ): RequestResult<PostDataTypeByIdCopyResponses, PostDataTypeByIdCopyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -1648,7 +1648,7 @@ export const postDataTypeByIdCopy = <ThrowOnError extends boolean = false>(
  *
  * Checks if the data type identified by the provided Id is used in any content, media, or member types.
  */
-export const getDataTypeByIdIsUsed = <ThrowOnError extends boolean = false>(
+export const getDataTypeByIdIsUsed = <ThrowOnError extends boolean = true>(
   options: Options<GetDataTypeByIdIsUsedData, ThrowOnError>,
 ): RequestResult<GetDataTypeByIdIsUsedResponses, GetDataTypeByIdIsUsedErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -1666,7 +1666,7 @@ export const getDataTypeByIdIsUsed = <ThrowOnError extends boolean = false>(
  *
  * Moves an existing data type identified by Id to a different container. The target container Id must be provided in the request model.
  */
-export const putDataTypeByIdMove = <ThrowOnError extends boolean = false>(
+export const putDataTypeByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutDataTypeByIdMoveData, ThrowOnError>,
 ): RequestResult<PutDataTypeByIdMoveResponses, PutDataTypeByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -1688,7 +1688,7 @@ export const putDataTypeByIdMove = <ThrowOnError extends boolean = false>(
  *
  * Gets a paged collection of entities that are referenced by the data type with the provided Id, so you can see where it is being used.
  */
-export const getDataTypeByIdReferencedBy = <ThrowOnError extends boolean = false>(
+export const getDataTypeByIdReferencedBy = <ThrowOnError extends boolean = true>(
   options: Options<GetDataTypeByIdReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetDataTypeByIdReferencedByResponses,
@@ -1705,7 +1705,7 @@ export const getDataTypeByIdReferencedBy = <ThrowOnError extends boolean = false
     ...options,
   });
 
-export const getDataTypeByIdSchema = <ThrowOnError extends boolean = false>(
+export const getDataTypeByIdSchema = <ThrowOnError extends boolean = true>(
   options: Options<GetDataTypeByIdSchemaData, ThrowOnError>,
 ): RequestResult<GetDataTypeByIdSchemaResponses, GetDataTypeByIdSchemaErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -1723,7 +1723,7 @@ export const getDataTypeByIdSchema = <ThrowOnError extends boolean = false>(
  *
  * Gets multiple data types identified by the provided Ids.
  */
-export const getDataTypeBatch = <ThrowOnError extends boolean = false>(
+export const getDataTypeBatch = <ThrowOnError extends boolean = true>(
   options?: Options<GetDataTypeBatchData, ThrowOnError>,
 ): RequestResult<GetDataTypeBatchResponses, GetDataTypeBatchErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetDataTypeBatchResponses, GetDataTypeBatchErrors, ThrowOnError>({
@@ -1737,7 +1737,7 @@ export const getDataTypeBatch = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for data types.
  */
-export const getDataTypeConfiguration = <ThrowOnError extends boolean = false>(
+export const getDataTypeConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetDataTypeConfigurationData, ThrowOnError>,
 ): RequestResult<GetDataTypeConfigurationResponses, GetDataTypeConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1755,7 +1755,7 @@ export const getDataTypeConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Creates a new data type folder with the provided name and parent location.
  */
-export const postDataTypeFolder = <ThrowOnError extends boolean = false>(
+export const postDataTypeFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostDataTypeFolderData, ThrowOnError>,
 ): RequestResult<PostDataTypeFolderResponses, PostDataTypeFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -1777,7 +1777,7 @@ export const postDataTypeFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a data type folder identified by the provided Id.
  */
-export const deleteDataTypeFolderById = <ThrowOnError extends boolean = false>(
+export const deleteDataTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDataTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<DeleteDataTypeFolderByIdResponses, DeleteDataTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -1795,7 +1795,7 @@ export const deleteDataTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Gets a data type folder identified by the provided Id.
  */
-export const getDataTypeFolderById = <ThrowOnError extends boolean = false>(
+export const getDataTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<GetDataTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<GetDataTypeFolderByIdResponses, GetDataTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -1813,7 +1813,7 @@ export const getDataTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Updates a data type folder identified by the provided Id with the details provided in the request model.
  */
-export const putDataTypeFolderById = <ThrowOnError extends boolean = false>(
+export const putDataTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<PutDataTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<PutDataTypeFolderByIdResponses, PutDataTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -1830,7 +1830,7 @@ export const putDataTypeFolderById = <ThrowOnError extends boolean = false>(
     },
   });
 
-export const getDataTypeSchemasBatch = <ThrowOnError extends boolean = false>(
+export const getDataTypeSchemasBatch = <ThrowOnError extends boolean = true>(
   options?: Options<GetDataTypeSchemasBatchData, ThrowOnError>,
 ): RequestResult<GetDataTypeSchemasBatchResponses, GetDataTypeSchemasBatchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1848,7 +1848,7 @@ export const getDataTypeSchemasBatch = <ThrowOnError extends boolean = false>(
  *
  * Filters data types based on the provided criteria with support for pagination.
  */
-export const getFilterDataType = <ThrowOnError extends boolean = false>(
+export const getFilterDataType = <ThrowOnError extends boolean = true>(
   options?: Options<GetFilterDataTypeData, ThrowOnError>,
 ): RequestResult<GetFilterDataTypeResponses, GetFilterDataTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1866,7 +1866,7 @@ export const getFilterDataType = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of data type items identified by the provided Ids.
  */
-export const getItemDataType = <ThrowOnError extends boolean = false>(
+export const getItemDataType = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDataTypeData, ThrowOnError>,
 ): RequestResult<GetItemDataTypeResponses, GetItemDataTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemDataTypeResponses, GetItemDataTypeErrors, ThrowOnError>({
@@ -1880,7 +1880,7 @@ export const getItemDataType = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for data type items identified by the provided Ids.
  */
-export const getItemDataTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getItemDataTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDataTypeAncestorsData, ThrowOnError>,
 ): RequestResult<GetItemDataTypeAncestorsResponses, GetItemDataTypeAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1898,7 +1898,7 @@ export const getItemDataTypeAncestors = <ThrowOnError extends boolean = false>(
  *
  * Searches data type items by the provided query with pagination support.
  */
-export const getItemDataTypeSearch = <ThrowOnError extends boolean = false>(
+export const getItemDataTypeSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDataTypeSearchData, ThrowOnError>,
 ): RequestResult<GetItemDataTypeSearchResponses, GetItemDataTypeSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1916,7 +1916,7 @@ export const getItemDataTypeSearch = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of data type folders that are ancestors to the provided Id.
  */
-export const getTreeDataTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeDataTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDataTypeAncestorsData, ThrowOnError>,
 ): RequestResult<GetTreeDataTypeAncestorsResponses, GetTreeDataTypeAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1934,7 +1934,7 @@ export const getTreeDataTypeAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of data type tree items that are children of the provided parent Id.
  */
-export const getTreeDataTypeChildren = <ThrowOnError extends boolean = false>(
+export const getTreeDataTypeChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDataTypeChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeDataTypeChildrenResponses, GetTreeDataTypeChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1952,7 +1952,7 @@ export const getTreeDataTypeChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of data type items from the root of the tree with optional filtering.
  */
-export const getTreeDataTypeRoot = <ThrowOnError extends boolean = false>(
+export const getTreeDataTypeRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDataTypeRootData, ThrowOnError>,
 ): RequestResult<GetTreeDataTypeRootResponses, GetTreeDataTypeRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1965,7 +1965,7 @@ export const getTreeDataTypeRoot = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
-export const getTreeDataTypeSearch = <ThrowOnError extends boolean = false>(
+export const getTreeDataTypeSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDataTypeSearchData, ThrowOnError>,
 ): RequestResult<GetTreeDataTypeSearchResponses, GetTreeDataTypeSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -1983,7 +1983,7 @@ export const getTreeDataTypeSearch = <ThrowOnError extends boolean = false>(
  *
  * Gets a paged collection of data type tree items that are siblings of the provided Id. The collection can be optionally filtered to return only folder, or folders and data types.
  */
-export const getTreeDataTypeSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeDataTypeSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDataTypeSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeDataTypeSiblingsResponses, GetTreeDataTypeSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2001,7 +2001,7 @@ export const getTreeDataTypeSiblings = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of dictionary items with optional filtering by name.
  */
-export const getDictionary = <ThrowOnError extends boolean = false>(
+export const getDictionary = <ThrowOnError extends boolean = true>(
   options?: Options<GetDictionaryData, ThrowOnError>,
 ): RequestResult<GetDictionaryResponses, GetDictionaryErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetDictionaryResponses, GetDictionaryErrors, ThrowOnError>({
@@ -2015,7 +2015,7 @@ export const getDictionary = <ThrowOnError extends boolean = false>(
  *
  * Creates a new dictionary with the configuration specified in the request model.
  */
-export const postDictionary = <ThrowOnError extends boolean = false>(
+export const postDictionary = <ThrowOnError extends boolean = true>(
   options: Options<PostDictionaryData, ThrowOnError>,
 ): RequestResult<PostDictionaryResponses, PostDictionaryErrors, ThrowOnError> =>
   (options.client ?? client).post<PostDictionaryResponses, PostDictionaryErrors, ThrowOnError>({
@@ -2033,7 +2033,7 @@ export const postDictionary = <ThrowOnError extends boolean = false>(
  *
  * Deletes a dictionary identified by the provided Id.
  */
-export const deleteDictionaryById = <ThrowOnError extends boolean = false>(
+export const deleteDictionaryById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDictionaryByIdData, ThrowOnError>,
 ): RequestResult<DeleteDictionaryByIdResponses, DeleteDictionaryByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -2051,7 +2051,7 @@ export const deleteDictionaryById = <ThrowOnError extends boolean = false>(
  *
  * Gets a dictionary identified by the provided Id.
  */
-export const getDictionaryById = <ThrowOnError extends boolean = false>(
+export const getDictionaryById = <ThrowOnError extends boolean = true>(
   options: Options<GetDictionaryByIdData, ThrowOnError>,
 ): RequestResult<GetDictionaryByIdResponses, GetDictionaryByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetDictionaryByIdResponses, GetDictionaryByIdErrors, ThrowOnError>(
@@ -2067,7 +2067,7 @@ export const getDictionaryById = <ThrowOnError extends boolean = false>(
  *
  * Updates a dictionary identified by the provided Id with the details from the request model.
  */
-export const putDictionaryById = <ThrowOnError extends boolean = false>(
+export const putDictionaryById = <ThrowOnError extends boolean = true>(
   options: Options<PutDictionaryByIdData, ThrowOnError>,
 ): RequestResult<PutDictionaryByIdResponses, PutDictionaryByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutDictionaryByIdResponses, PutDictionaryByIdErrors, ThrowOnError>(
@@ -2087,7 +2087,7 @@ export const putDictionaryById = <ThrowOnError extends boolean = false>(
  *
  * Exports the dictionary identified by the provided Id to a downloadable format.
  */
-export const getDictionaryByIdExport = <ThrowOnError extends boolean = false>(
+export const getDictionaryByIdExport = <ThrowOnError extends boolean = true>(
   options: Options<GetDictionaryByIdExportData, ThrowOnError>,
 ): RequestResult<GetDictionaryByIdExportResponses, GetDictionaryByIdExportErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -2105,7 +2105,7 @@ export const getDictionaryByIdExport = <ThrowOnError extends boolean = false>(
  *
  * Moves a dictionary identified by the provided Id to a different location.
  */
-export const putDictionaryByIdMove = <ThrowOnError extends boolean = false>(
+export const putDictionaryByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutDictionaryByIdMoveData, ThrowOnError>,
 ): RequestResult<PutDictionaryByIdMoveResponses, PutDictionaryByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -2127,7 +2127,7 @@ export const putDictionaryByIdMove = <ThrowOnError extends boolean = false>(
  *
  * Imports a dictionary from the provided file upload.
  */
-export const postDictionaryImport = <ThrowOnError extends boolean = false>(
+export const postDictionaryImport = <ThrowOnError extends boolean = true>(
   options: Options<PostDictionaryImportData, ThrowOnError>,
 ): RequestResult<PostDictionaryImportResponses, PostDictionaryImportErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -2149,7 +2149,7 @@ export const postDictionaryImport = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of dictionary items identified by the provided Ids.
  */
-export const getItemDictionary = <ThrowOnError extends boolean = false>(
+export const getItemDictionary = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDictionaryData, ThrowOnError>,
 ): RequestResult<GetItemDictionaryResponses, GetItemDictionaryErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2167,7 +2167,7 @@ export const getItemDictionary = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of dictionary items that are ancestors to the provided Id.
  */
-export const getTreeDictionaryAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeDictionaryAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDictionaryAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeDictionaryAncestorsResponses,
@@ -2189,7 +2189,7 @@ export const getTreeDictionaryAncestors = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of dictionary tree items that are children of the provided parent Id.
  */
-export const getTreeDictionaryChildren = <ThrowOnError extends boolean = false>(
+export const getTreeDictionaryChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDictionaryChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreeDictionaryChildrenResponses,
@@ -2211,7 +2211,7 @@ export const getTreeDictionaryChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of dictionary items from the root of the tree with optional filtering.
  */
-export const getTreeDictionaryRoot = <ThrowOnError extends boolean = false>(
+export const getTreeDictionaryRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDictionaryRootData, ThrowOnError>,
 ): RequestResult<GetTreeDictionaryRootResponses, GetTreeDictionaryRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2230,7 +2230,7 @@ export const getTreeDictionaryRoot = <ThrowOnError extends boolean = false>(
  * Validates the request model for updating a document without actually updating it.
  */
 export const putUmbracoManagementApiV11DocumentByIdValidate11 = <
-  ThrowOnError extends boolean = false,
+  ThrowOnError extends boolean = true,
 >(
   options: Options<PutUmbracoManagementApiV11DocumentByIdValidate11Data, ThrowOnError>,
 ): RequestResult<
@@ -2257,7 +2257,7 @@ export const putUmbracoManagementApiV11DocumentByIdValidate11 = <
  *
  * Gets a document collection identified by the provided Id.
  */
-export const getCollectionDocumentById = <ThrowOnError extends boolean = false>(
+export const getCollectionDocumentById = <ThrowOnError extends boolean = true>(
   options: Options<GetCollectionDocumentByIdData, ThrowOnError>,
 ): RequestResult<
   GetCollectionDocumentByIdResponses,
@@ -2279,7 +2279,7 @@ export const getCollectionDocumentById = <ThrowOnError extends boolean = false>(
  *
  * Creates a new document with the configuration specified in the request model.
  */
-export const postDocument = <ThrowOnError extends boolean = false>(
+export const postDocument = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentData, ThrowOnError>,
 ): RequestResult<PostDocumentResponses, PostDocumentErrors, ThrowOnError> =>
   (options.client ?? client).post<PostDocumentResponses, PostDocumentErrors, ThrowOnError>({
@@ -2297,7 +2297,7 @@ export const postDocument = <ThrowOnError extends boolean = false>(
  *
  * Deletes a document identified by the provided Id.
  */
-export const deleteDocumentById = <ThrowOnError extends boolean = false>(
+export const deleteDocumentById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDocumentByIdData, ThrowOnError>,
 ): RequestResult<DeleteDocumentByIdResponses, DeleteDocumentByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -2315,7 +2315,7 @@ export const deleteDocumentById = <ThrowOnError extends boolean = false>(
  *
  * Gets a document identified by the provided Id.
  */
-export const getDocumentById = <ThrowOnError extends boolean = false>(
+export const getDocumentById = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdData, ThrowOnError>,
 ): RequestResult<GetDocumentByIdResponses, GetDocumentByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetDocumentByIdResponses, GetDocumentByIdErrors, ThrowOnError>({
@@ -2329,7 +2329,7 @@ export const getDocumentById = <ThrowOnError extends boolean = false>(
  *
  * Updates a document identified by the provided Id with the details from the request model.
  */
-export const putDocumentById = <ThrowOnError extends boolean = false>(
+export const putDocumentById = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdData, ThrowOnError>,
 ): RequestResult<PutDocumentByIdResponses, PutDocumentByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutDocumentByIdResponses, PutDocumentByIdErrors, ThrowOnError>({
@@ -2347,7 +2347,7 @@ export const putDocumentById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of audit log entries for the document identified by the provided Id.
  */
-export const getDocumentByIdAuditLog = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdAuditLog = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdAuditLogData, ThrowOnError>,
 ): RequestResult<GetDocumentByIdAuditLogResponses, GetDocumentByIdAuditLogErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -2365,7 +2365,7 @@ export const getDocumentByIdAuditLog = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of available content segments for the system.
  */
-export const getDocumentByIdAvailableSegmentOptions = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdAvailableSegmentOptions = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdAvailableSegmentOptionsData, ThrowOnError>,
 ): RequestResult<
   GetDocumentByIdAvailableSegmentOptionsResponses,
@@ -2387,7 +2387,7 @@ export const getDocumentByIdAvailableSegmentOptions = <ThrowOnError extends bool
  *
  * Creates a duplicate of an existing document identified by the provided Id.
  */
-export const postDocumentByIdCopy = <ThrowOnError extends boolean = false>(
+export const postDocumentByIdCopy = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentByIdCopyData, ThrowOnError>,
 ): RequestResult<PostDocumentByIdCopyResponses, PostDocumentByIdCopyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -2409,7 +2409,7 @@ export const postDocumentByIdCopy = <ThrowOnError extends boolean = false>(
  *
  * Gets the domains and culture settings assigned to the document identified by the provided Id.
  */
-export const getDocumentByIdDomains = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdDomains = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdDomainsData, ThrowOnError>,
 ): RequestResult<GetDocumentByIdDomainsResponses, GetDocumentByIdDomainsErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -2427,7 +2427,7 @@ export const getDocumentByIdDomains = <ThrowOnError extends boolean = false>(
  *
  * Updates the domains for the document identified by the provided Id with the details from the request model.
  */
-export const putDocumentByIdDomains = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdDomains = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdDomainsData, ThrowOnError>,
 ): RequestResult<PutDocumentByIdDomainsResponses, PutDocumentByIdDomainsErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -2449,7 +2449,7 @@ export const putDocumentByIdDomains = <ThrowOnError extends boolean = false>(
  *
  * Moves a document identified by the provided Id to a different location.
  */
-export const putDocumentByIdMove = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdMoveData, ThrowOnError>,
 ): RequestResult<PutDocumentByIdMoveResponses, PutDocumentByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -2471,7 +2471,7 @@ export const putDocumentByIdMove = <ThrowOnError extends boolean = false>(
  *
  * Moves a document identified by the provided Id to the recycle bin.
  */
-export const putDocumentByIdMoveToRecycleBin = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdMoveToRecycleBin = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdMoveToRecycleBinData, ThrowOnError>,
 ): RequestResult<
   PutDocumentByIdMoveToRecycleBinResponses,
@@ -2493,7 +2493,7 @@ export const putDocumentByIdMoveToRecycleBin = <ThrowOnError extends boolean = f
  *
  * Gets the notifications for the document identified by the provided Id.
  */
-export const getDocumentByIdNotifications = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdNotifications = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdNotificationsData, ThrowOnError>,
 ): RequestResult<
   GetDocumentByIdNotificationsResponses,
@@ -2515,7 +2515,7 @@ export const getDocumentByIdNotifications = <ThrowOnError extends boolean = fals
  *
  * Updates which actions the current user is subscribed to receive notifications for on the specified document.
  */
-export const putDocumentByIdNotifications = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdNotifications = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdNotificationsData, ThrowOnError>,
 ): RequestResult<
   PutDocumentByIdNotificationsResponses,
@@ -2539,7 +2539,7 @@ export const putDocumentByIdNotifications = <ThrowOnError extends boolean = fals
 /**
  * Make partial updates to a document. For more information, see the documentation at https://docs.umbraco.com/umbraco-cms/reference/management-api/patching/document-endpoint-guide or https://docs.umbraco.com/umbraco-cms/reference/management-api/patching/document-endpoint-spec
  */
-export const patchDocumentByIdPatch = <ThrowOnError extends boolean = false>(
+export const patchDocumentByIdPatch = <ThrowOnError extends boolean = true>(
   options: Options<PatchDocumentByIdPatchData, ThrowOnError>,
 ): RequestResult<PatchDocumentByIdPatchResponses, PatchDocumentByIdPatchErrors, ThrowOnError> =>
   (options.client ?? client).patch<
@@ -2561,7 +2561,7 @@ export const patchDocumentByIdPatch = <ThrowOnError extends boolean = false>(
  *
  * Gets the preview URL for the document identified by the provided Id.
  */
-export const getDocumentByIdPreviewUrl = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdPreviewUrl = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdPreviewUrlData, ThrowOnError>,
 ): RequestResult<
   GetDocumentByIdPreviewUrlResponses,
@@ -2583,7 +2583,7 @@ export const getDocumentByIdPreviewUrl = <ThrowOnError extends boolean = false>(
  *
  * Removes public access protection/rules for the document identified by the provided Id.
  */
-export const deleteDocumentByIdPublicAccess = <ThrowOnError extends boolean = false>(
+export const deleteDocumentByIdPublicAccess = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDocumentByIdPublicAccessData, ThrowOnError>,
 ): RequestResult<
   DeleteDocumentByIdPublicAccessResponses,
@@ -2605,7 +2605,7 @@ export const deleteDocumentByIdPublicAccess = <ThrowOnError extends boolean = fa
  *
  * Gets the public access protection settings for the document identified by the provided Id.
  */
-export const getDocumentByIdPublicAccess = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdPublicAccess = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdPublicAccessData, ThrowOnError>,
 ): RequestResult<
   GetDocumentByIdPublicAccessResponses,
@@ -2627,7 +2627,7 @@ export const getDocumentByIdPublicAccess = <ThrowOnError extends boolean = false
  *
  * Creates public access protection for the document identified by the provided Id.
  */
-export const postDocumentByIdPublicAccess = <ThrowOnError extends boolean = false>(
+export const postDocumentByIdPublicAccess = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentByIdPublicAccessData, ThrowOnError>,
 ): RequestResult<
   PostDocumentByIdPublicAccessResponses,
@@ -2653,7 +2653,7 @@ export const postDocumentByIdPublicAccess = <ThrowOnError extends boolean = fals
  *
  * Updates the member protection settings for a document, controlling which members or member groups can access it.
  */
-export const putDocumentByIdPublicAccess = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdPublicAccess = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdPublicAccessData, ThrowOnError>,
 ): RequestResult<
   PutDocumentByIdPublicAccessResponses,
@@ -2679,7 +2679,7 @@ export const putDocumentByIdPublicAccess = <ThrowOnError extends boolean = false
  *
  * Publishes a document identified by the provided Id.
  */
-export const putDocumentByIdPublish = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdPublish = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdPublishData, ThrowOnError>,
 ): RequestResult<PutDocumentByIdPublishResponses, PutDocumentByIdPublishErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -2701,7 +2701,7 @@ export const putDocumentByIdPublish = <ThrowOnError extends boolean = false>(
  *
  * Publishes a document and its descendants identified by the provided Id.
  */
-export const putDocumentByIdPublishWithDescendants = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdPublishWithDescendants = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdPublishWithDescendantsData, ThrowOnError>,
 ): RequestResult<
   PutDocumentByIdPublishWithDescendantsResponses,
@@ -2728,7 +2728,7 @@ export const putDocumentByIdPublishWithDescendants = <ThrowOnError extends boole
  * Gets the status and result of a publish with descendants operation.
  */
 export const getDocumentByIdPublishWithDescendantsResultByTaskId = <
-  ThrowOnError extends boolean = false,
+  ThrowOnError extends boolean = true,
 >(
   options: Options<GetDocumentByIdPublishWithDescendantsResultByTaskIdData, ThrowOnError>,
 ): RequestResult<
@@ -2751,7 +2751,7 @@ export const getDocumentByIdPublishWithDescendantsResultByTaskId = <
  *
  * Gets a document identified by the provided Id.
  */
-export const getDocumentByIdPublished = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdPublished = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdPublishedData, ThrowOnError>,
 ): RequestResult<GetDocumentByIdPublishedResponses, GetDocumentByIdPublishedErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -2769,7 +2769,7 @@ export const getDocumentByIdPublished = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of items that reference the documents identified by the provided Ids.
  */
-export const getDocumentByIdReferencedBy = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdReferencedBy = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetDocumentByIdReferencedByResponses,
@@ -2791,7 +2791,7 @@ export const getDocumentByIdReferencedBy = <ThrowOnError extends boolean = false
  *
  * Gets a paginated collection of descendant documents that are referenced by other content.
  */
-export const getDocumentByIdReferencedDescendants = <ThrowOnError extends boolean = false>(
+export const getDocumentByIdReferencedDescendants = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentByIdReferencedDescendantsData, ThrowOnError>,
 ): RequestResult<
   GetDocumentByIdReferencedDescendantsResponses,
@@ -2813,7 +2813,7 @@ export const getDocumentByIdReferencedDescendants = <ThrowOnError extends boolea
  *
  * Unpublishes a document identified by the provided Id.
  */
-export const putDocumentByIdUnpublish = <ThrowOnError extends boolean = false>(
+export const putDocumentByIdUnpublish = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentByIdUnpublishData, ThrowOnError>,
 ): RequestResult<PutDocumentByIdUnpublishResponses, PutDocumentByIdUnpublishErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -2835,7 +2835,7 @@ export const putDocumentByIdUnpublish = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of items that reference the documents identified by the provided Ids.
  */
-export const getDocumentAreReferenced = <ThrowOnError extends boolean = false>(
+export const getDocumentAreReferenced = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentAreReferencedData, ThrowOnError>,
 ): RequestResult<GetDocumentAreReferencedResponses, GetDocumentAreReferencedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2853,7 +2853,7 @@ export const getDocumentAreReferenced = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for documents.
  */
-export const getDocumentConfiguration = <ThrowOnError extends boolean = false>(
+export const getDocumentConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentConfigurationData, ThrowOnError>,
 ): RequestResult<GetDocumentConfigurationResponses, GetDocumentConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2871,7 +2871,7 @@ export const getDocumentConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Sorts documents in the specified parent container according to the provided sort order.
  */
-export const putDocumentSort = <ThrowOnError extends boolean = false>(
+export const putDocumentSort = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentSortData, ThrowOnError>,
 ): RequestResult<PutDocumentSortResponses, PutDocumentSortErrors, ThrowOnError> =>
   (options.client ?? client).put<PutDocumentSortResponses, PutDocumentSortErrors, ThrowOnError>({
@@ -2889,7 +2889,7 @@ export const putDocumentSort = <ThrowOnError extends boolean = false>(
  *
  * Gets the URLs for the document identified by the provided Id.
  */
-export const getDocumentUrls = <ThrowOnError extends boolean = false>(
+export const getDocumentUrls = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentUrlsData, ThrowOnError>,
 ): RequestResult<GetDocumentUrlsResponses, GetDocumentUrlsErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetDocumentUrlsResponses, GetDocumentUrlsErrors, ThrowOnError>({
@@ -2903,7 +2903,7 @@ export const getDocumentUrls = <ThrowOnError extends boolean = false>(
  *
  * Validates the request model for creating a new document without actually creating it.
  */
-export const postDocumentValidate = <ThrowOnError extends boolean = false>(
+export const postDocumentValidate = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentValidateData, ThrowOnError>,
 ): RequestResult<PostDocumentValidateResponses, PostDocumentValidateErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -2925,7 +2925,7 @@ export const postDocumentValidate = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document items identified by the provided Ids.
  */
-export const getItemDocument = <ThrowOnError extends boolean = false>(
+export const getItemDocument = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentData, ThrowOnError>,
 ): RequestResult<GetItemDocumentResponses, GetItemDocumentErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemDocumentResponses, GetItemDocumentErrors, ThrowOnError>({
@@ -2939,7 +2939,7 @@ export const getItemDocument = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for document items identified by the provided Ids.
  */
-export const getItemDocumentAncestors = <ThrowOnError extends boolean = false>(
+export const getItemDocumentAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentAncestorsData, ThrowOnError>,
 ): RequestResult<GetItemDocumentAncestorsResponses, GetItemDocumentAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2957,7 +2957,7 @@ export const getItemDocumentAncestors = <ThrowOnError extends boolean = false>(
  *
  * Searches document items by the provided query with pagination support.
  */
-export const getItemDocumentSearch = <ThrowOnError extends boolean = false>(
+export const getItemDocumentSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentSearchData, ThrowOnError>,
 ): RequestResult<GetItemDocumentSearchResponses, GetItemDocumentSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -2975,7 +2975,7 @@ export const getItemDocumentSearch = <ThrowOnError extends boolean = false>(
  *
  * Permanently deletes all documents in the recycle bin. This operation cannot be undone.
  */
-export const deleteRecycleBinDocument = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinDocument = <ThrowOnError extends boolean = true>(
   options?: Options<DeleteRecycleBinDocumentData, ThrowOnError>,
 ): RequestResult<DeleteRecycleBinDocumentResponses, DeleteRecycleBinDocumentErrors, ThrowOnError> =>
   (options?.client ?? client).delete<
@@ -2993,7 +2993,7 @@ export const deleteRecycleBinDocument = <ThrowOnError extends boolean = false>(
  *
  * Deletes a document identified by the provided Id.
  */
-export const deleteRecycleBinDocumentById = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinDocumentById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteRecycleBinDocumentByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteRecycleBinDocumentByIdResponses,
@@ -3015,7 +3015,7 @@ export const deleteRecycleBinDocumentById = <ThrowOnError extends boolean = fals
  *
  * Gets the original parent location of a document before it was moved to the recycle bin.
  */
-export const getRecycleBinDocumentByIdOriginalParent = <ThrowOnError extends boolean = false>(
+export const getRecycleBinDocumentByIdOriginalParent = <ThrowOnError extends boolean = true>(
   options: Options<GetRecycleBinDocumentByIdOriginalParentData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinDocumentByIdOriginalParentResponses,
@@ -3037,7 +3037,7 @@ export const getRecycleBinDocumentByIdOriginalParent = <ThrowOnError extends boo
  *
  * Restores a document from the recycle bin to its original location or a specified parent.
  */
-export const putRecycleBinDocumentByIdRestore = <ThrowOnError extends boolean = false>(
+export const putRecycleBinDocumentByIdRestore = <ThrowOnError extends boolean = true>(
   options: Options<PutRecycleBinDocumentByIdRestoreData, ThrowOnError>,
 ): RequestResult<
   PutRecycleBinDocumentByIdRestoreResponses,
@@ -3063,7 +3063,7 @@ export const putRecycleBinDocumentByIdRestore = <ThrowOnError extends boolean = 
  *
  * Gets a paginated collection of documents that are children of the provided parent in the recycle bin.
  */
-export const getRecycleBinDocumentChildren = <ThrowOnError extends boolean = false>(
+export const getRecycleBinDocumentChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinDocumentChildrenData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinDocumentChildrenResponses,
@@ -3085,7 +3085,7 @@ export const getRecycleBinDocumentChildren = <ThrowOnError extends boolean = fal
  *
  * Gets a paginated collection of items that reference the document in the recycle bin.
  */
-export const getRecycleBinDocumentReferencedBy = <ThrowOnError extends boolean = false>(
+export const getRecycleBinDocumentReferencedBy = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinDocumentReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinDocumentReferencedByResponses,
@@ -3107,7 +3107,7 @@ export const getRecycleBinDocumentReferencedBy = <ThrowOnError extends boolean =
  *
  * Gets a paginated collection of documents at the root level of the recycle bin.
  */
-export const getRecycleBinDocumentRoot = <ThrowOnError extends boolean = false>(
+export const getRecycleBinDocumentRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinDocumentRootData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinDocumentRootResponses,
@@ -3129,7 +3129,7 @@ export const getRecycleBinDocumentRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of sibling documents in the recycle bin at the same level as the provided Id.
  */
-export const getRecycleBinDocumentSiblings = <ThrowOnError extends boolean = false>(
+export const getRecycleBinDocumentSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinDocumentSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinDocumentSiblingsResponses,
@@ -3151,7 +3151,7 @@ export const getRecycleBinDocumentSiblings = <ThrowOnError extends boolean = fal
  *
  * Gets a collection of document items that are ancestors to the provided Id.
  */
-export const getTreeDocumentAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentAncestorsData, ThrowOnError>,
 ): RequestResult<GetTreeDocumentAncestorsResponses, GetTreeDocumentAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -3169,7 +3169,7 @@ export const getTreeDocumentAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of document tree items that are children of the provided parent Id.
  */
-export const getTreeDocumentChildren = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeDocumentChildrenResponses, GetTreeDocumentChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -3187,7 +3187,7 @@ export const getTreeDocumentChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of document items from the root of the tree with optional filtering.
  */
-export const getTreeDocumentRoot = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentRootData, ThrowOnError>,
 ): RequestResult<GetTreeDocumentRootResponses, GetTreeDocumentRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -3205,7 +3205,7 @@ export const getTreeDocumentRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document tree items that are siblings of the provided Id.
  */
-export const getTreeDocumentSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeDocumentSiblingsResponses, GetTreeDocumentSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -3223,7 +3223,7 @@ export const getTreeDocumentSiblings = <ThrowOnError extends boolean = false>(
  *
  * Creates a new document blueprint with the configuration specified in the request model.
  */
-export const postDocumentBlueprint = <ThrowOnError extends boolean = false>(
+export const postDocumentBlueprint = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentBlueprintData, ThrowOnError>,
 ): RequestResult<PostDocumentBlueprintResponses, PostDocumentBlueprintErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -3245,7 +3245,7 @@ export const postDocumentBlueprint = <ThrowOnError extends boolean = false>(
  *
  * Deletes a document blueprint identified by the provided Id.
  */
-export const deleteDocumentBlueprintById = <ThrowOnError extends boolean = false>(
+export const deleteDocumentBlueprintById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDocumentBlueprintByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteDocumentBlueprintByIdResponses,
@@ -3267,7 +3267,7 @@ export const deleteDocumentBlueprintById = <ThrowOnError extends boolean = false
  *
  * Gets a document blueprint identified by the provided Id.
  */
-export const getDocumentBlueprintById = <ThrowOnError extends boolean = false>(
+export const getDocumentBlueprintById = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentBlueprintByIdData, ThrowOnError>,
 ): RequestResult<GetDocumentBlueprintByIdResponses, GetDocumentBlueprintByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -3285,7 +3285,7 @@ export const getDocumentBlueprintById = <ThrowOnError extends boolean = false>(
  *
  * Updates a document blueprint identified by the provided Id with the details from the request model.
  */
-export const putDocumentBlueprintById = <ThrowOnError extends boolean = false>(
+export const putDocumentBlueprintById = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentBlueprintByIdData, ThrowOnError>,
 ): RequestResult<PutDocumentBlueprintByIdResponses, PutDocumentBlueprintByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -3307,7 +3307,7 @@ export const putDocumentBlueprintById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of audit log entries for the document blueprint identified by the provided Id.
  */
-export const getDocumentBlueprintByIdAuditLog = <ThrowOnError extends boolean = false>(
+export const getDocumentBlueprintByIdAuditLog = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentBlueprintByIdAuditLogData, ThrowOnError>,
 ): RequestResult<
   GetDocumentBlueprintByIdAuditLogResponses,
@@ -3329,7 +3329,7 @@ export const getDocumentBlueprintByIdAuditLog = <ThrowOnError extends boolean = 
  *
  * Moves a document blueprint identified by the provided Id to a different location.
  */
-export const putDocumentBlueprintByIdMove = <ThrowOnError extends boolean = false>(
+export const putDocumentBlueprintByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentBlueprintByIdMoveData, ThrowOnError>,
 ): RequestResult<
   PutDocumentBlueprintByIdMoveResponses,
@@ -3355,7 +3355,7 @@ export const putDocumentBlueprintByIdMove = <ThrowOnError extends boolean = fals
  *
  * Creates a scaffold for a new document blueprint with default values.
  */
-export const getDocumentBlueprintByIdScaffold = <ThrowOnError extends boolean = false>(
+export const getDocumentBlueprintByIdScaffold = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentBlueprintByIdScaffoldData, ThrowOnError>,
 ): RequestResult<
   GetDocumentBlueprintByIdScaffoldResponses,
@@ -3377,7 +3377,7 @@ export const getDocumentBlueprintByIdScaffold = <ThrowOnError extends boolean = 
  *
  * Creates a new document blueprint folder with the provided name and parent location.
  */
-export const postDocumentBlueprintFolder = <ThrowOnError extends boolean = false>(
+export const postDocumentBlueprintFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentBlueprintFolderData, ThrowOnError>,
 ): RequestResult<
   PostDocumentBlueprintFolderResponses,
@@ -3403,7 +3403,7 @@ export const postDocumentBlueprintFolder = <ThrowOnError extends boolean = false
  *
  * Deletes a document blueprint folder identified by the provided Id.
  */
-export const deleteDocumentBlueprintFolderById = <ThrowOnError extends boolean = false>(
+export const deleteDocumentBlueprintFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDocumentBlueprintFolderByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteDocumentBlueprintFolderByIdResponses,
@@ -3425,7 +3425,7 @@ export const deleteDocumentBlueprintFolderById = <ThrowOnError extends boolean =
  *
  * Gets a document blueprint folder identified by the provided Id.
  */
-export const getDocumentBlueprintFolderById = <ThrowOnError extends boolean = false>(
+export const getDocumentBlueprintFolderById = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentBlueprintFolderByIdData, ThrowOnError>,
 ): RequestResult<
   GetDocumentBlueprintFolderByIdResponses,
@@ -3447,7 +3447,7 @@ export const getDocumentBlueprintFolderById = <ThrowOnError extends boolean = fa
  *
  * Updates a document blueprint folder identified by the provided Id with the details from the request model.
  */
-export const putDocumentBlueprintFolderById = <ThrowOnError extends boolean = false>(
+export const putDocumentBlueprintFolderById = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentBlueprintFolderByIdData, ThrowOnError>,
 ): RequestResult<
   PutDocumentBlueprintFolderByIdResponses,
@@ -3473,7 +3473,7 @@ export const putDocumentBlueprintFolderById = <ThrowOnError extends boolean = fa
  *
  * Creates a new document blueprint based on an existing document identified by the provided Id.
  */
-export const postDocumentBlueprintFromDocument = <ThrowOnError extends boolean = false>(
+export const postDocumentBlueprintFromDocument = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentBlueprintFromDocumentData, ThrowOnError>,
 ): RequestResult<
   PostDocumentBlueprintFromDocumentResponses,
@@ -3499,7 +3499,7 @@ export const postDocumentBlueprintFromDocument = <ThrowOnError extends boolean =
  *
  * Gets a collection of document blueprint items identified by the provided Ids.
  */
-export const getItemDocumentBlueprint = <ThrowOnError extends boolean = false>(
+export const getItemDocumentBlueprint = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentBlueprintData, ThrowOnError>,
 ): RequestResult<GetItemDocumentBlueprintResponses, GetItemDocumentBlueprintErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -3517,7 +3517,7 @@ export const getItemDocumentBlueprint = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document blueprint items that are ancestors to the provided Id.
  */
-export const getTreeDocumentBlueprintAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentBlueprintAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentBlueprintAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentBlueprintAncestorsResponses,
@@ -3539,7 +3539,7 @@ export const getTreeDocumentBlueprintAncestors = <ThrowOnError extends boolean =
  *
  * Gets a paginated collection of document blueprint tree items that are children of the provided parent Id.
  */
-export const getTreeDocumentBlueprintChildren = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentBlueprintChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentBlueprintChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentBlueprintChildrenResponses,
@@ -3561,7 +3561,7 @@ export const getTreeDocumentBlueprintChildren = <ThrowOnError extends boolean = 
  *
  * Gets a paginated collection of document blueprint items from the root of the tree with optional filtering.
  */
-export const getTreeDocumentBlueprintRoot = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentBlueprintRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentBlueprintRootData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentBlueprintRootResponses,
@@ -3583,7 +3583,7 @@ export const getTreeDocumentBlueprintRoot = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of document blueprint tree items that are siblings of the provided Id.
  */
-export const getTreeDocumentBlueprintSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentBlueprintSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentBlueprintSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentBlueprintSiblingsResponses,
@@ -3605,7 +3605,7 @@ export const getTreeDocumentBlueprintSiblings = <ThrowOnError extends boolean = 
  *
  * Creates a new document type with the configuration specified in the request model.
  */
-export const postDocumentType = <ThrowOnError extends boolean = false>(
+export const postDocumentType = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentTypeData, ThrowOnError>,
 ): RequestResult<PostDocumentTypeResponses, PostDocumentTypeErrors, ThrowOnError> =>
   (options.client ?? client).post<PostDocumentTypeResponses, PostDocumentTypeErrors, ThrowOnError>({
@@ -3623,7 +3623,7 @@ export const postDocumentType = <ThrowOnError extends boolean = false>(
  *
  * Deletes a document type identified by the provided Id.
  */
-export const deleteDocumentTypeById = <ThrowOnError extends boolean = false>(
+export const deleteDocumentTypeById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDocumentTypeByIdData, ThrowOnError>,
 ): RequestResult<DeleteDocumentTypeByIdResponses, DeleteDocumentTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -3641,7 +3641,7 @@ export const deleteDocumentTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a document type identified by the provided Id.
  */
-export const getDocumentTypeById = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeById = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdData, ThrowOnError>,
 ): RequestResult<GetDocumentTypeByIdResponses, GetDocumentTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -3659,7 +3659,7 @@ export const getDocumentTypeById = <ThrowOnError extends boolean = false>(
  *
  * Updates a document type identified by the provided Id with the details from the request model.
  */
-export const putDocumentTypeById = <ThrowOnError extends boolean = false>(
+export const putDocumentTypeById = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentTypeByIdData, ThrowOnError>,
 ): RequestResult<PutDocumentTypeByIdResponses, PutDocumentTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -3681,7 +3681,7 @@ export const putDocumentTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document types that are allowed as children of the specified parent document type.
  */
-export const getDocumentTypeByIdAllowedChildren = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeByIdAllowedChildren = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdAllowedChildrenData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeByIdAllowedChildrenResponses,
@@ -3703,7 +3703,7 @@ export const getDocumentTypeByIdAllowedChildren = <ThrowOnError extends boolean 
  *
  * Gets a collection of document types that are allowed as parents of the specified document type.
  */
-export const getDocumentTypeByIdAllowedParents = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeByIdAllowedParents = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdAllowedParentsData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeByIdAllowedParentsResponses,
@@ -3725,7 +3725,7 @@ export const getDocumentTypeByIdAllowedParents = <ThrowOnError extends boolean =
  *
  * Gets a collection of document blueprints available for the specified document type.
  */
-export const getDocumentTypeByIdBlueprint = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeByIdBlueprint = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdBlueprintData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeByIdBlueprintResponses,
@@ -3747,7 +3747,7 @@ export const getDocumentTypeByIdBlueprint = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of document types that reference the specified document type as a composition.
  */
-export const getDocumentTypeByIdCompositionReferences = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeByIdCompositionReferences = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdCompositionReferencesData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeByIdCompositionReferencesResponses,
@@ -3769,7 +3769,7 @@ export const getDocumentTypeByIdCompositionReferences = <ThrowOnError extends bo
  *
  * Creates a duplicate of an existing document type identified by the provided Id.
  */
-export const postDocumentTypeByIdCopy = <ThrowOnError extends boolean = false>(
+export const postDocumentTypeByIdCopy = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentTypeByIdCopyData, ThrowOnError>,
 ): RequestResult<PostDocumentTypeByIdCopyResponses, PostDocumentTypeByIdCopyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -3791,7 +3791,7 @@ export const postDocumentTypeByIdCopy = <ThrowOnError extends boolean = false>(
  *
  * Exports the document type identified by the provided Id to a downloadable format.
  */
-export const getDocumentTypeByIdExport = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeByIdExport = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdExportData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeByIdExportResponses,
@@ -3813,7 +3813,7 @@ export const getDocumentTypeByIdExport = <ThrowOnError extends boolean = false>(
  *
  * Imports a document type from the provided file upload.
  */
-export const putDocumentTypeByIdImport = <ThrowOnError extends boolean = false>(
+export const putDocumentTypeByIdImport = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentTypeByIdImportData, ThrowOnError>,
 ): RequestResult<
   PutDocumentTypeByIdImportResponses,
@@ -3839,7 +3839,7 @@ export const putDocumentTypeByIdImport = <ThrowOnError extends boolean = false>(
  *
  * Moves a document type identified by the provided Id to a different location.
  */
-export const putDocumentTypeByIdMove = <ThrowOnError extends boolean = false>(
+export const putDocumentTypeByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentTypeByIdMoveData, ThrowOnError>,
 ): RequestResult<PutDocumentTypeByIdMoveResponses, PutDocumentTypeByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -3856,7 +3856,7 @@ export const putDocumentTypeByIdMove = <ThrowOnError extends boolean = false>(
     },
   });
 
-export const getDocumentTypeByIdSchema = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeByIdSchema = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeByIdSchemaData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeByIdSchemaResponses,
@@ -3878,7 +3878,7 @@ export const getDocumentTypeByIdSchema = <ThrowOnError extends boolean = false>(
  *
  * Creates a new template associated with the document type identified by the provided Id.
  */
-export const postDocumentTypeByIdTemplate = <ThrowOnError extends boolean = false>(
+export const postDocumentTypeByIdTemplate = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentTypeByIdTemplateData, ThrowOnError>,
 ): RequestResult<
   PostDocumentTypeByIdTemplateResponses,
@@ -3904,7 +3904,7 @@ export const postDocumentTypeByIdTemplate = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of document types that are allowed to be created at the root level.
  */
-export const getDocumentTypeAllowedAtRoot = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeAllowedAtRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentTypeAllowedAtRootData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeAllowedAtRootResponses,
@@ -3926,7 +3926,7 @@ export const getDocumentTypeAllowedAtRoot = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of document types that are allowed in the library.
  */
-export const getDocumentTypeAllowedInLibrary = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeAllowedInLibrary = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentTypeAllowedInLibraryData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeAllowedInLibraryResponses,
@@ -3948,7 +3948,7 @@ export const getDocumentTypeAllowedInLibrary = <ThrowOnError extends boolean = f
  *
  * Gets a collection of document types that are available to use as compositions for the specified document type.
  */
-export const postDocumentTypeAvailableCompositions = <ThrowOnError extends boolean = false>(
+export const postDocumentTypeAvailableCompositions = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentTypeAvailableCompositionsData, ThrowOnError>,
 ): RequestResult<
   PostDocumentTypeAvailableCompositionsResponses,
@@ -3974,7 +3974,7 @@ export const postDocumentTypeAvailableCompositions = <ThrowOnError extends boole
  *
  * Gets multiple document types identified by the provided Ids.
  */
-export const getDocumentTypeBatch = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeBatch = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentTypeBatchData, ThrowOnError>,
 ): RequestResult<GetDocumentTypeBatchResponses, GetDocumentTypeBatchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -3992,7 +3992,7 @@ export const getDocumentTypeBatch = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for document types.
  */
-export const getDocumentTypeConfiguration = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetDocumentTypeConfigurationData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeConfigurationResponses,
@@ -4014,7 +4014,7 @@ export const getDocumentTypeConfiguration = <ThrowOnError extends boolean = fals
  *
  * Creates a new document type folder with the provided name and parent location.
  */
-export const postDocumentTypeFolder = <ThrowOnError extends boolean = false>(
+export const postDocumentTypeFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentTypeFolderData, ThrowOnError>,
 ): RequestResult<PostDocumentTypeFolderResponses, PostDocumentTypeFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -4036,7 +4036,7 @@ export const postDocumentTypeFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a document type folder identified by the provided Id.
  */
-export const deleteDocumentTypeFolderById = <ThrowOnError extends boolean = false>(
+export const deleteDocumentTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteDocumentTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteDocumentTypeFolderByIdResponses,
@@ -4058,7 +4058,7 @@ export const deleteDocumentTypeFolderById = <ThrowOnError extends boolean = fals
  *
  * Gets a document type folder identified by the provided Id.
  */
-export const getDocumentTypeFolderById = <ThrowOnError extends boolean = false>(
+export const getDocumentTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<
   GetDocumentTypeFolderByIdResponses,
@@ -4080,7 +4080,7 @@ export const getDocumentTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Updates a document type folder identified by the provided Id with the details from the request model.
  */
-export const putDocumentTypeFolderById = <ThrowOnError extends boolean = false>(
+export const putDocumentTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<
   PutDocumentTypeFolderByIdResponses,
@@ -4106,7 +4106,7 @@ export const putDocumentTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Imports a document type from the provided file upload.
  */
-export const postDocumentTypeImport = <ThrowOnError extends boolean = false>(
+export const postDocumentTypeImport = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentTypeImportData, ThrowOnError>,
 ): RequestResult<PostDocumentTypeImportResponses, PostDocumentTypeImportErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -4128,7 +4128,7 @@ export const postDocumentTypeImport = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document type items identified by the provided Ids.
  */
-export const getItemDocumentType = <ThrowOnError extends boolean = false>(
+export const getItemDocumentType = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentTypeData, ThrowOnError>,
 ): RequestResult<GetItemDocumentTypeResponses, GetItemDocumentTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4146,7 +4146,7 @@ export const getItemDocumentType = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for document type items identified by the provided Ids.
  */
-export const getItemDocumentTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getItemDocumentTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentTypeAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetItemDocumentTypeAncestorsResponses,
@@ -4168,7 +4168,7 @@ export const getItemDocumentTypeAncestors = <ThrowOnError extends boolean = fals
  *
  * Searches document type items by the provided query with pagination support.
  */
-export const getItemDocumentTypeSearch = <ThrowOnError extends boolean = false>(
+export const getItemDocumentTypeSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemDocumentTypeSearchData, ThrowOnError>,
 ): RequestResult<
   GetItemDocumentTypeSearchResponses,
@@ -4190,7 +4190,7 @@ export const getItemDocumentTypeSearch = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document type items that are ancestors to the provided Id.
  */
-export const getTreeDocumentTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentTypeAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentTypeAncestorsResponses,
@@ -4212,7 +4212,7 @@ export const getTreeDocumentTypeAncestors = <ThrowOnError extends boolean = fals
  *
  * Gets a paginated collection of document type tree items that are children of the provided parent Id.
  */
-export const getTreeDocumentTypeChildren = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentTypeChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentTypeChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentTypeChildrenResponses,
@@ -4234,7 +4234,7 @@ export const getTreeDocumentTypeChildren = <ThrowOnError extends boolean = false
  *
  * Gets a paginated collection of document type items from the root of the tree with optional filtering.
  */
-export const getTreeDocumentTypeRoot = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentTypeRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentTypeRootData, ThrowOnError>,
 ): RequestResult<GetTreeDocumentTypeRootResponses, GetTreeDocumentTypeRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4247,7 +4247,7 @@ export const getTreeDocumentTypeRoot = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
-export const getTreeDocumentTypeSearch = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentTypeSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentTypeSearchData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentTypeSearchResponses,
@@ -4269,7 +4269,7 @@ export const getTreeDocumentTypeSearch = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of document type tree items that are siblings of the provided Id.
  */
-export const getTreeDocumentTypeSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeDocumentTypeSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeDocumentTypeSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetTreeDocumentTypeSiblingsResponses,
@@ -4291,7 +4291,7 @@ export const getTreeDocumentTypeSiblings = <ThrowOnError extends boolean = false
  *
  * Gets a paginated collection of versions for a specific document and optional culture. Each result describes the version and includes details of the document type, editor, version date, and published status.
  */
-export const getDocumentVersion = <ThrowOnError extends boolean = false>(
+export const getDocumentVersion = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentVersionData, ThrowOnError>,
 ): RequestResult<GetDocumentVersionResponses, GetDocumentVersionErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -4309,7 +4309,7 @@ export const getDocumentVersion = <ThrowOnError extends boolean = false>(
  *
  * Gets a specific document version by its Id. If found, the result describes the version and includes details of the document type, editor, version date, and published status.
  */
-export const getDocumentVersionById = <ThrowOnError extends boolean = false>(
+export const getDocumentVersionById = <ThrowOnError extends boolean = true>(
   options: Options<GetDocumentVersionByIdData, ThrowOnError>,
 ): RequestResult<GetDocumentVersionByIdResponses, GetDocumentVersionByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -4327,7 +4327,7 @@ export const getDocumentVersionById = <ThrowOnError extends boolean = false>(
  *
  * Sets the prevent clean up boolean status for a document version to the provided value. This controls whether the version will be a candidate for removal in content history clean up.
  */
-export const putDocumentVersionByIdPreventCleanup = <ThrowOnError extends boolean = false>(
+export const putDocumentVersionByIdPreventCleanup = <ThrowOnError extends boolean = true>(
   options: Options<PutDocumentVersionByIdPreventCleanupData, ThrowOnError>,
 ): RequestResult<
   PutDocumentVersionByIdPreventCleanupResponses,
@@ -4349,7 +4349,7 @@ export const putDocumentVersionByIdPreventCleanup = <ThrowOnError extends boolea
  *
  * Rolls back a document to the version indicated by the provided Id. This will archive the current version of the document and publish the provided one.
  */
-export const postDocumentVersionByIdRollback = <ThrowOnError extends boolean = false>(
+export const postDocumentVersionByIdRollback = <ThrowOnError extends boolean = true>(
   options: Options<PostDocumentVersionByIdRollbackData, ThrowOnError>,
 ): RequestResult<
   PostDocumentVersionByIdRollbackResponses,
@@ -4371,7 +4371,7 @@ export const postDocumentVersionByIdRollback = <ThrowOnError extends boolean = f
  *
  * Gets a collection of dynamic root items based on the provided query configuration.
  */
-export const postDynamicRootQuery = <ThrowOnError extends boolean = false>(
+export const postDynamicRootQuery = <ThrowOnError extends boolean = true>(
   options: Options<PostDynamicRootQueryData, ThrowOnError>,
 ): RequestResult<PostDynamicRootQueryResponses, PostDynamicRootQueryErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -4393,7 +4393,7 @@ export const postDynamicRootQuery = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of available query steps for configuring dynamic root queries.
  */
-export const getDynamicRootSteps = <ThrowOnError extends boolean = false>(
+export const getDynamicRootSteps = <ThrowOnError extends boolean = true>(
   options?: Options<GetDynamicRootStepsData, ThrowOnError>,
 ): RequestResult<GetDynamicRootStepsResponses, GetDynamicRootStepsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4411,7 +4411,7 @@ export const getDynamicRootSteps = <ThrowOnError extends boolean = false>(
  *
  * Creates a new element with the configuration specified in the request model.
  */
-export const postElement = <ThrowOnError extends boolean = false>(
+export const postElement = <ThrowOnError extends boolean = true>(
   options: Options<PostElementData, ThrowOnError>,
 ): RequestResult<PostElementResponses, PostElementErrors, ThrowOnError> =>
   (options.client ?? client).post<PostElementResponses, PostElementErrors, ThrowOnError>({
@@ -4429,7 +4429,7 @@ export const postElement = <ThrowOnError extends boolean = false>(
  *
  * Deletes an element identified by the provided Id.
  */
-export const deleteElementById = <ThrowOnError extends boolean = false>(
+export const deleteElementById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteElementByIdData, ThrowOnError>,
 ): RequestResult<DeleteElementByIdResponses, DeleteElementByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -4447,7 +4447,7 @@ export const deleteElementById = <ThrowOnError extends boolean = false>(
  *
  * Gets an element identified by the provided Id.
  */
-export const getElementById = <ThrowOnError extends boolean = false>(
+export const getElementById = <ThrowOnError extends boolean = true>(
   options: Options<GetElementByIdData, ThrowOnError>,
 ): RequestResult<GetElementByIdResponses, GetElementByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetElementByIdResponses, GetElementByIdErrors, ThrowOnError>({
@@ -4461,7 +4461,7 @@ export const getElementById = <ThrowOnError extends boolean = false>(
  *
  * Updates an element identified by the provided Id with the details from the request model.
  */
-export const putElementById = <ThrowOnError extends boolean = false>(
+export const putElementById = <ThrowOnError extends boolean = true>(
   options: Options<PutElementByIdData, ThrowOnError>,
 ): RequestResult<PutElementByIdResponses, PutElementByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutElementByIdResponses, PutElementByIdErrors, ThrowOnError>({
@@ -4479,7 +4479,7 @@ export const putElementById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of audit log entries for the element identified by the provided Id.
  */
-export const getElementByIdAuditLog = <ThrowOnError extends boolean = false>(
+export const getElementByIdAuditLog = <ThrowOnError extends boolean = true>(
   options: Options<GetElementByIdAuditLogData, ThrowOnError>,
 ): RequestResult<GetElementByIdAuditLogResponses, GetElementByIdAuditLogErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -4497,7 +4497,7 @@ export const getElementByIdAuditLog = <ThrowOnError extends boolean = false>(
  *
  * Creates a duplicate of an existing element identified by the provided Id.
  */
-export const postElementByIdCopy = <ThrowOnError extends boolean = false>(
+export const postElementByIdCopy = <ThrowOnError extends boolean = true>(
   options: Options<PostElementByIdCopyData, ThrowOnError>,
 ): RequestResult<PostElementByIdCopyResponses, PostElementByIdCopyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -4519,7 +4519,7 @@ export const postElementByIdCopy = <ThrowOnError extends boolean = false>(
  *
  * Moves an element identified by the provided Id to a different location.
  */
-export const putElementByIdMove = <ThrowOnError extends boolean = false>(
+export const putElementByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutElementByIdMoveData, ThrowOnError>,
 ): RequestResult<PutElementByIdMoveResponses, PutElementByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -4541,7 +4541,7 @@ export const putElementByIdMove = <ThrowOnError extends boolean = false>(
  *
  * Moves an element identified by the provided Id to the recycle bin.
  */
-export const putElementByIdMoveToRecycleBin = <ThrowOnError extends boolean = false>(
+export const putElementByIdMoveToRecycleBin = <ThrowOnError extends boolean = true>(
   options: Options<PutElementByIdMoveToRecycleBinData, ThrowOnError>,
 ): RequestResult<
   PutElementByIdMoveToRecycleBinResponses,
@@ -4563,7 +4563,7 @@ export const putElementByIdMoveToRecycleBin = <ThrowOnError extends boolean = fa
  *
  * Publishes an element identified by the provided Id.
  */
-export const putElementByIdPublish = <ThrowOnError extends boolean = false>(
+export const putElementByIdPublish = <ThrowOnError extends boolean = true>(
   options: Options<PutElementByIdPublishData, ThrowOnError>,
 ): RequestResult<PutElementByIdPublishResponses, PutElementByIdPublishErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -4585,7 +4585,7 @@ export const putElementByIdPublish = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of items that reference the element identified by the provided Id.
  */
-export const getElementByIdReferencedBy = <ThrowOnError extends boolean = false>(
+export const getElementByIdReferencedBy = <ThrowOnError extends boolean = true>(
   options: Options<GetElementByIdReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetElementByIdReferencedByResponses,
@@ -4607,7 +4607,7 @@ export const getElementByIdReferencedBy = <ThrowOnError extends boolean = false>
  *
  * Unpublishes an element identified by the provided Id.
  */
-export const putElementByIdUnpublish = <ThrowOnError extends boolean = false>(
+export const putElementByIdUnpublish = <ThrowOnError extends boolean = true>(
   options: Options<PutElementByIdUnpublishData, ThrowOnError>,
 ): RequestResult<PutElementByIdUnpublishResponses, PutElementByIdUnpublishErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -4629,7 +4629,7 @@ export const putElementByIdUnpublish = <ThrowOnError extends boolean = false>(
  *
  * Validates the request model for updating an element without actually updating it.
  */
-export const putElementByIdValidate = <ThrowOnError extends boolean = false>(
+export const putElementByIdValidate = <ThrowOnError extends boolean = true>(
   options: Options<PutElementByIdValidateData, ThrowOnError>,
 ): RequestResult<PutElementByIdValidateResponses, PutElementByIdValidateErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -4651,7 +4651,7 @@ export const putElementByIdValidate = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of items that reference the elements identified by the provided Ids.
  */
-export const getElementAreReferenced = <ThrowOnError extends boolean = false>(
+export const getElementAreReferenced = <ThrowOnError extends boolean = true>(
   options?: Options<GetElementAreReferencedData, ThrowOnError>,
 ): RequestResult<GetElementAreReferencedResponses, GetElementAreReferencedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4669,7 +4669,7 @@ export const getElementAreReferenced = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for elements.
  */
-export const getElementConfiguration = <ThrowOnError extends boolean = false>(
+export const getElementConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetElementConfigurationData, ThrowOnError>,
 ): RequestResult<GetElementConfigurationResponses, GetElementConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4687,7 +4687,7 @@ export const getElementConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Creates a new element folder with the provided name and parent location.
  */
-export const postElementFolder = <ThrowOnError extends boolean = false>(
+export const postElementFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostElementFolderData, ThrowOnError>,
 ): RequestResult<PostElementFolderResponses, PostElementFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -4709,7 +4709,7 @@ export const postElementFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes an element folder identified by the provided Id.
  */
-export const deleteElementFolderById = <ThrowOnError extends boolean = false>(
+export const deleteElementFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteElementFolderByIdData, ThrowOnError>,
 ): RequestResult<DeleteElementFolderByIdResponses, DeleteElementFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -4727,7 +4727,7 @@ export const deleteElementFolderById = <ThrowOnError extends boolean = false>(
  *
  * Gets an element folder identified by the provided Id.
  */
-export const getElementFolderById = <ThrowOnError extends boolean = false>(
+export const getElementFolderById = <ThrowOnError extends boolean = true>(
   options: Options<GetElementFolderByIdData, ThrowOnError>,
 ): RequestResult<GetElementFolderByIdResponses, GetElementFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -4745,7 +4745,7 @@ export const getElementFolderById = <ThrowOnError extends boolean = false>(
  *
  * Updates an element folder identified by the provided Id with the details provided in the request model.
  */
-export const putElementFolderById = <ThrowOnError extends boolean = false>(
+export const putElementFolderById = <ThrowOnError extends boolean = true>(
   options: Options<PutElementFolderByIdData, ThrowOnError>,
 ): RequestResult<PutElementFolderByIdResponses, PutElementFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -4767,7 +4767,7 @@ export const putElementFolderById = <ThrowOnError extends boolean = false>(
  *
  * Moves an element folder identified by the provided Id to a different location.
  */
-export const putElementFolderByIdMove = <ThrowOnError extends boolean = false>(
+export const putElementFolderByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutElementFolderByIdMoveData, ThrowOnError>,
 ): RequestResult<PutElementFolderByIdMoveResponses, PutElementFolderByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -4789,7 +4789,7 @@ export const putElementFolderByIdMove = <ThrowOnError extends boolean = false>(
  *
  * Moves an element folder identified by the provided Id to the recycle bin.
  */
-export const putElementFolderByIdMoveToRecycleBin = <ThrowOnError extends boolean = false>(
+export const putElementFolderByIdMoveToRecycleBin = <ThrowOnError extends boolean = true>(
   options: Options<PutElementFolderByIdMoveToRecycleBinData, ThrowOnError>,
 ): RequestResult<
   PutElementFolderByIdMoveToRecycleBinResponses,
@@ -4811,7 +4811,7 @@ export const putElementFolderByIdMoveToRecycleBin = <ThrowOnError extends boolea
  *
  * Gets a paginated collection of descendant elements in a folder that are referenced by other content.
  */
-export const getElementFolderByIdReferencedDescendants = <ThrowOnError extends boolean = false>(
+export const getElementFolderByIdReferencedDescendants = <ThrowOnError extends boolean = true>(
   options: Options<GetElementFolderByIdReferencedDescendantsData, ThrowOnError>,
 ): RequestResult<
   GetElementFolderByIdReferencedDescendantsResponses,
@@ -4833,7 +4833,7 @@ export const getElementFolderByIdReferencedDescendants = <ThrowOnError extends b
  *
  * Validates the request model for creating a new element without actually creating it.
  */
-export const postElementValidate = <ThrowOnError extends boolean = false>(
+export const postElementValidate = <ThrowOnError extends boolean = true>(
   options: Options<PostElementValidateData, ThrowOnError>,
 ): RequestResult<PostElementValidateResponses, PostElementValidateErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -4855,7 +4855,7 @@ export const postElementValidate = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of element items identified by the provided Ids.
  */
-export const getItemElement = <ThrowOnError extends boolean = false>(
+export const getItemElement = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemElementData, ThrowOnError>,
 ): RequestResult<GetItemElementResponses, GetItemElementErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemElementResponses, GetItemElementErrors, ThrowOnError>({
@@ -4869,7 +4869,7 @@ export const getItemElement = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for element items identified by the provided Ids.
  */
-export const getItemElementAncestors = <ThrowOnError extends boolean = false>(
+export const getItemElementAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemElementAncestorsData, ThrowOnError>,
 ): RequestResult<GetItemElementAncestorsResponses, GetItemElementAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4887,7 +4887,7 @@ export const getItemElementAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of element folder items identified by the provided Ids.
  */
-export const getItemElementFolder = <ThrowOnError extends boolean = false>(
+export const getItemElementFolder = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemElementFolderData, ThrowOnError>,
 ): RequestResult<GetItemElementFolderResponses, GetItemElementFolderErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4905,7 +4905,7 @@ export const getItemElementFolder = <ThrowOnError extends boolean = false>(
  *
  * Searches element items by the provided query with pagination support.
  */
-export const getItemElementSearch = <ThrowOnError extends boolean = false>(
+export const getItemElementSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemElementSearchData, ThrowOnError>,
 ): RequestResult<GetItemElementSearchResponses, GetItemElementSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -4923,7 +4923,7 @@ export const getItemElementSearch = <ThrowOnError extends boolean = false>(
  *
  * Permanently deletes all elements in the recycle bin. This operation cannot be undone.
  */
-export const deleteRecycleBinElement = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinElement = <ThrowOnError extends boolean = true>(
   options?: Options<DeleteRecycleBinElementData, ThrowOnError>,
 ): RequestResult<DeleteRecycleBinElementResponses, DeleteRecycleBinElementErrors, ThrowOnError> =>
   (options?.client ?? client).delete<
@@ -4941,7 +4941,7 @@ export const deleteRecycleBinElement = <ThrowOnError extends boolean = false>(
  *
  * Permanently deletes an element identified by the provided Id from the recycle bin.
  */
-export const deleteRecycleBinElementById = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinElementById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteRecycleBinElementByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteRecycleBinElementByIdResponses,
@@ -4963,7 +4963,7 @@ export const deleteRecycleBinElementById = <ThrowOnError extends boolean = false
  *
  * Gets the original parent location of an element before it was moved to the recycle bin.
  */
-export const getRecycleBinElementByIdOriginalParent = <ThrowOnError extends boolean = false>(
+export const getRecycleBinElementByIdOriginalParent = <ThrowOnError extends boolean = true>(
   options: Options<GetRecycleBinElementByIdOriginalParentData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinElementByIdOriginalParentResponses,
@@ -4985,7 +4985,7 @@ export const getRecycleBinElementByIdOriginalParent = <ThrowOnError extends bool
  *
  * Restores an element from the recycle bin to its original location or a specified parent.
  */
-export const putRecycleBinElementByIdRestore = <ThrowOnError extends boolean = false>(
+export const putRecycleBinElementByIdRestore = <ThrowOnError extends boolean = true>(
   options: Options<PutRecycleBinElementByIdRestoreData, ThrowOnError>,
 ): RequestResult<
   PutRecycleBinElementByIdRestoreResponses,
@@ -5011,7 +5011,7 @@ export const putRecycleBinElementByIdRestore = <ThrowOnError extends boolean = f
  *
  * Gets a paginated collection of elements that are children of the provided parent in the recycle bin.
  */
-export const getRecycleBinElementChildren = <ThrowOnError extends boolean = false>(
+export const getRecycleBinElementChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinElementChildrenData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinElementChildrenResponses,
@@ -5033,7 +5033,7 @@ export const getRecycleBinElementChildren = <ThrowOnError extends boolean = fals
  *
  * Permanently deletes an element folder identified by the provided Id from the recycle bin.
  */
-export const deleteRecycleBinElementFolderById = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinElementFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteRecycleBinElementFolderByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteRecycleBinElementFolderByIdResponses,
@@ -5055,7 +5055,7 @@ export const deleteRecycleBinElementFolderById = <ThrowOnError extends boolean =
  *
  * Gets the original parent location of an element folder before it was moved to the recycle bin.
  */
-export const getRecycleBinElementFolderByIdOriginalParent = <ThrowOnError extends boolean = false>(
+export const getRecycleBinElementFolderByIdOriginalParent = <ThrowOnError extends boolean = true>(
   options: Options<GetRecycleBinElementFolderByIdOriginalParentData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinElementFolderByIdOriginalParentResponses,
@@ -5077,7 +5077,7 @@ export const getRecycleBinElementFolderByIdOriginalParent = <ThrowOnError extend
  *
  * Restores an element folder from the recycle bin to its original location or a specified parent.
  */
-export const putRecycleBinElementFolderByIdRestore = <ThrowOnError extends boolean = false>(
+export const putRecycleBinElementFolderByIdRestore = <ThrowOnError extends boolean = true>(
   options: Options<PutRecycleBinElementFolderByIdRestoreData, ThrowOnError>,
 ): RequestResult<
   PutRecycleBinElementFolderByIdRestoreResponses,
@@ -5103,7 +5103,7 @@ export const putRecycleBinElementFolderByIdRestore = <ThrowOnError extends boole
  *
  * Gets a paginated collection of items that reference the element in the recycle bin.
  */
-export const getRecycleBinElementReferencedBy = <ThrowOnError extends boolean = false>(
+export const getRecycleBinElementReferencedBy = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinElementReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinElementReferencedByResponses,
@@ -5125,7 +5125,7 @@ export const getRecycleBinElementReferencedBy = <ThrowOnError extends boolean = 
  *
  * Gets a paginated collection of elements at the root level of the recycle bin.
  */
-export const getRecycleBinElementRoot = <ThrowOnError extends boolean = false>(
+export const getRecycleBinElementRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinElementRootData, ThrowOnError>,
 ): RequestResult<GetRecycleBinElementRootResponses, GetRecycleBinElementRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5143,7 +5143,7 @@ export const getRecycleBinElementRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of sibling elements in the recycle bin at the same level as the provided Id.
  */
-export const getRecycleBinElementSiblings = <ThrowOnError extends boolean = false>(
+export const getRecycleBinElementSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinElementSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinElementSiblingsResponses,
@@ -5165,7 +5165,7 @@ export const getRecycleBinElementSiblings = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of element items that are ancestors to the provided Id.
  */
-export const getTreeElementAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeElementAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeElementAncestorsData, ThrowOnError>,
 ): RequestResult<GetTreeElementAncestorsResponses, GetTreeElementAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5183,7 +5183,7 @@ export const getTreeElementAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of element tree items that are children of the provided parent Id.
  */
-export const getTreeElementChildren = <ThrowOnError extends boolean = false>(
+export const getTreeElementChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeElementChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeElementChildrenResponses, GetTreeElementChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5201,7 +5201,7 @@ export const getTreeElementChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of element items from the root of the tree with optional filtering.
  */
-export const getTreeElementRoot = <ThrowOnError extends boolean = false>(
+export const getTreeElementRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeElementRootData, ThrowOnError>,
 ): RequestResult<GetTreeElementRootResponses, GetTreeElementRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5219,7 +5219,7 @@ export const getTreeElementRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of element tree items that are siblings of the provided Id.
  */
-export const getTreeElementSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeElementSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeElementSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeElementSiblingsResponses, GetTreeElementSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5237,7 +5237,7 @@ export const getTreeElementSiblings = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of versions for a specific element and optional culture. Each result describes the version and includes details of the element type, editor, version date, and published status.
  */
-export const getElementVersion = <ThrowOnError extends boolean = false>(
+export const getElementVersion = <ThrowOnError extends boolean = true>(
   options: Options<GetElementVersionData, ThrowOnError>,
 ): RequestResult<GetElementVersionResponses, GetElementVersionErrors, ThrowOnError> =>
   (options.client ?? client).get<GetElementVersionResponses, GetElementVersionErrors, ThrowOnError>(
@@ -5253,7 +5253,7 @@ export const getElementVersion = <ThrowOnError extends boolean = false>(
  *
  * Gets a specific element version by its Id. If found, the result describes the version and includes details of the element type, editor, version date, and published status.
  */
-export const getElementVersionById = <ThrowOnError extends boolean = false>(
+export const getElementVersionById = <ThrowOnError extends boolean = true>(
   options: Options<GetElementVersionByIdData, ThrowOnError>,
 ): RequestResult<GetElementVersionByIdResponses, GetElementVersionByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -5271,7 +5271,7 @@ export const getElementVersionById = <ThrowOnError extends boolean = false>(
  *
  * Sets the prevent clean up boolean status for an element version to the provided value. This controls whether the version will be a candidate for removal in content history clean up.
  */
-export const putElementVersionByIdPreventCleanup = <ThrowOnError extends boolean = false>(
+export const putElementVersionByIdPreventCleanup = <ThrowOnError extends boolean = true>(
   options: Options<PutElementVersionByIdPreventCleanupData, ThrowOnError>,
 ): RequestResult<
   PutElementVersionByIdPreventCleanupResponses,
@@ -5293,7 +5293,7 @@ export const putElementVersionByIdPreventCleanup = <ThrowOnError extends boolean
  *
  * Rolls back an element to the version indicated by the provided Id. This will archive the current version of the element and publish the provided one.
  */
-export const postElementVersionByIdRollback = <ThrowOnError extends boolean = false>(
+export const postElementVersionByIdRollback = <ThrowOnError extends boolean = true>(
   options: Options<PostElementVersionByIdRollbackData, ThrowOnError>,
 ): RequestResult<
   PostElementVersionByIdRollbackResponses,
@@ -5310,7 +5310,7 @@ export const postElementVersionByIdRollback = <ThrowOnError extends boolean = fa
     ...options,
   });
 
-export const getExampleapi = <ThrowOnError extends boolean = false>(
+export const getExampleapi = <ThrowOnError extends boolean = true>(
   options?: Options<GetExampleapiData, ThrowOnError>,
 ): RequestResult<GetExampleapiResponses, GetExampleapiErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetExampleapiResponses, GetExampleapiErrors, ThrowOnError>({
@@ -5324,7 +5324,7 @@ export const getExampleapi = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of health check groups with their associated health checks.
  */
-export const getHealthCheckGroup = <ThrowOnError extends boolean = false>(
+export const getHealthCheckGroup = <ThrowOnError extends boolean = true>(
   options?: Options<GetHealthCheckGroupData, ThrowOnError>,
 ): RequestResult<GetHealthCheckGroupResponses, GetHealthCheckGroupErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5342,7 +5342,7 @@ export const getHealthCheckGroup = <ThrowOnError extends boolean = false>(
  *
  * Gets a health check group and all its associated health checks identified by the provided group name.
  */
-export const getHealthCheckGroupByName = <ThrowOnError extends boolean = false>(
+export const getHealthCheckGroupByName = <ThrowOnError extends boolean = true>(
   options: Options<GetHealthCheckGroupByNameData, ThrowOnError>,
 ): RequestResult<
   GetHealthCheckGroupByNameResponses,
@@ -5364,7 +5364,7 @@ export const getHealthCheckGroupByName = <ThrowOnError extends boolean = false>(
  *
  * Runs all health checks in the group identified by the provided name and returns the results.
  */
-export const postHealthCheckGroupByNameCheck = <ThrowOnError extends boolean = false>(
+export const postHealthCheckGroupByNameCheck = <ThrowOnError extends boolean = true>(
   options: Options<PostHealthCheckGroupByNameCheckData, ThrowOnError>,
 ): RequestResult<
   PostHealthCheckGroupByNameCheckResponses,
@@ -5386,7 +5386,7 @@ export const postHealthCheckGroupByNameCheck = <ThrowOnError extends boolean = f
  *
  * Executes a specific action to fix or address a health check issue.
  */
-export const postHealthCheckExecuteAction = <ThrowOnError extends boolean = false>(
+export const postHealthCheckExecuteAction = <ThrowOnError extends boolean = true>(
   options: Options<PostHealthCheckExecuteActionData, ThrowOnError>,
 ): RequestResult<
   PostHealthCheckExecuteActionResponses,
@@ -5412,7 +5412,7 @@ export const postHealthCheckExecuteAction = <ThrowOnError extends boolean = fals
  *
  * Gets help information and documentation resources for the Umbraco back office.
  */
-export const getHelp = <ThrowOnError extends boolean = false>(
+export const getHelp = <ThrowOnError extends boolean = true>(
   options?: Options<GetHelpData, ThrowOnError>,
 ): RequestResult<GetHelpResponses, GetHelpErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetHelpResponses, GetHelpErrors, ThrowOnError>({
@@ -5426,7 +5426,7 @@ export const getHelp = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of URLs for resizing images with the provided dimensions and options.
  */
-export const getImagingResizeUrls = <ThrowOnError extends boolean = false>(
+export const getImagingResizeUrls = <ThrowOnError extends boolean = true>(
   options?: Options<GetImagingResizeUrlsData, ThrowOnError>,
 ): RequestResult<GetImagingResizeUrlsResponses, GetImagingResizeUrlsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5444,7 +5444,7 @@ export const getImagingResizeUrls = <ThrowOnError extends boolean = false>(
  *
  * Analyzes the uploaded import file and returns an analysis of the imported entities.
  */
-export const getImportAnalyze = <ThrowOnError extends boolean = false>(
+export const getImportAnalyze = <ThrowOnError extends boolean = true>(
   options?: Options<GetImportAnalyzeData, ThrowOnError>,
 ): RequestResult<GetImportAnalyzeResponses, GetImportAnalyzeErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetImportAnalyzeResponses, GetImportAnalyzeErrors, ThrowOnError>({
@@ -5458,7 +5458,7 @@ export const getImportAnalyze = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of configured search indexers in the Umbraco installation.
  */
-export const getIndexer = <ThrowOnError extends boolean = false>(
+export const getIndexer = <ThrowOnError extends boolean = true>(
   options?: Options<GetIndexerData, ThrowOnError>,
 ): RequestResult<GetIndexerResponses, GetIndexerErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetIndexerResponses, GetIndexerErrors, ThrowOnError>({
@@ -5472,7 +5472,7 @@ export const getIndexer = <ThrowOnError extends boolean = false>(
  *
  * Gets detailed information about the indexer identified by the provided name.
  */
-export const getIndexerByIndexName = <ThrowOnError extends boolean = false>(
+export const getIndexerByIndexName = <ThrowOnError extends boolean = true>(
   options: Options<GetIndexerByIndexNameData, ThrowOnError>,
 ): RequestResult<GetIndexerByIndexNameResponses, GetIndexerByIndexNameErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -5490,7 +5490,7 @@ export const getIndexerByIndexName = <ThrowOnError extends boolean = false>(
  *
  * Rebuilds the search index for the indexer identified by the provided name.
  */
-export const postIndexerByIndexNameRebuild = <ThrowOnError extends boolean = false>(
+export const postIndexerByIndexNameRebuild = <ThrowOnError extends boolean = true>(
   options: Options<PostIndexerByIndexNameRebuildData, ThrowOnError>,
 ): RequestResult<
   PostIndexerByIndexNameRebuildResponses,
@@ -5512,7 +5512,7 @@ export const postIndexerByIndexNameRebuild = <ThrowOnError extends boolean = fal
  *
  * Gets the current installation settings and status.
  */
-export const getInstallSettings = <ThrowOnError extends boolean = false>(
+export const getInstallSettings = <ThrowOnError extends boolean = true>(
   options?: Options<GetInstallSettingsData, ThrowOnError>,
 ): RequestResult<GetInstallSettingsResponses, GetInstallSettingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5526,7 +5526,7 @@ export const getInstallSettings = <ThrowOnError extends boolean = false>(
  *
  * Performs the initial setup and installation of Umbraco.
  */
-export const postInstallSetup = <ThrowOnError extends boolean = false>(
+export const postInstallSetup = <ThrowOnError extends boolean = true>(
   options: Options<PostInstallSetupData, ThrowOnError>,
 ): RequestResult<PostInstallSetupResponses, PostInstallSetupErrors, ThrowOnError> =>
   (options.client ?? client).post<PostInstallSetupResponses, PostInstallSetupErrors, ThrowOnError>({
@@ -5543,7 +5543,7 @@ export const postInstallSetup = <ThrowOnError extends boolean = false>(
  *
  * Validates the database connection settings provided during installation.
  */
-export const postInstallValidateDatabase = <ThrowOnError extends boolean = false>(
+export const postInstallValidateDatabase = <ThrowOnError extends boolean = true>(
   options: Options<PostInstallValidateDatabaseData, ThrowOnError>,
 ): RequestResult<
   PostInstallValidateDatabaseResponses,
@@ -5568,7 +5568,7 @@ export const postInstallValidateDatabase = <ThrowOnError extends boolean = false
  *
  * Gets a collection of language items identified by the provided Ids.
  */
-export const getItemLanguage = <ThrowOnError extends boolean = false>(
+export const getItemLanguage = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemLanguageData, ThrowOnError>,
 ): RequestResult<GetItemLanguageResponses, GetItemLanguageErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemLanguageResponses, GetItemLanguageErrors, ThrowOnError>({
@@ -5582,7 +5582,7 @@ export const getItemLanguage = <ThrowOnError extends boolean = false>(
  *
  * Gets the default language configured for the Umbraco installation.
  */
-export const getItemLanguageDefault = <ThrowOnError extends boolean = false>(
+export const getItemLanguageDefault = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemLanguageDefaultData, ThrowOnError>,
 ): RequestResult<GetItemLanguageDefaultResponses, GetItemLanguageDefaultErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5600,7 +5600,7 @@ export const getItemLanguageDefault = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all configured languages.
  */
-export const getLanguage = <ThrowOnError extends boolean = false>(
+export const getLanguage = <ThrowOnError extends boolean = true>(
   options?: Options<GetLanguageData, ThrowOnError>,
 ): RequestResult<GetLanguageResponses, GetLanguageErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetLanguageResponses, GetLanguageErrors, ThrowOnError>({
@@ -5614,7 +5614,7 @@ export const getLanguage = <ThrowOnError extends boolean = false>(
  *
  * Creates a new language with the configuration specified in the request model.
  */
-export const postLanguage = <ThrowOnError extends boolean = false>(
+export const postLanguage = <ThrowOnError extends boolean = true>(
   options: Options<PostLanguageData, ThrowOnError>,
 ): RequestResult<PostLanguageResponses, PostLanguageErrors, ThrowOnError> =>
   (options.client ?? client).post<PostLanguageResponses, PostLanguageErrors, ThrowOnError>({
@@ -5632,7 +5632,7 @@ export const postLanguage = <ThrowOnError extends boolean = false>(
  *
  * Deletes a language identified by the provided Id.
  */
-export const deleteLanguageByIsoCode = <ThrowOnError extends boolean = false>(
+export const deleteLanguageByIsoCode = <ThrowOnError extends boolean = true>(
   options: Options<DeleteLanguageByIsoCodeData, ThrowOnError>,
 ): RequestResult<DeleteLanguageByIsoCodeResponses, DeleteLanguageByIsoCodeErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -5650,7 +5650,7 @@ export const deleteLanguageByIsoCode = <ThrowOnError extends boolean = false>(
  *
  * Gets a language identified by the provided ISO code.
  */
-export const getLanguageByIsoCode = <ThrowOnError extends boolean = false>(
+export const getLanguageByIsoCode = <ThrowOnError extends boolean = true>(
   options: Options<GetLanguageByIsoCodeData, ThrowOnError>,
 ): RequestResult<GetLanguageByIsoCodeResponses, GetLanguageByIsoCodeErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -5668,7 +5668,7 @@ export const getLanguageByIsoCode = <ThrowOnError extends boolean = false>(
  *
  * Updates a language identified by the provided Id with the details from the request model.
  */
-export const putLanguageByIsoCode = <ThrowOnError extends boolean = false>(
+export const putLanguageByIsoCode = <ThrowOnError extends boolean = true>(
   options: Options<PutLanguageByIsoCodeData, ThrowOnError>,
 ): RequestResult<PutLanguageByIsoCodeResponses, PutLanguageByIsoCodeErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -5690,7 +5690,7 @@ export const putLanguageByIsoCode = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of configured log sinks with their minimum log levels.
  */
-export const getLogViewerLevel = <ThrowOnError extends boolean = false>(
+export const getLogViewerLevel = <ThrowOnError extends boolean = true>(
   options?: Options<GetLogViewerLevelData, ThrowOnError>,
 ): RequestResult<GetLogViewerLevelResponses, GetLogViewerLevelErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5708,7 +5708,7 @@ export const getLogViewerLevel = <ThrowOnError extends boolean = false>(
  *
  * Gets the count of log entries for each log level within the specified date range.
  */
-export const getLogViewerLevelCount = <ThrowOnError extends boolean = false>(
+export const getLogViewerLevelCount = <ThrowOnError extends boolean = true>(
   options?: Options<GetLogViewerLevelCountData, ThrowOnError>,
 ): RequestResult<GetLogViewerLevelCountResponses, GetLogViewerLevelCountErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5726,7 +5726,7 @@ export const getLogViewerLevelCount = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of log entries with optional filtering and date range.
  */
-export const getLogViewerLog = <ThrowOnError extends boolean = false>(
+export const getLogViewerLog = <ThrowOnError extends boolean = true>(
   options?: Options<GetLogViewerLogData, ThrowOnError>,
 ): RequestResult<GetLogViewerLogResponses, GetLogViewerLogErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetLogViewerLogResponses, GetLogViewerLogErrors, ThrowOnError>({
@@ -5740,7 +5740,7 @@ export const getLogViewerLog = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of unique message templates found in the logs.
  */
-export const getLogViewerMessageTemplate = <ThrowOnError extends boolean = false>(
+export const getLogViewerMessageTemplate = <ThrowOnError extends boolean = true>(
   options?: Options<GetLogViewerMessageTemplateData, ThrowOnError>,
 ): RequestResult<
   GetLogViewerMessageTemplateResponses,
@@ -5762,7 +5762,7 @@ export const getLogViewerMessageTemplate = <ThrowOnError extends boolean = false
  *
  * Gets a collection of saved log searches defined in the Umbraco installation.
  */
-export const getLogViewerSavedSearch = <ThrowOnError extends boolean = false>(
+export const getLogViewerSavedSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetLogViewerSavedSearchData, ThrowOnError>,
 ): RequestResult<GetLogViewerSavedSearchResponses, GetLogViewerSavedSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5780,7 +5780,7 @@ export const getLogViewerSavedSearch = <ThrowOnError extends boolean = false>(
  *
  * Creates a new saved log search with the provided name and query configuration.
  */
-export const postLogViewerSavedSearch = <ThrowOnError extends boolean = false>(
+export const postLogViewerSavedSearch = <ThrowOnError extends boolean = true>(
   options: Options<PostLogViewerSavedSearchData, ThrowOnError>,
 ): RequestResult<PostLogViewerSavedSearchResponses, PostLogViewerSavedSearchErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -5802,7 +5802,7 @@ export const postLogViewerSavedSearch = <ThrowOnError extends boolean = false>(
  *
  * Deletes a saved log search identified by the provided name.
  */
-export const deleteLogViewerSavedSearchByName = <ThrowOnError extends boolean = false>(
+export const deleteLogViewerSavedSearchByName = <ThrowOnError extends boolean = true>(
   options: Options<DeleteLogViewerSavedSearchByNameData, ThrowOnError>,
 ): RequestResult<
   DeleteLogViewerSavedSearchByNameResponses,
@@ -5824,7 +5824,7 @@ export const deleteLogViewerSavedSearchByName = <ThrowOnError extends boolean = 
  *
  * Gets a saved log search identified by the provided name.
  */
-export const getLogViewerSavedSearchByName = <ThrowOnError extends boolean = false>(
+export const getLogViewerSavedSearchByName = <ThrowOnError extends boolean = true>(
   options: Options<GetLogViewerSavedSearchByNameData, ThrowOnError>,
 ): RequestResult<
   GetLogViewerSavedSearchByNameResponses,
@@ -5846,7 +5846,7 @@ export const getLogViewerSavedSearchByName = <ThrowOnError extends boolean = fal
  *
  * Checks if the log files are within the size limit and can be viewed.
  */
-export const getLogViewerValidateLogsSize = <ThrowOnError extends boolean = false>(
+export const getLogViewerValidateLogsSize = <ThrowOnError extends boolean = true>(
   options?: Options<GetLogViewerValidateLogsSizeData, ThrowOnError>,
 ): RequestResult<
   GetLogViewerValidateLogsSizeResponses,
@@ -5868,7 +5868,7 @@ export const getLogViewerValidateLogsSize = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of all package manifests including both public and private manifests.
  */
-export const getManifestManifest = <ThrowOnError extends boolean = false>(
+export const getManifestManifest = <ThrowOnError extends boolean = true>(
   options?: Options<GetManifestManifestData, ThrowOnError>,
 ): RequestResult<GetManifestManifestResponses, GetManifestManifestErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5886,7 +5886,7 @@ export const getManifestManifest = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of private package manifests specific to the current user.
  */
-export const getManifestManifestPrivate = <ThrowOnError extends boolean = false>(
+export const getManifestManifestPrivate = <ThrowOnError extends boolean = true>(
   options?: Options<GetManifestManifestPrivateData, ThrowOnError>,
 ): RequestResult<
   GetManifestManifestPrivateResponses,
@@ -5908,7 +5908,7 @@ export const getManifestManifestPrivate = <ThrowOnError extends boolean = false>
  *
  * Gets a collection of public package manifests available to all users.
  */
-export const getManifestManifestPublic = <ThrowOnError extends boolean = false>(
+export const getManifestManifestPublic = <ThrowOnError extends boolean = true>(
   options?: Options<GetManifestManifestPublicData, ThrowOnError>,
 ): RequestResult<GetManifestManifestPublicResponses, unknown, ThrowOnError> =>
   (options?.client ?? client).get<GetManifestManifestPublicResponses, unknown, ThrowOnError>({
@@ -5921,7 +5921,7 @@ export const getManifestManifestPublic = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media items, optionally filtered and sorted.
  */
-export const getCollectionMedia = <ThrowOnError extends boolean = false>(
+export const getCollectionMedia = <ThrowOnError extends boolean = true>(
   options?: Options<GetCollectionMediaData, ThrowOnError>,
 ): RequestResult<GetCollectionMediaResponses, GetCollectionMediaErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5939,7 +5939,7 @@ export const getCollectionMedia = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media items identified by the provided Ids.
  */
-export const getItemMedia = <ThrowOnError extends boolean = false>(
+export const getItemMedia = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaData, ThrowOnError>,
 ): RequestResult<GetItemMediaResponses, GetItemMediaErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemMediaResponses, GetItemMediaErrors, ThrowOnError>({
@@ -5953,7 +5953,7 @@ export const getItemMedia = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for media items identified by the provided Ids.
  */
-export const getItemMediaAncestors = <ThrowOnError extends boolean = false>(
+export const getItemMediaAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaAncestorsData, ThrowOnError>,
 ): RequestResult<GetItemMediaAncestorsResponses, GetItemMediaAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5971,7 +5971,7 @@ export const getItemMediaAncestors = <ThrowOnError extends boolean = false>(
  *
  * Searches media items by the provided query with pagination support.
  */
-export const getItemMediaSearch = <ThrowOnError extends boolean = false>(
+export const getItemMediaSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaSearchData, ThrowOnError>,
 ): RequestResult<GetItemMediaSearchResponses, GetItemMediaSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -5989,7 +5989,7 @@ export const getItemMediaSearch = <ThrowOnError extends boolean = false>(
  *
  * Creates a new media with the configuration specified in the request model.
  */
-export const postMedia = <ThrowOnError extends boolean = false>(
+export const postMedia = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaData, ThrowOnError>,
 ): RequestResult<PostMediaResponses, PostMediaErrors, ThrowOnError> =>
   (options.client ?? client).post<PostMediaResponses, PostMediaErrors, ThrowOnError>({
@@ -6007,7 +6007,7 @@ export const postMedia = <ThrowOnError extends boolean = false>(
  *
  * Deletes a media item identified by the provided Id.
  */
-export const deleteMediaById = <ThrowOnError extends boolean = false>(
+export const deleteMediaById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMediaByIdData, ThrowOnError>,
 ): RequestResult<DeleteMediaByIdResponses, DeleteMediaByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<DeleteMediaByIdResponses, DeleteMediaByIdErrors, ThrowOnError>({
@@ -6021,7 +6021,7 @@ export const deleteMediaById = <ThrowOnError extends boolean = false>(
  *
  * Gets a media item identified by the provided Id.
  */
-export const getMediaById = <ThrowOnError extends boolean = false>(
+export const getMediaById = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaByIdData, ThrowOnError>,
 ): RequestResult<GetMediaByIdResponses, GetMediaByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetMediaByIdResponses, GetMediaByIdErrors, ThrowOnError>({
@@ -6035,7 +6035,7 @@ export const getMediaById = <ThrowOnError extends boolean = false>(
  *
  * Updates a media item identified by the provided Id with the details from the request model.
  */
-export const putMediaById = <ThrowOnError extends boolean = false>(
+export const putMediaById = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaByIdData, ThrowOnError>,
 ): RequestResult<PutMediaByIdResponses, PutMediaByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutMediaByIdResponses, PutMediaByIdErrors, ThrowOnError>({
@@ -6053,7 +6053,7 @@ export const putMediaById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of audit log entries for the media identified by the provided Id.
  */
-export const getMediaByIdAuditLog = <ThrowOnError extends boolean = false>(
+export const getMediaByIdAuditLog = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaByIdAuditLogData, ThrowOnError>,
 ): RequestResult<GetMediaByIdAuditLogResponses, GetMediaByIdAuditLogErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -6071,7 +6071,7 @@ export const getMediaByIdAuditLog = <ThrowOnError extends boolean = false>(
  *
  * Moves a media item identified by the provided Id to a different location.
  */
-export const putMediaByIdMove = <ThrowOnError extends boolean = false>(
+export const putMediaByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaByIdMoveData, ThrowOnError>,
 ): RequestResult<PutMediaByIdMoveResponses, PutMediaByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<PutMediaByIdMoveResponses, PutMediaByIdMoveErrors, ThrowOnError>({
@@ -6089,7 +6089,7 @@ export const putMediaByIdMove = <ThrowOnError extends boolean = false>(
  *
  * Moves a media item identified by the provided Id to the recycle bin.
  */
-export const putMediaByIdMoveToRecycleBin = <ThrowOnError extends boolean = false>(
+export const putMediaByIdMoveToRecycleBin = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaByIdMoveToRecycleBinData, ThrowOnError>,
 ): RequestResult<
   PutMediaByIdMoveToRecycleBinResponses,
@@ -6111,7 +6111,7 @@ export const putMediaByIdMoveToRecycleBin = <ThrowOnError extends boolean = fals
  *
  * Gets a paginated collection of items that reference the media item identified by the provided Id.
  */
-export const getMediaByIdReferencedBy = <ThrowOnError extends boolean = false>(
+export const getMediaByIdReferencedBy = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaByIdReferencedByData, ThrowOnError>,
 ): RequestResult<GetMediaByIdReferencedByResponses, GetMediaByIdReferencedByErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -6129,7 +6129,7 @@ export const getMediaByIdReferencedBy = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of descendant media items that are referenced by other content.
  */
-export const getMediaByIdReferencedDescendants = <ThrowOnError extends boolean = false>(
+export const getMediaByIdReferencedDescendants = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaByIdReferencedDescendantsData, ThrowOnError>,
 ): RequestResult<
   GetMediaByIdReferencedDescendantsResponses,
@@ -6151,7 +6151,7 @@ export const getMediaByIdReferencedDescendants = <ThrowOnError extends boolean =
  *
  * Validates the request model for updating a media item without actually updating it.
  */
-export const putMediaByIdValidate = <ThrowOnError extends boolean = false>(
+export const putMediaByIdValidate = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaByIdValidateData, ThrowOnError>,
 ): RequestResult<PutMediaByIdValidateResponses, PutMediaByIdValidateErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -6173,7 +6173,7 @@ export const putMediaByIdValidate = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media items that are referenced, identified by the provided Ids.
  */
-export const getMediaAreReferenced = <ThrowOnError extends boolean = false>(
+export const getMediaAreReferenced = <ThrowOnError extends boolean = true>(
   options?: Options<GetMediaAreReferencedData, ThrowOnError>,
 ): RequestResult<GetMediaAreReferencedResponses, GetMediaAreReferencedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6191,7 +6191,7 @@ export const getMediaAreReferenced = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for media.
  */
-export const getMediaConfiguration = <ThrowOnError extends boolean = false>(
+export const getMediaConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetMediaConfigurationData, ThrowOnError>,
 ): RequestResult<GetMediaConfigurationResponses, GetMediaConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6209,7 +6209,7 @@ export const getMediaConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Sorts media items in the specified parent container according to the provided sort order.
  */
-export const putMediaSort = <ThrowOnError extends boolean = false>(
+export const putMediaSort = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaSortData, ThrowOnError>,
 ): RequestResult<PutMediaSortResponses, PutMediaSortErrors, ThrowOnError> =>
   (options.client ?? client).put<PutMediaSortResponses, PutMediaSortErrors, ThrowOnError>({
@@ -6227,7 +6227,7 @@ export const putMediaSort = <ThrowOnError extends boolean = false>(
  *
  * Gets the URLs for the media items identified by the provided Ids.
  */
-export const getMediaUrls = <ThrowOnError extends boolean = false>(
+export const getMediaUrls = <ThrowOnError extends boolean = true>(
   options?: Options<GetMediaUrlsData, ThrowOnError>,
 ): RequestResult<GetMediaUrlsResponses, GetMediaUrlsErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetMediaUrlsResponses, GetMediaUrlsErrors, ThrowOnError>({
@@ -6241,7 +6241,7 @@ export const getMediaUrls = <ThrowOnError extends boolean = false>(
  *
  * Validates the request model for creating a new media item without actually creating it.
  */
-export const postMediaValidate = <ThrowOnError extends boolean = false>(
+export const postMediaValidate = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaValidateData, ThrowOnError>,
 ): RequestResult<PostMediaValidateResponses, PostMediaValidateErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -6263,7 +6263,7 @@ export const postMediaValidate = <ThrowOnError extends boolean = false>(
  *
  * Permanently deletes all media items in the recycle bin. This operation cannot be undone.
  */
-export const deleteRecycleBinMedia = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinMedia = <ThrowOnError extends boolean = true>(
   options?: Options<DeleteRecycleBinMediaData, ThrowOnError>,
 ): RequestResult<DeleteRecycleBinMediaResponses, DeleteRecycleBinMediaErrors, ThrowOnError> =>
   (options?.client ?? client).delete<
@@ -6281,7 +6281,7 @@ export const deleteRecycleBinMedia = <ThrowOnError extends boolean = false>(
  *
  * Permanently deletes a media item from the recycle bin identified by the provided Id.
  */
-export const deleteRecycleBinMediaById = <ThrowOnError extends boolean = false>(
+export const deleteRecycleBinMediaById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteRecycleBinMediaByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteRecycleBinMediaByIdResponses,
@@ -6303,7 +6303,7 @@ export const deleteRecycleBinMediaById = <ThrowOnError extends boolean = false>(
  *
  * Gets the original parent location of a media item before it was moved to the recycle bin.
  */
-export const getRecycleBinMediaByIdOriginalParent = <ThrowOnError extends boolean = false>(
+export const getRecycleBinMediaByIdOriginalParent = <ThrowOnError extends boolean = true>(
   options: Options<GetRecycleBinMediaByIdOriginalParentData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinMediaByIdOriginalParentResponses,
@@ -6325,7 +6325,7 @@ export const getRecycleBinMediaByIdOriginalParent = <ThrowOnError extends boolea
  *
  * Restores a media item from the recycle bin to its original location or a specified parent.
  */
-export const putRecycleBinMediaByIdRestore = <ThrowOnError extends boolean = false>(
+export const putRecycleBinMediaByIdRestore = <ThrowOnError extends boolean = true>(
   options: Options<PutRecycleBinMediaByIdRestoreData, ThrowOnError>,
 ): RequestResult<
   PutRecycleBinMediaByIdRestoreResponses,
@@ -6351,7 +6351,7 @@ export const putRecycleBinMediaByIdRestore = <ThrowOnError extends boolean = fal
  *
  * Gets a paginated collection of media items that are children of the provided parent in the recycle bin.
  */
-export const getRecycleBinMediaChildren = <ThrowOnError extends boolean = false>(
+export const getRecycleBinMediaChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinMediaChildrenData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinMediaChildrenResponses,
@@ -6373,7 +6373,7 @@ export const getRecycleBinMediaChildren = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of items that reference the media in the recycle bin.
  */
-export const getRecycleBinMediaReferencedBy = <ThrowOnError extends boolean = false>(
+export const getRecycleBinMediaReferencedBy = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinMediaReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinMediaReferencedByResponses,
@@ -6395,7 +6395,7 @@ export const getRecycleBinMediaReferencedBy = <ThrowOnError extends boolean = fa
  *
  * Gets a paginated collection of media items at the root level of the recycle bin.
  */
-export const getRecycleBinMediaRoot = <ThrowOnError extends boolean = false>(
+export const getRecycleBinMediaRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinMediaRootData, ThrowOnError>,
 ): RequestResult<GetRecycleBinMediaRootResponses, GetRecycleBinMediaRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6413,7 +6413,7 @@ export const getRecycleBinMediaRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of sibling media items in the recycle bin at the same level as the provided Id.
  */
-export const getRecycleBinMediaSiblings = <ThrowOnError extends boolean = false>(
+export const getRecycleBinMediaSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetRecycleBinMediaSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetRecycleBinMediaSiblingsResponses,
@@ -6435,7 +6435,7 @@ export const getRecycleBinMediaSiblings = <ThrowOnError extends boolean = false>
  *
  * Gets a collection of media items that are ancestors to the provided Id.
  */
-export const getTreeMediaAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeMediaAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaAncestorsData, ThrowOnError>,
 ): RequestResult<GetTreeMediaAncestorsResponses, GetTreeMediaAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6453,7 +6453,7 @@ export const getTreeMediaAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media tree items that are children of the provided parent Id.
  */
-export const getTreeMediaChildren = <ThrowOnError extends boolean = false>(
+export const getTreeMediaChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeMediaChildrenResponses, GetTreeMediaChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6471,7 +6471,7 @@ export const getTreeMediaChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media items from the root of the tree with optional filtering.
  */
-export const getTreeMediaRoot = <ThrowOnError extends boolean = false>(
+export const getTreeMediaRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaRootData, ThrowOnError>,
 ): RequestResult<GetTreeMediaRootResponses, GetTreeMediaRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetTreeMediaRootResponses, GetTreeMediaRootErrors, ThrowOnError>({
@@ -6485,7 +6485,7 @@ export const getTreeMediaRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media tree items that are siblings of the provided Id.
  */
-export const getTreeMediaSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeMediaSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeMediaSiblingsResponses, GetTreeMediaSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6503,7 +6503,7 @@ export const getTreeMediaSiblings = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media type items identified by the provided Ids.
  */
-export const getItemMediaType = <ThrowOnError extends boolean = false>(
+export const getItemMediaType = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaTypeData, ThrowOnError>,
 ): RequestResult<GetItemMediaTypeResponses, GetItemMediaTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemMediaTypeResponses, GetItemMediaTypeErrors, ThrowOnError>({
@@ -6517,7 +6517,7 @@ export const getItemMediaType = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of allowed media type items for the specified file extension.
  */
-export const getItemMediaTypeAllowed = <ThrowOnError extends boolean = false>(
+export const getItemMediaTypeAllowed = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaTypeAllowedData, ThrowOnError>,
 ): RequestResult<GetItemMediaTypeAllowedResponses, GetItemMediaTypeAllowedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6535,7 +6535,7 @@ export const getItemMediaTypeAllowed = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for media type items identified by the provided Ids.
  */
-export const getItemMediaTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getItemMediaTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaTypeAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetItemMediaTypeAncestorsResponses,
@@ -6557,7 +6557,7 @@ export const getItemMediaTypeAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media type folder items.
  */
-export const getItemMediaTypeFolders = <ThrowOnError extends boolean = false>(
+export const getItemMediaTypeFolders = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaTypeFoldersData, ThrowOnError>,
 ): RequestResult<GetItemMediaTypeFoldersResponses, GetItemMediaTypeFoldersErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6575,7 +6575,7 @@ export const getItemMediaTypeFolders = <ThrowOnError extends boolean = false>(
  *
  * Searches media type items by the provided query with pagination support.
  */
-export const getItemMediaTypeSearch = <ThrowOnError extends boolean = false>(
+export const getItemMediaTypeSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMediaTypeSearchData, ThrowOnError>,
 ): RequestResult<GetItemMediaTypeSearchResponses, GetItemMediaTypeSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6593,7 +6593,7 @@ export const getItemMediaTypeSearch = <ThrowOnError extends boolean = false>(
  *
  * Creates a new media type with the configuration specified in the request model.
  */
-export const postMediaType = <ThrowOnError extends boolean = false>(
+export const postMediaType = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaTypeData, ThrowOnError>,
 ): RequestResult<PostMediaTypeResponses, PostMediaTypeErrors, ThrowOnError> =>
   (options.client ?? client).post<PostMediaTypeResponses, PostMediaTypeErrors, ThrowOnError>({
@@ -6611,7 +6611,7 @@ export const postMediaType = <ThrowOnError extends boolean = false>(
  *
  * Deletes a media type identified by the provided Id.
  */
-export const deleteMediaTypeById = <ThrowOnError extends boolean = false>(
+export const deleteMediaTypeById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMediaTypeByIdData, ThrowOnError>,
 ): RequestResult<DeleteMediaTypeByIdResponses, DeleteMediaTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -6629,7 +6629,7 @@ export const deleteMediaTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a media type identified by the provided Id.
  */
-export const getMediaTypeById = <ThrowOnError extends boolean = false>(
+export const getMediaTypeById = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeByIdData, ThrowOnError>,
 ): RequestResult<GetMediaTypeByIdResponses, GetMediaTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetMediaTypeByIdResponses, GetMediaTypeByIdErrors, ThrowOnError>({
@@ -6643,7 +6643,7 @@ export const getMediaTypeById = <ThrowOnError extends boolean = false>(
  *
  * Updates a media type identified by the provided Id with the details from the request model.
  */
-export const putMediaTypeById = <ThrowOnError extends boolean = false>(
+export const putMediaTypeById = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaTypeByIdData, ThrowOnError>,
 ): RequestResult<PutMediaTypeByIdResponses, PutMediaTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutMediaTypeByIdResponses, PutMediaTypeByIdErrors, ThrowOnError>({
@@ -6661,7 +6661,7 @@ export const putMediaTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media types that are allowed as children of the specified parent media type.
  */
-export const getMediaTypeByIdAllowedChildren = <ThrowOnError extends boolean = false>(
+export const getMediaTypeByIdAllowedChildren = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeByIdAllowedChildrenData, ThrowOnError>,
 ): RequestResult<
   GetMediaTypeByIdAllowedChildrenResponses,
@@ -6683,7 +6683,7 @@ export const getMediaTypeByIdAllowedChildren = <ThrowOnError extends boolean = f
  *
  * Gets a collection of media types that are allowed as parents of the specified media type.
  */
-export const getMediaTypeByIdAllowedParents = <ThrowOnError extends boolean = false>(
+export const getMediaTypeByIdAllowedParents = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeByIdAllowedParentsData, ThrowOnError>,
 ): RequestResult<
   GetMediaTypeByIdAllowedParentsResponses,
@@ -6705,7 +6705,7 @@ export const getMediaTypeByIdAllowedParents = <ThrowOnError extends boolean = fa
  *
  * Gets a collection of media types that reference the specified media type as a composition.
  */
-export const getMediaTypeByIdCompositionReferences = <ThrowOnError extends boolean = false>(
+export const getMediaTypeByIdCompositionReferences = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeByIdCompositionReferencesData, ThrowOnError>,
 ): RequestResult<
   GetMediaTypeByIdCompositionReferencesResponses,
@@ -6727,7 +6727,7 @@ export const getMediaTypeByIdCompositionReferences = <ThrowOnError extends boole
  *
  * Creates a duplicate of an existing media type identified by the provided Id.
  */
-export const postMediaTypeByIdCopy = <ThrowOnError extends boolean = false>(
+export const postMediaTypeByIdCopy = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaTypeByIdCopyData, ThrowOnError>,
 ): RequestResult<PostMediaTypeByIdCopyResponses, PostMediaTypeByIdCopyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -6749,7 +6749,7 @@ export const postMediaTypeByIdCopy = <ThrowOnError extends boolean = false>(
  *
  * Exports the media type identified by the provided Id to a downloadable format.
  */
-export const getMediaTypeByIdExport = <ThrowOnError extends boolean = false>(
+export const getMediaTypeByIdExport = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeByIdExportData, ThrowOnError>,
 ): RequestResult<GetMediaTypeByIdExportResponses, GetMediaTypeByIdExportErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -6767,7 +6767,7 @@ export const getMediaTypeByIdExport = <ThrowOnError extends boolean = false>(
  *
  * Imports a media type from the provided file upload.
  */
-export const putMediaTypeByIdImport = <ThrowOnError extends boolean = false>(
+export const putMediaTypeByIdImport = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaTypeByIdImportData, ThrowOnError>,
 ): RequestResult<PutMediaTypeByIdImportResponses, PutMediaTypeByIdImportErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -6789,7 +6789,7 @@ export const putMediaTypeByIdImport = <ThrowOnError extends boolean = false>(
  *
  * Moves a media type identified by the provided Id to a different location.
  */
-export const putMediaTypeByIdMove = <ThrowOnError extends boolean = false>(
+export const putMediaTypeByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaTypeByIdMoveData, ThrowOnError>,
 ): RequestResult<PutMediaTypeByIdMoveResponses, PutMediaTypeByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -6806,7 +6806,7 @@ export const putMediaTypeByIdMove = <ThrowOnError extends boolean = false>(
     },
   });
 
-export const getMediaTypeByIdSchema = <ThrowOnError extends boolean = false>(
+export const getMediaTypeByIdSchema = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeByIdSchemaData, ThrowOnError>,
 ): RequestResult<GetMediaTypeByIdSchemaResponses, GetMediaTypeByIdSchemaErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -6824,7 +6824,7 @@ export const getMediaTypeByIdSchema = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media types that are allowed to be created at the root level.
  */
-export const getMediaTypeAllowedAtRoot = <ThrowOnError extends boolean = false>(
+export const getMediaTypeAllowedAtRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetMediaTypeAllowedAtRootData, ThrowOnError>,
 ): RequestResult<
   GetMediaTypeAllowedAtRootResponses,
@@ -6846,7 +6846,7 @@ export const getMediaTypeAllowedAtRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media types that are available to use as compositions for the specified media type.
  */
-export const postMediaTypeAvailableCompositions = <ThrowOnError extends boolean = false>(
+export const postMediaTypeAvailableCompositions = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaTypeAvailableCompositionsData, ThrowOnError>,
 ): RequestResult<
   PostMediaTypeAvailableCompositionsResponses,
@@ -6872,7 +6872,7 @@ export const postMediaTypeAvailableCompositions = <ThrowOnError extends boolean 
  *
  * Gets multiple media types identified by the provided Ids.
  */
-export const getMediaTypeBatch = <ThrowOnError extends boolean = false>(
+export const getMediaTypeBatch = <ThrowOnError extends boolean = true>(
   options?: Options<GetMediaTypeBatchData, ThrowOnError>,
 ): RequestResult<GetMediaTypeBatchResponses, GetMediaTypeBatchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -6890,7 +6890,7 @@ export const getMediaTypeBatch = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for media types.
  */
-export const getMediaTypeConfiguration = <ThrowOnError extends boolean = false>(
+export const getMediaTypeConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetMediaTypeConfigurationData, ThrowOnError>,
 ): RequestResult<
   GetMediaTypeConfigurationResponses,
@@ -6912,7 +6912,7 @@ export const getMediaTypeConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Creates a new media type folder with the provided name and parent location.
  */
-export const postMediaTypeFolder = <ThrowOnError extends boolean = false>(
+export const postMediaTypeFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaTypeFolderData, ThrowOnError>,
 ): RequestResult<PostMediaTypeFolderResponses, PostMediaTypeFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -6934,7 +6934,7 @@ export const postMediaTypeFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a media type folder identified by the provided Id.
  */
-export const deleteMediaTypeFolderById = <ThrowOnError extends boolean = false>(
+export const deleteMediaTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMediaTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteMediaTypeFolderByIdResponses,
@@ -6956,7 +6956,7 @@ export const deleteMediaTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Gets a media type folder identified by the provided Id.
  */
-export const getMediaTypeFolderById = <ThrowOnError extends boolean = false>(
+export const getMediaTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<GetMediaTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<GetMediaTypeFolderByIdResponses, GetMediaTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -6974,7 +6974,7 @@ export const getMediaTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Updates a media type folder identified by the provided Id with the details from the request model.
  */
-export const putMediaTypeFolderById = <ThrowOnError extends boolean = false>(
+export const putMediaTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<PutMediaTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<PutMediaTypeFolderByIdResponses, PutMediaTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -6996,7 +6996,7 @@ export const putMediaTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Imports a media type from the provided file upload.
  */
-export const postMediaTypeImport = <ThrowOnError extends boolean = false>(
+export const postMediaTypeImport = <ThrowOnError extends boolean = true>(
   options: Options<PostMediaTypeImportData, ThrowOnError>,
 ): RequestResult<PostMediaTypeImportResponses, PostMediaTypeImportErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -7018,7 +7018,7 @@ export const postMediaTypeImport = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media type items that are ancestors to the provided Id.
  */
-export const getTreeMediaTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeMediaTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaTypeAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeMediaTypeAncestorsResponses,
@@ -7040,7 +7040,7 @@ export const getTreeMediaTypeAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media type tree items that are children of the provided parent Id.
  */
-export const getTreeMediaTypeChildren = <ThrowOnError extends boolean = false>(
+export const getTreeMediaTypeChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaTypeChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeMediaTypeChildrenResponses, GetTreeMediaTypeChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7058,7 +7058,7 @@ export const getTreeMediaTypeChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of media type items from the root of the tree with optional filtering.
  */
-export const getTreeMediaTypeRoot = <ThrowOnError extends boolean = false>(
+export const getTreeMediaTypeRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaTypeRootData, ThrowOnError>,
 ): RequestResult<GetTreeMediaTypeRootResponses, GetTreeMediaTypeRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7076,7 +7076,7 @@ export const getTreeMediaTypeRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of media type tree items that are siblings of the provided Id.
  */
-export const getTreeMediaTypeSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeMediaTypeSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMediaTypeSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeMediaTypeSiblingsResponses, GetTreeMediaTypeSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7094,7 +7094,7 @@ export const getTreeMediaTypeSiblings = <ThrowOnError extends boolean = false>(
  *
  * Filters members based on the provided criteria with support for pagination.
  */
-export const getFilterMember = <ThrowOnError extends boolean = false>(
+export const getFilterMember = <ThrowOnError extends boolean = true>(
   options?: Options<GetFilterMemberData, ThrowOnError>,
 ): RequestResult<GetFilterMemberResponses, GetFilterMemberErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetFilterMemberResponses, GetFilterMemberErrors, ThrowOnError>({
@@ -7108,7 +7108,7 @@ export const getFilterMember = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member items identified by the provided Ids.
  */
-export const getItemMember = <ThrowOnError extends boolean = false>(
+export const getItemMember = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberData, ThrowOnError>,
 ): RequestResult<GetItemMemberResponses, GetItemMemberErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemMemberResponses, GetItemMemberErrors, ThrowOnError>({
@@ -7122,7 +7122,7 @@ export const getItemMember = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for member items identified by the provided Ids.
  */
-export const getItemMemberAncestors = <ThrowOnError extends boolean = false>(
+export const getItemMemberAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberAncestorsData, ThrowOnError>,
 ): RequestResult<GetItemMemberAncestorsResponses, GetItemMemberAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7140,7 +7140,7 @@ export const getItemMemberAncestors = <ThrowOnError extends boolean = false>(
  *
  * Searches member items by the provided query with pagination support.
  */
-export const getItemMemberSearch = <ThrowOnError extends boolean = false>(
+export const getItemMemberSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberSearchData, ThrowOnError>,
 ): RequestResult<GetItemMemberSearchResponses, GetItemMemberSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7158,7 +7158,7 @@ export const getItemMemberSearch = <ThrowOnError extends boolean = false>(
  *
  * Creates a new member with the configuration specified in the request model.
  */
-export const postMember = <ThrowOnError extends boolean = false>(
+export const postMember = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberData, ThrowOnError>,
 ): RequestResult<PostMemberResponses, PostMemberErrors, ThrowOnError> =>
   (options.client ?? client).post<PostMemberResponses, PostMemberErrors, ThrowOnError>({
@@ -7176,7 +7176,7 @@ export const postMember = <ThrowOnError extends boolean = false>(
  *
  * Deletes a member identified by the provided Id.
  */
-export const deleteMemberById = <ThrowOnError extends boolean = false>(
+export const deleteMemberById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMemberByIdData, ThrowOnError>,
 ): RequestResult<DeleteMemberByIdResponses, DeleteMemberByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -7194,7 +7194,7 @@ export const deleteMemberById = <ThrowOnError extends boolean = false>(
  *
  * Gets a member identified by the provided Id.
  */
-export const getMemberById = <ThrowOnError extends boolean = false>(
+export const getMemberById = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberByIdData, ThrowOnError>,
 ): RequestResult<GetMemberByIdResponses, GetMemberByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetMemberByIdResponses, GetMemberByIdErrors, ThrowOnError>({
@@ -7208,7 +7208,7 @@ export const getMemberById = <ThrowOnError extends boolean = false>(
  *
  * Updates a member identified by the provided Id with the details from the request model.
  */
-export const putMemberById = <ThrowOnError extends boolean = false>(
+export const putMemberById = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberByIdData, ThrowOnError>,
 ): RequestResult<PutMemberByIdResponses, PutMemberByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutMemberByIdResponses, PutMemberByIdErrors, ThrowOnError>({
@@ -7226,7 +7226,7 @@ export const putMemberById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of items that reference the members identified by the provided Ids.
  */
-export const getMemberByIdReferencedBy = <ThrowOnError extends boolean = false>(
+export const getMemberByIdReferencedBy = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberByIdReferencedByData, ThrowOnError>,
 ): RequestResult<
   GetMemberByIdReferencedByResponses,
@@ -7248,7 +7248,7 @@ export const getMemberByIdReferencedBy = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of descendant members that are referenced in relations for the member identified by the provided Id.
  */
-export const getMemberByIdReferencedDescendants = <ThrowOnError extends boolean = false>(
+export const getMemberByIdReferencedDescendants = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberByIdReferencedDescendantsData, ThrowOnError>,
 ): RequestResult<
   GetMemberByIdReferencedDescendantsResponses,
@@ -7270,7 +7270,7 @@ export const getMemberByIdReferencedDescendants = <ThrowOnError extends boolean 
  *
  * Validates the request model for updating a member without actually updating it.
  */
-export const putMemberByIdValidate = <ThrowOnError extends boolean = false>(
+export const putMemberByIdValidate = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberByIdValidateData, ThrowOnError>,
 ): RequestResult<PutMemberByIdValidateResponses, PutMemberByIdValidateErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -7292,7 +7292,7 @@ export const putMemberByIdValidate = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of items that reference the members identified by the provided Ids.
  */
-export const getMemberAreReferenced = <ThrowOnError extends boolean = false>(
+export const getMemberAreReferenced = <ThrowOnError extends boolean = true>(
   options?: Options<GetMemberAreReferencedData, ThrowOnError>,
 ): RequestResult<GetMemberAreReferencedResponses, GetMemberAreReferencedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7310,7 +7310,7 @@ export const getMemberAreReferenced = <ThrowOnError extends boolean = false>(
  *
  * Validates the request model for creating a new member without actually creating it.
  */
-export const postMemberValidate = <ThrowOnError extends boolean = false>(
+export const postMemberValidate = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberValidateData, ThrowOnError>,
 ): RequestResult<PostMemberValidateResponses, PostMemberValidateErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -7332,7 +7332,7 @@ export const postMemberValidate = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member group items identified by the provided Ids.
  */
-export const getItemMemberGroup = <ThrowOnError extends boolean = false>(
+export const getItemMemberGroup = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberGroupData, ThrowOnError>,
 ): RequestResult<GetItemMemberGroupResponses, GetItemMemberGroupErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7350,7 +7350,7 @@ export const getItemMemberGroup = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all member groups.
  */
-export const getMemberGroup = <ThrowOnError extends boolean = false>(
+export const getMemberGroup = <ThrowOnError extends boolean = true>(
   options?: Options<GetMemberGroupData, ThrowOnError>,
 ): RequestResult<GetMemberGroupResponses, GetMemberGroupErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetMemberGroupResponses, GetMemberGroupErrors, ThrowOnError>({
@@ -7364,7 +7364,7 @@ export const getMemberGroup = <ThrowOnError extends boolean = false>(
  *
  * Creates a new member group with the configuration specified in the request model.
  */
-export const postMemberGroup = <ThrowOnError extends boolean = false>(
+export const postMemberGroup = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberGroupData, ThrowOnError>,
 ): RequestResult<PostMemberGroupResponses, PostMemberGroupErrors, ThrowOnError> =>
   (options.client ?? client).post<PostMemberGroupResponses, PostMemberGroupErrors, ThrowOnError>({
@@ -7382,7 +7382,7 @@ export const postMemberGroup = <ThrowOnError extends boolean = false>(
  *
  * Deletes a member group identified by the provided Id.
  */
-export const deleteMemberGroupById = <ThrowOnError extends boolean = false>(
+export const deleteMemberGroupById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMemberGroupByIdData, ThrowOnError>,
 ): RequestResult<DeleteMemberGroupByIdResponses, DeleteMemberGroupByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -7400,7 +7400,7 @@ export const deleteMemberGroupById = <ThrowOnError extends boolean = false>(
  *
  * Gets a member group identified by the provided Id.
  */
-export const getMemberGroupById = <ThrowOnError extends boolean = false>(
+export const getMemberGroupById = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberGroupByIdData, ThrowOnError>,
 ): RequestResult<GetMemberGroupByIdResponses, GetMemberGroupByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -7418,7 +7418,7 @@ export const getMemberGroupById = <ThrowOnError extends boolean = false>(
  *
  * Updates a member group identified by the provided Id with the details from the request model.
  */
-export const putMemberGroupById = <ThrowOnError extends boolean = false>(
+export const putMemberGroupById = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberGroupByIdData, ThrowOnError>,
 ): RequestResult<PutMemberGroupByIdResponses, PutMemberGroupByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -7440,7 +7440,7 @@ export const putMemberGroupById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of member group items from the root of the tree with optional filtering.
  */
-export const getTreeMemberGroupRoot = <ThrowOnError extends boolean = false>(
+export const getTreeMemberGroupRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMemberGroupRootData, ThrowOnError>,
 ): RequestResult<GetTreeMemberGroupRootResponses, GetTreeMemberGroupRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7458,7 +7458,7 @@ export const getTreeMemberGroupRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member type items identified by the provided Ids.
  */
-export const getItemMemberType = <ThrowOnError extends boolean = false>(
+export const getItemMemberType = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberTypeData, ThrowOnError>,
 ): RequestResult<GetItemMemberTypeResponses, GetItemMemberTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7476,7 +7476,7 @@ export const getItemMemberType = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for member type items identified by the provided Ids.
  */
-export const getItemMemberTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getItemMemberTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberTypeAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetItemMemberTypeAncestorsResponses,
@@ -7498,7 +7498,7 @@ export const getItemMemberTypeAncestors = <ThrowOnError extends boolean = false>
  *
  * Searches member type items by the provided query with pagination support.
  */
-export const getItemMemberTypeSearch = <ThrowOnError extends boolean = false>(
+export const getItemMemberTypeSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemMemberTypeSearchData, ThrowOnError>,
 ): RequestResult<GetItemMemberTypeSearchResponses, GetItemMemberTypeSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7516,7 +7516,7 @@ export const getItemMemberTypeSearch = <ThrowOnError extends boolean = false>(
  *
  * Creates a new member type with the configuration specified in the request model.
  */
-export const postMemberType = <ThrowOnError extends boolean = false>(
+export const postMemberType = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberTypeData, ThrowOnError>,
 ): RequestResult<PostMemberTypeResponses, PostMemberTypeErrors, ThrowOnError> =>
   (options.client ?? client).post<PostMemberTypeResponses, PostMemberTypeErrors, ThrowOnError>({
@@ -7534,7 +7534,7 @@ export const postMemberType = <ThrowOnError extends boolean = false>(
  *
  * Deletes a member type identified by the provided Id.
  */
-export const deleteMemberTypeById = <ThrowOnError extends boolean = false>(
+export const deleteMemberTypeById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMemberTypeByIdData, ThrowOnError>,
 ): RequestResult<DeleteMemberTypeByIdResponses, DeleteMemberTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -7552,7 +7552,7 @@ export const deleteMemberTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a member type identified by the provided Id.
  */
-export const getMemberTypeById = <ThrowOnError extends boolean = false>(
+export const getMemberTypeById = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberTypeByIdData, ThrowOnError>,
 ): RequestResult<GetMemberTypeByIdResponses, GetMemberTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetMemberTypeByIdResponses, GetMemberTypeByIdErrors, ThrowOnError>(
@@ -7568,7 +7568,7 @@ export const getMemberTypeById = <ThrowOnError extends boolean = false>(
  *
  * Updates a member type identified by the provided Id with the details from the request model.
  */
-export const putMemberTypeById = <ThrowOnError extends boolean = false>(
+export const putMemberTypeById = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberTypeByIdData, ThrowOnError>,
 ): RequestResult<PutMemberTypeByIdResponses, PutMemberTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutMemberTypeByIdResponses, PutMemberTypeByIdErrors, ThrowOnError>(
@@ -7588,7 +7588,7 @@ export const putMemberTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member types that reference the specified member type as a composition.
  */
-export const getMemberTypeByIdCompositionReferences = <ThrowOnError extends boolean = false>(
+export const getMemberTypeByIdCompositionReferences = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberTypeByIdCompositionReferencesData, ThrowOnError>,
 ): RequestResult<
   GetMemberTypeByIdCompositionReferencesResponses,
@@ -7610,7 +7610,7 @@ export const getMemberTypeByIdCompositionReferences = <ThrowOnError extends bool
  *
  * Creates a duplicate of an existing member type identified by the provided Id.
  */
-export const postMemberTypeByIdCopy = <ThrowOnError extends boolean = false>(
+export const postMemberTypeByIdCopy = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberTypeByIdCopyData, ThrowOnError>,
 ): RequestResult<PostMemberTypeByIdCopyResponses, PostMemberTypeByIdCopyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -7632,7 +7632,7 @@ export const postMemberTypeByIdCopy = <ThrowOnError extends boolean = false>(
  *
  * Exports the member type identified by the provided Id to a downloadable format.
  */
-export const getMemberTypeByIdExport = <ThrowOnError extends boolean = false>(
+export const getMemberTypeByIdExport = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberTypeByIdExportData, ThrowOnError>,
 ): RequestResult<GetMemberTypeByIdExportResponses, GetMemberTypeByIdExportErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -7650,7 +7650,7 @@ export const getMemberTypeByIdExport = <ThrowOnError extends boolean = false>(
  *
  * Imports a member type from the provided file upload.
  */
-export const putMemberTypeByIdImport = <ThrowOnError extends boolean = false>(
+export const putMemberTypeByIdImport = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberTypeByIdImportData, ThrowOnError>,
 ): RequestResult<PutMemberTypeByIdImportResponses, PutMemberTypeByIdImportErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -7672,7 +7672,7 @@ export const putMemberTypeByIdImport = <ThrowOnError extends boolean = false>(
  *
  * Moves a member type identified by the provided Id to a different location.
  */
-export const putMemberTypeByIdMove = <ThrowOnError extends boolean = false>(
+export const putMemberTypeByIdMove = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberTypeByIdMoveData, ThrowOnError>,
 ): RequestResult<PutMemberTypeByIdMoveResponses, PutMemberTypeByIdMoveErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -7689,7 +7689,7 @@ export const putMemberTypeByIdMove = <ThrowOnError extends boolean = false>(
     },
   });
 
-export const getMemberTypeByIdSchema = <ThrowOnError extends boolean = false>(
+export const getMemberTypeByIdSchema = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberTypeByIdSchemaData, ThrowOnError>,
 ): RequestResult<GetMemberTypeByIdSchemaResponses, GetMemberTypeByIdSchemaErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -7707,7 +7707,7 @@ export const getMemberTypeByIdSchema = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member types that are allowed to be created at the root level.
  */
-export const getMemberTypeAllowedAtRoot = <ThrowOnError extends boolean = false>(
+export const getMemberTypeAllowedAtRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetMemberTypeAllowedAtRootData, ThrowOnError>,
 ): RequestResult<
   GetMemberTypeAllowedAtRootResponses,
@@ -7729,7 +7729,7 @@ export const getMemberTypeAllowedAtRoot = <ThrowOnError extends boolean = false>
  *
  * Gets a collection of member types that are available to use as compositions for the specified member type.
  */
-export const postMemberTypeAvailableCompositions = <ThrowOnError extends boolean = false>(
+export const postMemberTypeAvailableCompositions = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberTypeAvailableCompositionsData, ThrowOnError>,
 ): RequestResult<
   PostMemberTypeAvailableCompositionsResponses,
@@ -7755,7 +7755,7 @@ export const postMemberTypeAvailableCompositions = <ThrowOnError extends boolean
  *
  * Gets multiple member types identified by the provided Ids.
  */
-export const getMemberTypeBatch = <ThrowOnError extends boolean = false>(
+export const getMemberTypeBatch = <ThrowOnError extends boolean = true>(
   options?: Options<GetMemberTypeBatchData, ThrowOnError>,
 ): RequestResult<GetMemberTypeBatchResponses, GetMemberTypeBatchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7773,7 +7773,7 @@ export const getMemberTypeBatch = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for member types.
  */
-export const getMemberTypeConfiguration = <ThrowOnError extends boolean = false>(
+export const getMemberTypeConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetMemberTypeConfigurationData, ThrowOnError>,
 ): RequestResult<
   GetMemberTypeConfigurationResponses,
@@ -7795,7 +7795,7 @@ export const getMemberTypeConfiguration = <ThrowOnError extends boolean = false>
  *
  * Creates a new member type folder with the provided name and parent location.
  */
-export const postMemberTypeFolder = <ThrowOnError extends boolean = false>(
+export const postMemberTypeFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberTypeFolderData, ThrowOnError>,
 ): RequestResult<PostMemberTypeFolderResponses, PostMemberTypeFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -7817,7 +7817,7 @@ export const postMemberTypeFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a member type folder identified by the provided Id.
  */
-export const deleteMemberTypeFolderById = <ThrowOnError extends boolean = false>(
+export const deleteMemberTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteMemberTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteMemberTypeFolderByIdResponses,
@@ -7839,7 +7839,7 @@ export const deleteMemberTypeFolderById = <ThrowOnError extends boolean = false>
  *
  * Gets a member type folder identified by the provided Id.
  */
-export const getMemberTypeFolderById = <ThrowOnError extends boolean = false>(
+export const getMemberTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<GetMemberTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<GetMemberTypeFolderByIdResponses, GetMemberTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -7857,7 +7857,7 @@ export const getMemberTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Updates a member type folder identified by the provided Id with the details from the request model.
  */
-export const putMemberTypeFolderById = <ThrowOnError extends boolean = false>(
+export const putMemberTypeFolderById = <ThrowOnError extends boolean = true>(
   options: Options<PutMemberTypeFolderByIdData, ThrowOnError>,
 ): RequestResult<PutMemberTypeFolderByIdResponses, PutMemberTypeFolderByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -7879,7 +7879,7 @@ export const putMemberTypeFolderById = <ThrowOnError extends boolean = false>(
  *
  * Imports a member type from the provided file upload.
  */
-export const postMemberTypeImport = <ThrowOnError extends boolean = false>(
+export const postMemberTypeImport = <ThrowOnError extends boolean = true>(
   options: Options<PostMemberTypeImportData, ThrowOnError>,
 ): RequestResult<PostMemberTypeImportResponses, PostMemberTypeImportErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -7901,7 +7901,7 @@ export const postMemberTypeImport = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member type items that are ancestors to the provided Id.
  */
-export const getTreeMemberTypeAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeMemberTypeAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMemberTypeAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeMemberTypeAncestorsResponses,
@@ -7923,7 +7923,7 @@ export const getTreeMemberTypeAncestors = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of member type tree items that are children of the provided parent Id.
  */
-export const getTreeMemberTypeChildren = <ThrowOnError extends boolean = false>(
+export const getTreeMemberTypeChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMemberTypeChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreeMemberTypeChildrenResponses,
@@ -7945,7 +7945,7 @@ export const getTreeMemberTypeChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of member type items from the root of the tree with optional filtering.
  */
-export const getTreeMemberTypeRoot = <ThrowOnError extends boolean = false>(
+export const getTreeMemberTypeRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMemberTypeRootData, ThrowOnError>,
 ): RequestResult<GetTreeMemberTypeRootResponses, GetTreeMemberTypeRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -7963,7 +7963,7 @@ export const getTreeMemberTypeRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of member type tree items that are siblings of the provided Id.
  */
-export const getTreeMemberTypeSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeMemberTypeSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeMemberTypeSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetTreeMemberTypeSiblingsResponses,
@@ -7985,7 +7985,7 @@ export const getTreeMemberTypeSiblings = <ThrowOnError extends boolean = false>(
  *
  * Triggers the models builder to generate strongly-typed models for content types.
  */
-export const postModelsBuilderBuild = <ThrowOnError extends boolean = false>(
+export const postModelsBuilderBuild = <ThrowOnError extends boolean = true>(
   options?: Options<PostModelsBuilderBuildData, ThrowOnError>,
 ): RequestResult<PostModelsBuilderBuildResponses, PostModelsBuilderBuildErrors, ThrowOnError> =>
   (options?.client ?? client).post<
@@ -8003,7 +8003,7 @@ export const postModelsBuilderBuild = <ThrowOnError extends boolean = false>(
  *
  * Gets the dashboard data and current state of the models builder.
  */
-export const getModelsBuilderDashboard = <ThrowOnError extends boolean = false>(
+export const getModelsBuilderDashboard = <ThrowOnError extends boolean = true>(
   options?: Options<GetModelsBuilderDashboardData, ThrowOnError>,
 ): RequestResult<
   GetModelsBuilderDashboardResponses,
@@ -8025,7 +8025,7 @@ export const getModelsBuilderDashboard = <ThrowOnError extends boolean = false>(
  *
  * Gets the current status and configuration of the models builder.
  */
-export const getModelsBuilderStatus = <ThrowOnError extends boolean = false>(
+export const getModelsBuilderStatus = <ThrowOnError extends boolean = true>(
   options?: Options<GetModelsBuilderStatusData, ThrowOnError>,
 ): RequestResult<GetModelsBuilderStatusResponses, GetModelsBuilderStatusErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8043,7 +8043,7 @@ export const getModelsBuilderStatus = <ThrowOnError extends boolean = false>(
  *
  * Gets the news dashboard content including recent news items and updates for the Umbraco back office.
  */
-export const getNewsDashboard = <ThrowOnError extends boolean = false>(
+export const getNewsDashboard = <ThrowOnError extends boolean = true>(
   options?: Options<GetNewsDashboardData, ThrowOnError>,
 ): RequestResult<GetNewsDashboardResponses, GetNewsDashboardErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetNewsDashboardResponses, GetNewsDashboardErrors, ThrowOnError>({
@@ -8057,7 +8057,7 @@ export const getNewsDashboard = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of object types that are allowed as relation type targets.
  */
-export const getObjectTypes = <ThrowOnError extends boolean = false>(
+export const getObjectTypes = <ThrowOnError extends boolean = true>(
   options?: Options<GetObjectTypesData, ThrowOnError>,
 ): RequestResult<GetObjectTypesResponses, GetObjectTypesErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetObjectTypesResponses, GetObjectTypesErrors, ThrowOnError>({
@@ -8071,7 +8071,7 @@ export const getObjectTypes = <ThrowOnError extends boolean = false>(
  *
  * Queries OEmbed information for the specified URL.
  */
-export const getOembedQuery = <ThrowOnError extends boolean = false>(
+export const getOembedQuery = <ThrowOnError extends boolean = true>(
   options?: Options<GetOembedQueryData, ThrowOnError>,
 ): RequestResult<GetOembedQueryResponses, GetOembedQueryErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetOembedQueryResponses, GetOembedQueryErrors, ThrowOnError>({
@@ -8085,7 +8085,7 @@ export const getOembedQuery = <ThrowOnError extends boolean = false>(
  *
  * Executes all pending package migrations to update the database schema.
  */
-export const postPackageByNameRunMigration = <ThrowOnError extends boolean = false>(
+export const postPackageByNameRunMigration = <ThrowOnError extends boolean = true>(
   options: Options<PostPackageByNameRunMigrationData, ThrowOnError>,
 ): RequestResult<
   PostPackageByNameRunMigrationResponses,
@@ -8107,7 +8107,7 @@ export const postPackageByNameRunMigration = <ThrowOnError extends boolean = fal
  *
  * Gets the configuration settings for packages.
  */
-export const getPackageConfiguration = <ThrowOnError extends boolean = false>(
+export const getPackageConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetPackageConfigurationData, ThrowOnError>,
 ): RequestResult<GetPackageConfigurationResponses, GetPackageConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8125,7 +8125,7 @@ export const getPackageConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all created packages.
  */
-export const getPackageCreated = <ThrowOnError extends boolean = false>(
+export const getPackageCreated = <ThrowOnError extends boolean = true>(
   options?: Options<GetPackageCreatedData, ThrowOnError>,
 ): RequestResult<GetPackageCreatedResponses, GetPackageCreatedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8143,7 +8143,7 @@ export const getPackageCreated = <ThrowOnError extends boolean = false>(
  *
  * Creates a new package with the configuration specified in the request model.
  */
-export const postPackageCreated = <ThrowOnError extends boolean = false>(
+export const postPackageCreated = <ThrowOnError extends boolean = true>(
   options: Options<PostPackageCreatedData, ThrowOnError>,
 ): RequestResult<PostPackageCreatedResponses, PostPackageCreatedErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -8165,7 +8165,7 @@ export const postPackageCreated = <ThrowOnError extends boolean = false>(
  *
  * Deletes a package identified by the provided Id.
  */
-export const deletePackageCreatedById = <ThrowOnError extends boolean = false>(
+export const deletePackageCreatedById = <ThrowOnError extends boolean = true>(
   options: Options<DeletePackageCreatedByIdData, ThrowOnError>,
 ): RequestResult<DeletePackageCreatedByIdResponses, DeletePackageCreatedByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -8183,7 +8183,7 @@ export const deletePackageCreatedById = <ThrowOnError extends boolean = false>(
  *
  * Gets a package identified by the provided Id.
  */
-export const getPackageCreatedById = <ThrowOnError extends boolean = false>(
+export const getPackageCreatedById = <ThrowOnError extends boolean = true>(
   options: Options<GetPackageCreatedByIdData, ThrowOnError>,
 ): RequestResult<GetPackageCreatedByIdResponses, GetPackageCreatedByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -8201,7 +8201,7 @@ export const getPackageCreatedById = <ThrowOnError extends boolean = false>(
  *
  * Updates a package identified by the provided Id with the details from the request model.
  */
-export const putPackageCreatedById = <ThrowOnError extends boolean = false>(
+export const putPackageCreatedById = <ThrowOnError extends boolean = true>(
   options: Options<PutPackageCreatedByIdData, ThrowOnError>,
 ): RequestResult<PutPackageCreatedByIdResponses, PutPackageCreatedByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -8223,7 +8223,7 @@ export const putPackageCreatedById = <ThrowOnError extends boolean = false>(
  *
  * Downloads the package file for the created package identified by the provided Id.
  */
-export const getPackageCreatedByIdDownload = <ThrowOnError extends boolean = false>(
+export const getPackageCreatedByIdDownload = <ThrowOnError extends boolean = true>(
   options: Options<GetPackageCreatedByIdDownloadData, ThrowOnError>,
 ): RequestResult<
   GetPackageCreatedByIdDownloadResponses,
@@ -8245,7 +8245,7 @@ export const getPackageCreatedByIdDownload = <ThrowOnError extends boolean = fal
  *
  * Gets a paginated collection of migration status for all installed packages.
  */
-export const getPackageMigrationStatus = <ThrowOnError extends boolean = false>(
+export const getPackageMigrationStatus = <ThrowOnError extends boolean = true>(
   options?: Options<GetPackageMigrationStatusData, ThrowOnError>,
 ): RequestResult<
   GetPackageMigrationStatusResponses,
@@ -8267,7 +8267,7 @@ export const getPackageMigrationStatus = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of partial view items identified by the provided Ids.
  */
-export const getItemPartialView = <ThrowOnError extends boolean = false>(
+export const getItemPartialView = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemPartialViewData, ThrowOnError>,
 ): RequestResult<GetItemPartialViewResponses, GetItemPartialViewErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8285,7 +8285,7 @@ export const getItemPartialView = <ThrowOnError extends boolean = false>(
  *
  * Creates a new partial view with the configuration specified in the request model.
  */
-export const postPartialView = <ThrowOnError extends boolean = false>(
+export const postPartialView = <ThrowOnError extends boolean = true>(
   options: Options<PostPartialViewData, ThrowOnError>,
 ): RequestResult<PostPartialViewResponses, PostPartialViewErrors, ThrowOnError> =>
   (options.client ?? client).post<PostPartialViewResponses, PostPartialViewErrors, ThrowOnError>({
@@ -8303,7 +8303,7 @@ export const postPartialView = <ThrowOnError extends boolean = false>(
  *
  * Deletes a partial view identified by the provided Id.
  */
-export const deletePartialViewByPath = <ThrowOnError extends boolean = false>(
+export const deletePartialViewByPath = <ThrowOnError extends boolean = true>(
   options: Options<DeletePartialViewByPathData, ThrowOnError>,
 ): RequestResult<DeletePartialViewByPathResponses, DeletePartialViewByPathErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -8321,7 +8321,7 @@ export const deletePartialViewByPath = <ThrowOnError extends boolean = false>(
  *
  * Gets a partial view identified by the provided file path.
  */
-export const getPartialViewByPath = <ThrowOnError extends boolean = false>(
+export const getPartialViewByPath = <ThrowOnError extends boolean = true>(
   options: Options<GetPartialViewByPathData, ThrowOnError>,
 ): RequestResult<GetPartialViewByPathResponses, GetPartialViewByPathErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -8339,7 +8339,7 @@ export const getPartialViewByPath = <ThrowOnError extends boolean = false>(
  *
  * Updates a partial view identified by the provided Id with the details from the request model.
  */
-export const putPartialViewByPath = <ThrowOnError extends boolean = false>(
+export const putPartialViewByPath = <ThrowOnError extends boolean = true>(
   options: Options<PutPartialViewByPathData, ThrowOnError>,
 ): RequestResult<PutPartialViewByPathResponses, PutPartialViewByPathErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -8361,7 +8361,7 @@ export const putPartialViewByPath = <ThrowOnError extends boolean = false>(
  *
  * Renames a partial view file to the specified new name.
  */
-export const putPartialViewByPathRename = <ThrowOnError extends boolean = false>(
+export const putPartialViewByPathRename = <ThrowOnError extends boolean = true>(
   options: Options<PutPartialViewByPathRenameData, ThrowOnError>,
 ): RequestResult<
   PutPartialViewByPathRenameResponses,
@@ -8387,7 +8387,7 @@ export const putPartialViewByPathRename = <ThrowOnError extends boolean = false>
  *
  * Creates a new partial view folder with the provided name and parent location.
  */
-export const postPartialViewFolder = <ThrowOnError extends boolean = false>(
+export const postPartialViewFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostPartialViewFolderData, ThrowOnError>,
 ): RequestResult<PostPartialViewFolderResponses, PostPartialViewFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -8409,7 +8409,7 @@ export const postPartialViewFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a partial view folder identified by the provided Id.
  */
-export const deletePartialViewFolderByPath = <ThrowOnError extends boolean = false>(
+export const deletePartialViewFolderByPath = <ThrowOnError extends boolean = true>(
   options: Options<DeletePartialViewFolderByPathData, ThrowOnError>,
 ): RequestResult<
   DeletePartialViewFolderByPathResponses,
@@ -8431,7 +8431,7 @@ export const deletePartialViewFolderByPath = <ThrowOnError extends boolean = fal
  *
  * Gets a partial view folder identified by the provided file path.
  */
-export const getPartialViewFolderByPath = <ThrowOnError extends boolean = false>(
+export const getPartialViewFolderByPath = <ThrowOnError extends boolean = true>(
   options: Options<GetPartialViewFolderByPathData, ThrowOnError>,
 ): RequestResult<
   GetPartialViewFolderByPathResponses,
@@ -8453,7 +8453,7 @@ export const getPartialViewFolderByPath = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of available partial view code snippets that can be used when creating new partial views.
  */
-export const getPartialViewSnippet = <ThrowOnError extends boolean = false>(
+export const getPartialViewSnippet = <ThrowOnError extends boolean = true>(
   options?: Options<GetPartialViewSnippetData, ThrowOnError>,
 ): RequestResult<GetPartialViewSnippetResponses, GetPartialViewSnippetErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8471,7 +8471,7 @@ export const getPartialViewSnippet = <ThrowOnError extends boolean = false>(
  *
  * Gets a partial view snippet identified by the provided Id.
  */
-export const getPartialViewSnippetById = <ThrowOnError extends boolean = false>(
+export const getPartialViewSnippetById = <ThrowOnError extends boolean = true>(
   options: Options<GetPartialViewSnippetByIdData, ThrowOnError>,
 ): RequestResult<
   GetPartialViewSnippetByIdResponses,
@@ -8493,7 +8493,7 @@ export const getPartialViewSnippetById = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of partial view items that are ancestors to the provided Id.
  */
-export const getTreePartialViewAncestors = <ThrowOnError extends boolean = false>(
+export const getTreePartialViewAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreePartialViewAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreePartialViewAncestorsResponses,
@@ -8515,7 +8515,7 @@ export const getTreePartialViewAncestors = <ThrowOnError extends boolean = false
  *
  * Gets a paginated collection of partial view tree items that are children of the provided parent Id.
  */
-export const getTreePartialViewChildren = <ThrowOnError extends boolean = false>(
+export const getTreePartialViewChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreePartialViewChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreePartialViewChildrenResponses,
@@ -8537,7 +8537,7 @@ export const getTreePartialViewChildren = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of partial view items from the root of the tree with optional filtering.
  */
-export const getTreePartialViewRoot = <ThrowOnError extends boolean = false>(
+export const getTreePartialViewRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreePartialViewRootData, ThrowOnError>,
 ): RequestResult<GetTreePartialViewRootResponses, GetTreePartialViewRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8555,7 +8555,7 @@ export const getTreePartialViewRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of partial view tree items that are siblings of the provided Id.
  */
-export const getTreePartialViewSiblings = <ThrowOnError extends boolean = false>(
+export const getTreePartialViewSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreePartialViewSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetTreePartialViewSiblingsResponses,
@@ -8577,7 +8577,7 @@ export const getTreePartialViewSiblings = <ThrowOnError extends boolean = false>
  *
  * Exits preview mode and returns to the normal back office viewing experience.
  */
-export const deletePreview = <ThrowOnError extends boolean = false>(
+export const deletePreview = <ThrowOnError extends boolean = true>(
   options?: Options<DeletePreviewData, ThrowOnError>,
 ): RequestResult<DeletePreviewResponses, unknown, ThrowOnError> =>
   (options?.client ?? client).delete<DeletePreviewResponses, unknown, ThrowOnError>({
@@ -8590,7 +8590,7 @@ export const deletePreview = <ThrowOnError extends boolean = false>(
  *
  * Gets the current status of the MiniProfiler profiling tool.
  */
-export const getProfilingStatus = <ThrowOnError extends boolean = false>(
+export const getProfilingStatus = <ThrowOnError extends boolean = true>(
   options?: Options<GetProfilingStatusData, ThrowOnError>,
 ): RequestResult<GetProfilingStatusResponses, GetProfilingStatusErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8608,7 +8608,7 @@ export const getProfilingStatus = <ThrowOnError extends boolean = false>(
  *
  * Enables or disables web profiling according to the values provided in the request model.
  */
-export const putProfilingStatus = <ThrowOnError extends boolean = false>(
+export const putProfilingStatus = <ThrowOnError extends boolean = true>(
   options: Options<PutProfilingStatusData, ThrowOnError>,
 ): RequestResult<PutProfilingStatusResponses, PutProfilingStatusErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -8630,7 +8630,7 @@ export const putProfilingStatus = <ThrowOnError extends boolean = false>(
  *
  * Checks if the property type identified by the provided content type id and property alias is used in any content, media, or members.
  */
-export const getPropertyTypeIsUsed = <ThrowOnError extends boolean = false>(
+export const getPropertyTypeIsUsed = <ThrowOnError extends boolean = true>(
   options?: Options<GetPropertyTypeIsUsedData, ThrowOnError>,
 ): RequestResult<GetPropertyTypeIsUsedResponses, GetPropertyTypeIsUsedErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8648,7 +8648,7 @@ export const getPropertyTypeIsUsed = <ThrowOnError extends boolean = false>(
  *
  * Rebuilds the entire published content cache from scratch.
  */
-export const postPublishedCacheRebuild = <ThrowOnError extends boolean = false>(
+export const postPublishedCacheRebuild = <ThrowOnError extends boolean = true>(
   options?: Options<PostPublishedCacheRebuildData, ThrowOnError>,
 ): RequestResult<
   PostPublishedCacheRebuildResponses,
@@ -8670,7 +8670,7 @@ export const postPublishedCacheRebuild = <ThrowOnError extends boolean = false>(
  *
  * Gets the current status of the published content cache rebuild operation.
  */
-export const getPublishedCacheRebuildStatus = <ThrowOnError extends boolean = false>(
+export const getPublishedCacheRebuildStatus = <ThrowOnError extends boolean = true>(
   options?: Options<GetPublishedCacheRebuildStatusData, ThrowOnError>,
 ): RequestResult<
   GetPublishedCacheRebuildStatusResponses,
@@ -8692,7 +8692,7 @@ export const getPublishedCacheRebuildStatus = <ThrowOnError extends boolean = fa
  *
  * Reloads the published content cache from the database.
  */
-export const postPublishedCacheReload = <ThrowOnError extends boolean = false>(
+export const postPublishedCacheReload = <ThrowOnError extends boolean = true>(
   options?: Options<PostPublishedCacheReloadData, ThrowOnError>,
 ): RequestResult<PostPublishedCacheReloadResponses, PostPublishedCacheReloadErrors, ThrowOnError> =>
   (options?.client ?? client).post<
@@ -8710,7 +8710,7 @@ export const postPublishedCacheReload = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of redirect URLs with support for filtering and sorting.
  */
-export const getRedirectManagement = <ThrowOnError extends boolean = false>(
+export const getRedirectManagement = <ThrowOnError extends boolean = true>(
   options?: Options<GetRedirectManagementData, ThrowOnError>,
 ): RequestResult<GetRedirectManagementResponses, GetRedirectManagementErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8728,7 +8728,7 @@ export const getRedirectManagement = <ThrowOnError extends boolean = false>(
  *
  * Deletes a redirect URL identified by the provided Id.
  */
-export const deleteRedirectManagementById = <ThrowOnError extends boolean = false>(
+export const deleteRedirectManagementById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteRedirectManagementByIdData, ThrowOnError>,
 ): RequestResult<
   DeleteRedirectManagementByIdResponses,
@@ -8750,7 +8750,7 @@ export const deleteRedirectManagementById = <ThrowOnError extends boolean = fals
  *
  * Gets a redirect URL identified by the provided Id.
  */
-export const getRedirectManagementById = <ThrowOnError extends boolean = false>(
+export const getRedirectManagementById = <ThrowOnError extends boolean = true>(
   options: Options<GetRedirectManagementByIdData, ThrowOnError>,
 ): RequestResult<
   GetRedirectManagementByIdResponses,
@@ -8772,7 +8772,7 @@ export const getRedirectManagementById = <ThrowOnError extends boolean = false>(
  *
  * Retrieves the current status and configuration for redirect URL management.
  */
-export const getRedirectManagementStatus = <ThrowOnError extends boolean = false>(
+export const getRedirectManagementStatus = <ThrowOnError extends boolean = true>(
   options?: Options<GetRedirectManagementStatusData, ThrowOnError>,
 ): RequestResult<
   GetRedirectManagementStatusResponses,
@@ -8794,7 +8794,7 @@ export const getRedirectManagementStatus = <ThrowOnError extends boolean = false
  *
  * Updates the redirect URL tracking configuration according to the provided status.
  */
-export const postRedirectManagementStatus = <ThrowOnError extends boolean = false>(
+export const postRedirectManagementStatus = <ThrowOnError extends boolean = true>(
   options?: Options<PostRedirectManagementStatusData, ThrowOnError>,
 ): RequestResult<
   PostRedirectManagementStatusResponses,
@@ -8816,7 +8816,7 @@ export const postRedirectManagementStatus = <ThrowOnError extends boolean = fals
  *
  * Gets a collection of relations filtered by the specified relation type key.
  */
-export const getRelationByRelationTypeId = <ThrowOnError extends boolean = false>(
+export const getRelationByRelationTypeId = <ThrowOnError extends boolean = true>(
   options: Options<GetRelationByRelationTypeIdData, ThrowOnError>,
 ): RequestResult<
   GetRelationByRelationTypeIdResponses,
@@ -8838,7 +8838,7 @@ export const getRelationByRelationTypeId = <ThrowOnError extends boolean = false
  *
  * Gets a collection of relation type items identified by the provided Ids.
  */
-export const getItemRelationType = <ThrowOnError extends boolean = false>(
+export const getItemRelationType = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemRelationTypeData, ThrowOnError>,
 ): RequestResult<GetItemRelationTypeResponses, GetItemRelationTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -8856,7 +8856,7 @@ export const getItemRelationType = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all relation types configured in the system.
  */
-export const getRelationType = <ThrowOnError extends boolean = false>(
+export const getRelationType = <ThrowOnError extends boolean = true>(
   options?: Options<GetRelationTypeData, ThrowOnError>,
 ): RequestResult<GetRelationTypeResponses, GetRelationTypeErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetRelationTypeResponses, GetRelationTypeErrors, ThrowOnError>({
@@ -8870,7 +8870,7 @@ export const getRelationType = <ThrowOnError extends boolean = false>(
  *
  * Gets a relation type identified by the provided Id.
  */
-export const getRelationTypeById = <ThrowOnError extends boolean = false>(
+export const getRelationTypeById = <ThrowOnError extends boolean = true>(
   options: Options<GetRelationTypeByIdData, ThrowOnError>,
 ): RequestResult<GetRelationTypeByIdResponses, GetRelationTypeByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -8888,7 +8888,7 @@ export const getRelationTypeById = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of script items identified by the provided Ids.
  */
-export const getItemScript = <ThrowOnError extends boolean = false>(
+export const getItemScript = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemScriptData, ThrowOnError>,
 ): RequestResult<GetItemScriptResponses, GetItemScriptErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemScriptResponses, GetItemScriptErrors, ThrowOnError>({
@@ -8902,7 +8902,7 @@ export const getItemScript = <ThrowOnError extends boolean = false>(
  *
  * Creates a new script with the configuration specified in the request model.
  */
-export const postScript = <ThrowOnError extends boolean = false>(
+export const postScript = <ThrowOnError extends boolean = true>(
   options: Options<PostScriptData, ThrowOnError>,
 ): RequestResult<PostScriptResponses, PostScriptErrors, ThrowOnError> =>
   (options.client ?? client).post<PostScriptResponses, PostScriptErrors, ThrowOnError>({
@@ -8920,7 +8920,7 @@ export const postScript = <ThrowOnError extends boolean = false>(
  *
  * Deletes a script identified by the provided file path.
  */
-export const deleteScriptByPath = <ThrowOnError extends boolean = false>(
+export const deleteScriptByPath = <ThrowOnError extends boolean = true>(
   options: Options<DeleteScriptByPathData, ThrowOnError>,
 ): RequestResult<DeleteScriptByPathResponses, DeleteScriptByPathErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -8938,7 +8938,7 @@ export const deleteScriptByPath = <ThrowOnError extends boolean = false>(
  *
  * Gets a script identified by the provided file path.
  */
-export const getScriptByPath = <ThrowOnError extends boolean = false>(
+export const getScriptByPath = <ThrowOnError extends boolean = true>(
   options: Options<GetScriptByPathData, ThrowOnError>,
 ): RequestResult<GetScriptByPathResponses, GetScriptByPathErrors, ThrowOnError> =>
   (options.client ?? client).get<GetScriptByPathResponses, GetScriptByPathErrors, ThrowOnError>({
@@ -8952,7 +8952,7 @@ export const getScriptByPath = <ThrowOnError extends boolean = false>(
  *
  * Updates a script identified by the provided Id with the details from the request model.
  */
-export const putScriptByPath = <ThrowOnError extends boolean = false>(
+export const putScriptByPath = <ThrowOnError extends boolean = true>(
   options: Options<PutScriptByPathData, ThrowOnError>,
 ): RequestResult<PutScriptByPathResponses, PutScriptByPathErrors, ThrowOnError> =>
   (options.client ?? client).put<PutScriptByPathResponses, PutScriptByPathErrors, ThrowOnError>({
@@ -8970,7 +8970,7 @@ export const putScriptByPath = <ThrowOnError extends boolean = false>(
  *
  * Renames a script file to the specified new name.
  */
-export const putScriptByPathRename = <ThrowOnError extends boolean = false>(
+export const putScriptByPathRename = <ThrowOnError extends boolean = true>(
   options: Options<PutScriptByPathRenameData, ThrowOnError>,
 ): RequestResult<PutScriptByPathRenameResponses, PutScriptByPathRenameErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -8992,7 +8992,7 @@ export const putScriptByPathRename = <ThrowOnError extends boolean = false>(
  *
  * Creates a new script folder with the provided name and parent location.
  */
-export const postScriptFolder = <ThrowOnError extends boolean = false>(
+export const postScriptFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostScriptFolderData, ThrowOnError>,
 ): RequestResult<PostScriptFolderResponses, PostScriptFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<PostScriptFolderResponses, PostScriptFolderErrors, ThrowOnError>({
@@ -9010,7 +9010,7 @@ export const postScriptFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a script folder identified by the provided Id.
  */
-export const deleteScriptFolderByPath = <ThrowOnError extends boolean = false>(
+export const deleteScriptFolderByPath = <ThrowOnError extends boolean = true>(
   options: Options<DeleteScriptFolderByPathData, ThrowOnError>,
 ): RequestResult<DeleteScriptFolderByPathResponses, DeleteScriptFolderByPathErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -9028,7 +9028,7 @@ export const deleteScriptFolderByPath = <ThrowOnError extends boolean = false>(
  *
  * Gets a script folder identified by the provided file path.
  */
-export const getScriptFolderByPath = <ThrowOnError extends boolean = false>(
+export const getScriptFolderByPath = <ThrowOnError extends boolean = true>(
   options: Options<GetScriptFolderByPathData, ThrowOnError>,
 ): RequestResult<GetScriptFolderByPathResponses, GetScriptFolderByPathErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -9046,7 +9046,7 @@ export const getScriptFolderByPath = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of script items that are ancestors to the provided Id.
  */
-export const getTreeScriptAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeScriptAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeScriptAncestorsData, ThrowOnError>,
 ): RequestResult<GetTreeScriptAncestorsResponses, GetTreeScriptAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9064,7 +9064,7 @@ export const getTreeScriptAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of script tree items that are children of the provided parent Id.
  */
-export const getTreeScriptChildren = <ThrowOnError extends boolean = false>(
+export const getTreeScriptChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeScriptChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeScriptChildrenResponses, GetTreeScriptChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9082,7 +9082,7 @@ export const getTreeScriptChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of script items from the root of the tree with optional filtering.
  */
-export const getTreeScriptRoot = <ThrowOnError extends boolean = false>(
+export const getTreeScriptRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeScriptRootData, ThrowOnError>,
 ): RequestResult<GetTreeScriptRootResponses, GetTreeScriptRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9100,7 +9100,7 @@ export const getTreeScriptRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of script tree items that are siblings of the provided Id.
  */
-export const getTreeScriptSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeScriptSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeScriptSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeScriptSiblingsResponses, GetTreeScriptSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9118,7 +9118,7 @@ export const getTreeScriptSiblings = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of configured searchers in the Umbraco installation.
  */
-export const getSearcher = <ThrowOnError extends boolean = false>(
+export const getSearcher = <ThrowOnError extends boolean = true>(
   options?: Options<GetSearcherData, ThrowOnError>,
 ): RequestResult<GetSearcherResponses, GetSearcherErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetSearcherResponses, GetSearcherErrors, ThrowOnError>({
@@ -9132,7 +9132,7 @@ export const getSearcher = <ThrowOnError extends boolean = false>(
  *
  * Queries a named searcher with the provided search term and returns a paginated collection of search results.
  */
-export const getSearcherBySearcherNameQuery = <ThrowOnError extends boolean = false>(
+export const getSearcherBySearcherNameQuery = <ThrowOnError extends boolean = true>(
   options: Options<GetSearcherBySearcherNameQueryData, ThrowOnError>,
 ): RequestResult<
   GetSearcherBySearcherNameQueryResponses,
@@ -9154,7 +9154,7 @@ export const getSearcherBySearcherNameQuery = <ThrowOnError extends boolean = fa
  *
  * Gets the configuration settings for security.
  */
-export const getSecurityConfiguration = <ThrowOnError extends boolean = false>(
+export const getSecurityConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetSecurityConfigurationData, ThrowOnError>,
 ): RequestResult<GetSecurityConfigurationResponses, GetSecurityConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9172,7 +9172,7 @@ export const getSecurityConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Initiates a password reset process by sending a reset link to the specified email address.
  */
-export const postSecurityForgotPassword = <ThrowOnError extends boolean = false>(
+export const postSecurityForgotPassword = <ThrowOnError extends boolean = true>(
   options: Options<PostSecurityForgotPasswordData, ThrowOnError>,
 ): RequestResult<
   PostSecurityForgotPasswordResponses,
@@ -9198,7 +9198,7 @@ export const postSecurityForgotPassword = <ThrowOnError extends boolean = false>
  *
  * Initiates a password reset process for the user with the provided email.
  */
-export const postSecurityForgotPasswordReset = <ThrowOnError extends boolean = false>(
+export const postSecurityForgotPasswordReset = <ThrowOnError extends boolean = true>(
   options: Options<PostSecurityForgotPasswordResetData, ThrowOnError>,
 ): RequestResult<
   PostSecurityForgotPasswordResetResponses,
@@ -9224,7 +9224,7 @@ export const postSecurityForgotPasswordReset = <ThrowOnError extends boolean = f
  *
  * Verifies the provided password reset token for the specified user.
  */
-export const postSecurityForgotPasswordVerify = <ThrowOnError extends boolean = false>(
+export const postSecurityForgotPasswordVerify = <ThrowOnError extends boolean = true>(
   options: Options<PostSecurityForgotPasswordVerifyData, ThrowOnError>,
 ): RequestResult<
   PostSecurityForgotPasswordVerifyResponses,
@@ -9249,7 +9249,7 @@ export const postSecurityForgotPasswordVerify = <ThrowOnError extends boolean = 
  *
  * Gets a paginated collection of segments with support for filtering and pagination.
  */
-export const getSegment = <ThrowOnError extends boolean = false>(
+export const getSegment = <ThrowOnError extends boolean = true>(
   options?: Options<GetSegmentData, ThrowOnError>,
 ): RequestResult<GetSegmentResponses, GetSegmentErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetSegmentResponses, GetSegmentErrors, ThrowOnError>({
@@ -9263,7 +9263,7 @@ export const getSegment = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for servers.
  */
-export const getServerConfiguration = <ThrowOnError extends boolean = false>(
+export const getServerConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetServerConfigurationData, ThrowOnError>,
 ): RequestResult<GetServerConfigurationResponses, unknown, ThrowOnError> =>
   (options?.client ?? client).get<GetServerConfigurationResponses, unknown, ThrowOnError>({
@@ -9276,7 +9276,7 @@ export const getServerConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Gets detailed information about the server environment and configuration.
  */
-export const getServerInformation = <ThrowOnError extends boolean = false>(
+export const getServerInformation = <ThrowOnError extends boolean = true>(
   options?: Options<GetServerInformationData, ThrowOnError>,
 ): RequestResult<GetServerInformationResponses, GetServerInformationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9294,7 +9294,7 @@ export const getServerInformation = <ThrowOnError extends boolean = false>(
  *
  * Gets the current operational status of the Umbraco server.
  */
-export const getServerStatus = <ThrowOnError extends boolean = false>(
+export const getServerStatus = <ThrowOnError extends boolean = true>(
   options?: Options<GetServerStatusData, ThrowOnError>,
 ): RequestResult<GetServerStatusResponses, GetServerStatusErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetServerStatusResponses, GetServerStatusErrors, ThrowOnError>({
@@ -9307,7 +9307,7 @@ export const getServerStatus = <ThrowOnError extends boolean = false>(
  *
  * Gets troubleshooting information and diagnostics for the server.
  */
-export const getServerTroubleshooting = <ThrowOnError extends boolean = false>(
+export const getServerTroubleshooting = <ThrowOnError extends boolean = true>(
   options?: Options<GetServerTroubleshootingData, ThrowOnError>,
 ): RequestResult<GetServerTroubleshootingResponses, GetServerTroubleshootingErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9325,7 +9325,7 @@ export const getServerTroubleshooting = <ThrowOnError extends boolean = false>(
  *
  * Checks if there are any available upgrades for the Umbraco installation.
  */
-export const getServerUpgradeCheck = <ThrowOnError extends boolean = false>(
+export const getServerUpgradeCheck = <ThrowOnError extends boolean = true>(
   options?: Options<GetServerUpgradeCheckData, ThrowOnError>,
 ): RequestResult<GetServerUpgradeCheckResponses, GetServerUpgradeCheckErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9343,7 +9343,7 @@ export const getServerUpgradeCheck = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of static file items identified by the provided Ids.
  */
-export const getItemStaticFile = <ThrowOnError extends boolean = false>(
+export const getItemStaticFile = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemStaticFileData, ThrowOnError>,
 ): RequestResult<GetItemStaticFileResponses, GetItemStaticFileErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9361,7 +9361,7 @@ export const getItemStaticFile = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of static file items that are ancestors to the provided Id.
  */
-export const getTreeStaticFileAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeStaticFileAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStaticFileAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeStaticFileAncestorsResponses,
@@ -9383,7 +9383,7 @@ export const getTreeStaticFileAncestors = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of static file tree items that are children of the provided parent Id.
  */
-export const getTreeStaticFileChildren = <ThrowOnError extends boolean = false>(
+export const getTreeStaticFileChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStaticFileChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreeStaticFileChildrenResponses,
@@ -9405,7 +9405,7 @@ export const getTreeStaticFileChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of static file items from the root of the tree with optional filtering.
  */
-export const getTreeStaticFileRoot = <ThrowOnError extends boolean = false>(
+export const getTreeStaticFileRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStaticFileRootData, ThrowOnError>,
 ): RequestResult<GetTreeStaticFileRootResponses, GetTreeStaticFileRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9423,7 +9423,7 @@ export const getTreeStaticFileRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of stylesheet items identified by the provided Ids.
  */
-export const getItemStylesheet = <ThrowOnError extends boolean = false>(
+export const getItemStylesheet = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemStylesheetData, ThrowOnError>,
 ): RequestResult<GetItemStylesheetResponses, GetItemStylesheetErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9441,7 +9441,7 @@ export const getItemStylesheet = <ThrowOnError extends boolean = false>(
  *
  * Creates a new stylesheet with the configuration specified in the request model.
  */
-export const postStylesheet = <ThrowOnError extends boolean = false>(
+export const postStylesheet = <ThrowOnError extends boolean = true>(
   options: Options<PostStylesheetData, ThrowOnError>,
 ): RequestResult<PostStylesheetResponses, PostStylesheetErrors, ThrowOnError> =>
   (options.client ?? client).post<PostStylesheetResponses, PostStylesheetErrors, ThrowOnError>({
@@ -9459,7 +9459,7 @@ export const postStylesheet = <ThrowOnError extends boolean = false>(
  *
  * Deletes a stylesheet identified by the provided Id.
  */
-export const deleteStylesheetByPath = <ThrowOnError extends boolean = false>(
+export const deleteStylesheetByPath = <ThrowOnError extends boolean = true>(
   options: Options<DeleteStylesheetByPathData, ThrowOnError>,
 ): RequestResult<DeleteStylesheetByPathResponses, DeleteStylesheetByPathErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -9477,7 +9477,7 @@ export const deleteStylesheetByPath = <ThrowOnError extends boolean = false>(
  *
  * Gets a stylesheet identified by the provided file path.
  */
-export const getStylesheetByPath = <ThrowOnError extends boolean = false>(
+export const getStylesheetByPath = <ThrowOnError extends boolean = true>(
   options: Options<GetStylesheetByPathData, ThrowOnError>,
 ): RequestResult<GetStylesheetByPathResponses, GetStylesheetByPathErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -9495,7 +9495,7 @@ export const getStylesheetByPath = <ThrowOnError extends boolean = false>(
  *
  * Updates a stylesheet identified by the provided Id with the details from the request model.
  */
-export const putStylesheetByPath = <ThrowOnError extends boolean = false>(
+export const putStylesheetByPath = <ThrowOnError extends boolean = true>(
   options: Options<PutStylesheetByPathData, ThrowOnError>,
 ): RequestResult<PutStylesheetByPathResponses, PutStylesheetByPathErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -9517,7 +9517,7 @@ export const putStylesheetByPath = <ThrowOnError extends boolean = false>(
  *
  * Renames a stylesheet file to the specified new name.
  */
-export const putStylesheetByPathRename = <ThrowOnError extends boolean = false>(
+export const putStylesheetByPathRename = <ThrowOnError extends boolean = true>(
   options: Options<PutStylesheetByPathRenameData, ThrowOnError>,
 ): RequestResult<
   PutStylesheetByPathRenameResponses,
@@ -9543,7 +9543,7 @@ export const putStylesheetByPathRename = <ThrowOnError extends boolean = false>(
  *
  * Creates a new stylesheet folder with the provided name and parent location.
  */
-export const postStylesheetFolder = <ThrowOnError extends boolean = false>(
+export const postStylesheetFolder = <ThrowOnError extends boolean = true>(
   options: Options<PostStylesheetFolderData, ThrowOnError>,
 ): RequestResult<PostStylesheetFolderResponses, PostStylesheetFolderErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -9565,7 +9565,7 @@ export const postStylesheetFolder = <ThrowOnError extends boolean = false>(
  *
  * Deletes a stylesheet folder identified by the provided Id.
  */
-export const deleteStylesheetFolderByPath = <ThrowOnError extends boolean = false>(
+export const deleteStylesheetFolderByPath = <ThrowOnError extends boolean = true>(
   options: Options<DeleteStylesheetFolderByPathData, ThrowOnError>,
 ): RequestResult<
   DeleteStylesheetFolderByPathResponses,
@@ -9587,7 +9587,7 @@ export const deleteStylesheetFolderByPath = <ThrowOnError extends boolean = fals
  *
  * Gets a stylesheet folder identified by the provided file path.
  */
-export const getStylesheetFolderByPath = <ThrowOnError extends boolean = false>(
+export const getStylesheetFolderByPath = <ThrowOnError extends boolean = true>(
   options: Options<GetStylesheetFolderByPathData, ThrowOnError>,
 ): RequestResult<
   GetStylesheetFolderByPathResponses,
@@ -9609,7 +9609,7 @@ export const getStylesheetFolderByPath = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of stylesheet items that are ancestors to the provided Id.
  */
-export const getTreeStylesheetAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeStylesheetAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStylesheetAncestorsData, ThrowOnError>,
 ): RequestResult<
   GetTreeStylesheetAncestorsResponses,
@@ -9631,7 +9631,7 @@ export const getTreeStylesheetAncestors = <ThrowOnError extends boolean = false>
  *
  * Gets a paginated collection of stylesheet tree items that are children of the provided parent Id.
  */
-export const getTreeStylesheetChildren = <ThrowOnError extends boolean = false>(
+export const getTreeStylesheetChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStylesheetChildrenData, ThrowOnError>,
 ): RequestResult<
   GetTreeStylesheetChildrenResponses,
@@ -9653,7 +9653,7 @@ export const getTreeStylesheetChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of stylesheet items from the root of the tree with optional filtering.
  */
-export const getTreeStylesheetRoot = <ThrowOnError extends boolean = false>(
+export const getTreeStylesheetRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStylesheetRootData, ThrowOnError>,
 ): RequestResult<GetTreeStylesheetRootResponses, GetTreeStylesheetRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9671,7 +9671,7 @@ export const getTreeStylesheetRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of stylesheet tree items that are siblings of the provided Id.
  */
-export const getTreeStylesheetSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeStylesheetSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeStylesheetSiblingsData, ThrowOnError>,
 ): RequestResult<
   GetTreeStylesheetSiblingsResponses,
@@ -9693,7 +9693,7 @@ export const getTreeStylesheetSiblings = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of tags filtered by the provided query string.
  */
-export const getTag = <ThrowOnError extends boolean = false>(
+export const getTag = <ThrowOnError extends boolean = true>(
   options?: Options<GetTagData, ThrowOnError>,
 ): RequestResult<GetTagResponses, GetTagErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetTagResponses, GetTagErrors, ThrowOnError>({
@@ -9707,7 +9707,7 @@ export const getTag = <ThrowOnError extends boolean = false>(
  *
  * Gets telemetry data and statistics for the Umbraco installation.
  */
-export const getTelemetry = <ThrowOnError extends boolean = false>(
+export const getTelemetry = <ThrowOnError extends boolean = true>(
   options?: Options<GetTelemetryData, ThrowOnError>,
 ): RequestResult<GetTelemetryResponses, GetTelemetryErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetTelemetryResponses, GetTelemetryErrors, ThrowOnError>({
@@ -9721,7 +9721,7 @@ export const getTelemetry = <ThrowOnError extends boolean = false>(
  *
  * Gets the current telemetry configuration and consent level.
  */
-export const getTelemetryLevel = <ThrowOnError extends boolean = false>(
+export const getTelemetryLevel = <ThrowOnError extends boolean = true>(
   options?: Options<GetTelemetryLevelData, ThrowOnError>,
 ): RequestResult<GetTelemetryLevelResponses, GetTelemetryLevelErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9739,7 +9739,7 @@ export const getTelemetryLevel = <ThrowOnError extends boolean = false>(
  *
  * Sets the telemetry consent level for anonymous usage data collection.
  */
-export const postTelemetryLevel = <ThrowOnError extends boolean = false>(
+export const postTelemetryLevel = <ThrowOnError extends boolean = true>(
   options: Options<PostTelemetryLevelData, ThrowOnError>,
 ): RequestResult<PostTelemetryLevelResponses, PostTelemetryLevelErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -9761,7 +9761,7 @@ export const postTelemetryLevel = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of template items identified by the provided Ids.
  */
-export const getItemTemplate = <ThrowOnError extends boolean = false>(
+export const getItemTemplate = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemTemplateData, ThrowOnError>,
 ): RequestResult<GetItemTemplateResponses, GetItemTemplateErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemTemplateResponses, GetItemTemplateErrors, ThrowOnError>({
@@ -9775,7 +9775,7 @@ export const getItemTemplate = <ThrowOnError extends boolean = false>(
  *
  * Gets the ancestor chains for template items identified by the provided Ids.
  */
-export const getItemTemplateAncestors = <ThrowOnError extends boolean = false>(
+export const getItemTemplateAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemTemplateAncestorsData, ThrowOnError>,
 ): RequestResult<GetItemTemplateAncestorsResponses, GetItemTemplateAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9793,7 +9793,7 @@ export const getItemTemplateAncestors = <ThrowOnError extends boolean = false>(
  *
  * Searches template items by the provided query with pagination support.
  */
-export const getItemTemplateSearch = <ThrowOnError extends boolean = false>(
+export const getItemTemplateSearch = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemTemplateSearchData, ThrowOnError>,
 ): RequestResult<GetItemTemplateSearchResponses, GetItemTemplateSearchErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9811,7 +9811,7 @@ export const getItemTemplateSearch = <ThrowOnError extends boolean = false>(
  *
  * Creates a new template with the configuration specified in the request model.
  */
-export const postTemplate = <ThrowOnError extends boolean = false>(
+export const postTemplate = <ThrowOnError extends boolean = true>(
   options: Options<PostTemplateData, ThrowOnError>,
 ): RequestResult<PostTemplateResponses, PostTemplateErrors, ThrowOnError> =>
   (options.client ?? client).post<PostTemplateResponses, PostTemplateErrors, ThrowOnError>({
@@ -9829,7 +9829,7 @@ export const postTemplate = <ThrowOnError extends boolean = false>(
  *
  * Deletes a template identified by the provided Id.
  */
-export const deleteTemplateById = <ThrowOnError extends boolean = false>(
+export const deleteTemplateById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteTemplateByIdData, ThrowOnError>,
 ): RequestResult<DeleteTemplateByIdResponses, DeleteTemplateByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -9847,7 +9847,7 @@ export const deleteTemplateById = <ThrowOnError extends boolean = false>(
  *
  * Gets a template identified by the provided Id.
  */
-export const getTemplateById = <ThrowOnError extends boolean = false>(
+export const getTemplateById = <ThrowOnError extends boolean = true>(
   options: Options<GetTemplateByIdData, ThrowOnError>,
 ): RequestResult<GetTemplateByIdResponses, GetTemplateByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetTemplateByIdResponses, GetTemplateByIdErrors, ThrowOnError>({
@@ -9861,7 +9861,7 @@ export const getTemplateById = <ThrowOnError extends boolean = false>(
  *
  * Updates a template identified by the provided Id with the details from the request model.
  */
-export const putTemplateById = <ThrowOnError extends boolean = false>(
+export const putTemplateById = <ThrowOnError extends boolean = true>(
   options: Options<PutTemplateByIdData, ThrowOnError>,
 ): RequestResult<PutTemplateByIdResponses, PutTemplateByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutTemplateByIdResponses, PutTemplateByIdErrors, ThrowOnError>({
@@ -9879,7 +9879,7 @@ export const putTemplateById = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for templates.
  */
-export const getTemplateConfiguration = <ThrowOnError extends boolean = false>(
+export const getTemplateConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetTemplateConfigurationData, ThrowOnError>,
 ): RequestResult<GetTemplateConfigurationResponses, GetTemplateConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9897,7 +9897,7 @@ export const getTemplateConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Executes a template query with the provided parameters and returns the matching content results with execution metrics.
  */
-export const postTemplateQueryExecute = <ThrowOnError extends boolean = false>(
+export const postTemplateQueryExecute = <ThrowOnError extends boolean = true>(
   options: Options<PostTemplateQueryExecuteData, ThrowOnError>,
 ): RequestResult<PostTemplateQueryExecuteResponses, PostTemplateQueryExecuteErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -9919,7 +9919,7 @@ export const postTemplateQueryExecute = <ThrowOnError extends boolean = false>(
  *
  * Gets the available configuration settings for template queries including document type aliases, properties, and operators.
  */
-export const getTemplateQuerySettings = <ThrowOnError extends boolean = false>(
+export const getTemplateQuerySettings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTemplateQuerySettingsData, ThrowOnError>,
 ): RequestResult<GetTemplateQuerySettingsResponses, GetTemplateQuerySettingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9937,7 +9937,7 @@ export const getTemplateQuerySettings = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of template items that are ancestors to the provided Id.
  */
-export const getTreeTemplateAncestors = <ThrowOnError extends boolean = false>(
+export const getTreeTemplateAncestors = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeTemplateAncestorsData, ThrowOnError>,
 ): RequestResult<GetTreeTemplateAncestorsResponses, GetTreeTemplateAncestorsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9955,7 +9955,7 @@ export const getTreeTemplateAncestors = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of template tree items that are children of the provided parent Id.
  */
-export const getTreeTemplateChildren = <ThrowOnError extends boolean = false>(
+export const getTreeTemplateChildren = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeTemplateChildrenData, ThrowOnError>,
 ): RequestResult<GetTreeTemplateChildrenResponses, GetTreeTemplateChildrenErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9973,7 +9973,7 @@ export const getTreeTemplateChildren = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of template items from the root of the tree with optional filtering.
  */
-export const getTreeTemplateRoot = <ThrowOnError extends boolean = false>(
+export const getTreeTemplateRoot = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeTemplateRootData, ThrowOnError>,
 ): RequestResult<GetTreeTemplateRootResponses, GetTreeTemplateRootErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -9991,7 +9991,7 @@ export const getTreeTemplateRoot = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of template tree items that are siblings of the provided Id.
  */
-export const getTreeTemplateSiblings = <ThrowOnError extends boolean = false>(
+export const getTreeTemplateSiblings = <ThrowOnError extends boolean = true>(
   options?: Options<GetTreeTemplateSiblingsData, ThrowOnError>,
 ): RequestResult<GetTreeTemplateSiblingsResponses, GetTreeTemplateSiblingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -10009,7 +10009,7 @@ export const getTreeTemplateSiblings = <ThrowOnError extends boolean = false>(
  *
  * Uploads and creates a temporary file that can be used in subsequent operations.
  */
-export const postTemporaryFile = <ThrowOnError extends boolean = false>(
+export const postTemporaryFile = <ThrowOnError extends boolean = true>(
   options: Options<PostTemporaryFileData, ThrowOnError>,
 ): RequestResult<PostTemporaryFileResponses, PostTemporaryFileErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -10032,7 +10032,7 @@ export const postTemporaryFile = <ThrowOnError extends boolean = false>(
  *
  * Deletes a temporary file identified by the provided Id.
  */
-export const deleteTemporaryFileById = <ThrowOnError extends boolean = false>(
+export const deleteTemporaryFileById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteTemporaryFileByIdData, ThrowOnError>,
 ): RequestResult<DeleteTemporaryFileByIdResponses, DeleteTemporaryFileByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -10050,7 +10050,7 @@ export const deleteTemporaryFileById = <ThrowOnError extends boolean = false>(
  *
  * Gets a temporary file identified by the provided Id.
  */
-export const getTemporaryFileById = <ThrowOnError extends boolean = false>(
+export const getTemporaryFileById = <ThrowOnError extends boolean = true>(
   options: Options<GetTemporaryFileByIdData, ThrowOnError>,
 ): RequestResult<GetTemporaryFileByIdResponses, GetTemporaryFileByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -10068,7 +10068,7 @@ export const getTemporaryFileById = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for temporary files.
  */
-export const getTemporaryFileConfiguration = <ThrowOnError extends boolean = false>(
+export const getTemporaryFileConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetTemporaryFileConfigurationData, ThrowOnError>,
 ): RequestResult<
   GetTemporaryFileConfigurationResponses,
@@ -10090,7 +10090,7 @@ export const getTemporaryFileConfiguration = <ThrowOnError extends boolean = fal
  *
  * Authorizes the currently authenticated user to perform the upgrade.
  */
-export const postUpgradeAuthorize = <ThrowOnError extends boolean = false>(
+export const postUpgradeAuthorize = <ThrowOnError extends boolean = true>(
   options?: Options<PostUpgradeAuthorizeData, ThrowOnError>,
 ): RequestResult<PostUpgradeAuthorizeResponses, PostUpgradeAuthorizeErrors, ThrowOnError> =>
   (options?.client ?? client).post<
@@ -10108,7 +10108,7 @@ export const postUpgradeAuthorize = <ThrowOnError extends boolean = false>(
  *
  * Gets the current upgrade settings and status for the Umbraco installation.
  */
-export const getUpgradeSettings = <ThrowOnError extends boolean = false>(
+export const getUpgradeSettings = <ThrowOnError extends boolean = true>(
   options?: Options<GetUpgradeSettingsData, ThrowOnError>,
 ): RequestResult<GetUpgradeSettingsResponses, GetUpgradeSettingsErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -10126,7 +10126,7 @@ export const getUpgradeSettings = <ThrowOnError extends boolean = false>(
  *
  * Filters users based on the provided criteria with support for pagination.
  */
-export const getFilterUser = <ThrowOnError extends boolean = false>(
+export const getFilterUser = <ThrowOnError extends boolean = true>(
   options?: Options<GetFilterUserData, ThrowOnError>,
 ): RequestResult<GetFilterUserResponses, GetFilterUserErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetFilterUserResponses, GetFilterUserErrors, ThrowOnError>({
@@ -10140,7 +10140,7 @@ export const getFilterUser = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of user items identified by the provided Ids.
  */
-export const getItemUser = <ThrowOnError extends boolean = false>(
+export const getItemUser = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemUserData, ThrowOnError>,
 ): RequestResult<GetItemUserResponses, GetItemUserErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemUserResponses, GetItemUserErrors, ThrowOnError>({
@@ -10154,7 +10154,7 @@ export const getItemUser = <ThrowOnError extends boolean = false>(
  *
  * Deletes multiple users identified by the provided Ids. This operation cannot be undone.
  */
-export const deleteUser = <ThrowOnError extends boolean = false>(
+export const deleteUser = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserData, ThrowOnError>,
 ): RequestResult<DeleteUserResponses, DeleteUserErrors, ThrowOnError> =>
   (options.client ?? client).delete<DeleteUserResponses, DeleteUserErrors, ThrowOnError>({
@@ -10172,7 +10172,7 @@ export const deleteUser = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all users.
  */
-export const getUser = <ThrowOnError extends boolean = false>(
+export const getUser = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserData, ThrowOnError>,
 ): RequestResult<GetUserResponses, GetUserErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetUserResponses, GetUserErrors, ThrowOnError>({
@@ -10186,7 +10186,7 @@ export const getUser = <ThrowOnError extends boolean = false>(
  *
  * Creates a new user with the configuration specified in the request model.
  */
-export const postUser = <ThrowOnError extends boolean = false>(
+export const postUser = <ThrowOnError extends boolean = true>(
   options: Options<PostUserData, ThrowOnError>,
 ): RequestResult<PostUserResponses, PostUserErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserResponses, PostUserErrors, ThrowOnError>({
@@ -10204,7 +10204,7 @@ export const postUser = <ThrowOnError extends boolean = false>(
  *
  * Deletes a user identified by the provided Id.
  */
-export const deleteUserById = <ThrowOnError extends boolean = false>(
+export const deleteUserById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserByIdData, ThrowOnError>,
 ): RequestResult<DeleteUserByIdResponses, DeleteUserByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<DeleteUserByIdResponses, DeleteUserByIdErrors, ThrowOnError>({
@@ -10218,7 +10218,7 @@ export const deleteUserById = <ThrowOnError extends boolean = false>(
  *
  * Gets a user identified by the provided Id.
  */
-export const getUserById = <ThrowOnError extends boolean = false>(
+export const getUserById = <ThrowOnError extends boolean = true>(
   options: Options<GetUserByIdData, ThrowOnError>,
 ): RequestResult<GetUserByIdResponses, GetUserByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetUserByIdResponses, GetUserByIdErrors, ThrowOnError>({
@@ -10232,7 +10232,7 @@ export const getUserById = <ThrowOnError extends boolean = false>(
  *
  * Updates a user identified by the provided Id with the details from the request model.
  */
-export const putUserById = <ThrowOnError extends boolean = false>(
+export const putUserById = <ThrowOnError extends boolean = true>(
   options: Options<PutUserByIdData, ThrowOnError>,
 ): RequestResult<PutUserByIdResponses, PutUserByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutUserByIdResponses, PutUserByIdErrors, ThrowOnError>({
@@ -10250,7 +10250,7 @@ export const putUserById = <ThrowOnError extends boolean = false>(
  *
  * Gets a list of available two-factor authentication providers for the specified user.
  */
-export const getUserById2Fa = <ThrowOnError extends boolean = false>(
+export const getUserById2Fa = <ThrowOnError extends boolean = true>(
   options: Options<GetUserById2FaData, ThrowOnError>,
 ): RequestResult<GetUserById2FaResponses, GetUserById2FaErrors, ThrowOnError> =>
   (options.client ?? client).get<GetUserById2FaResponses, GetUserById2FaErrors, ThrowOnError>({
@@ -10264,7 +10264,7 @@ export const getUserById2Fa = <ThrowOnError extends boolean = false>(
  *
  * Disables the specified two-factor authentication provider for a user.
  */
-export const deleteUserById2FaByProviderName = <ThrowOnError extends boolean = false>(
+export const deleteUserById2FaByProviderName = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserById2FaByProviderNameData, ThrowOnError>,
 ): RequestResult<
   DeleteUserById2FaByProviderNameResponses,
@@ -10286,7 +10286,7 @@ export const deleteUserById2FaByProviderName = <ThrowOnError extends boolean = f
  *
  * Calculates the start nodes for the users identified by the provided Ids based on their permissions.
  */
-export const getUserByIdCalculateStartNodes = <ThrowOnError extends boolean = false>(
+export const getUserByIdCalculateStartNodes = <ThrowOnError extends boolean = true>(
   options: Options<GetUserByIdCalculateStartNodesData, ThrowOnError>,
 ): RequestResult<
   GetUserByIdCalculateStartNodesResponses,
@@ -10308,7 +10308,7 @@ export const getUserByIdCalculateStartNodes = <ThrowOnError extends boolean = fa
  *
  * Changes the password for the user identified by the provided Id.
  */
-export const postUserByIdChangePassword = <ThrowOnError extends boolean = false>(
+export const postUserByIdChangePassword = <ThrowOnError extends boolean = true>(
   options: Options<PostUserByIdChangePasswordData, ThrowOnError>,
 ): RequestResult<
   PostUserByIdChangePasswordResponses,
@@ -10334,7 +10334,7 @@ export const postUserByIdChangePassword = <ThrowOnError extends boolean = false>
  *
  * Gets a collection of OAuth client credentials for the user identified by the provided Id.
  */
-export const getUserByIdClientCredentials = <ThrowOnError extends boolean = false>(
+export const getUserByIdClientCredentials = <ThrowOnError extends boolean = true>(
   options: Options<GetUserByIdClientCredentialsData, ThrowOnError>,
 ): RequestResult<
   GetUserByIdClientCredentialsResponses,
@@ -10356,7 +10356,7 @@ export const getUserByIdClientCredentials = <ThrowOnError extends boolean = fals
  *
  * Creates OAuth client credentials for the user identified by the provided Id.
  */
-export const postUserByIdClientCredentials = <ThrowOnError extends boolean = false>(
+export const postUserByIdClientCredentials = <ThrowOnError extends boolean = true>(
   options: Options<PostUserByIdClientCredentialsData, ThrowOnError>,
 ): RequestResult<
   PostUserByIdClientCredentialsResponses,
@@ -10382,7 +10382,7 @@ export const postUserByIdClientCredentials = <ThrowOnError extends boolean = fal
  *
  * Deletes client credentials identified by the provided client Id for a user.
  */
-export const deleteUserByIdClientCredentialsByClientId = <ThrowOnError extends boolean = false>(
+export const deleteUserByIdClientCredentialsByClientId = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserByIdClientCredentialsByClientIdData, ThrowOnError>,
 ): RequestResult<
   DeleteUserByIdClientCredentialsByClientIdResponses,
@@ -10404,7 +10404,7 @@ export const deleteUserByIdClientCredentialsByClientId = <ThrowOnError extends b
  *
  * Resets the password for the user using the provided reset token.
  */
-export const postUserByIdResetPassword = <ThrowOnError extends boolean = false>(
+export const postUserByIdResetPassword = <ThrowOnError extends boolean = true>(
   options: Options<PostUserByIdResetPasswordData, ThrowOnError>,
 ): RequestResult<
   PostUserByIdResetPasswordResponses,
@@ -10426,7 +10426,7 @@ export const postUserByIdResetPassword = <ThrowOnError extends boolean = false>(
  *
  * Removes the avatar image for the user identified by the provided Id.
  */
-export const deleteUserAvatarById = <ThrowOnError extends boolean = false>(
+export const deleteUserAvatarById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserAvatarByIdData, ThrowOnError>,
 ): RequestResult<DeleteUserAvatarByIdResponses, DeleteUserAvatarByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -10444,7 +10444,7 @@ export const deleteUserAvatarById = <ThrowOnError extends boolean = false>(
  *
  * Sets or updates the avatar image for the user identified by the provided Id.
  */
-export const postUserAvatarById = <ThrowOnError extends boolean = false>(
+export const postUserAvatarById = <ThrowOnError extends boolean = true>(
   options: Options<PostUserAvatarByIdData, ThrowOnError>,
 ): RequestResult<PostUserAvatarByIdResponses, PostUserAvatarByIdErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -10466,7 +10466,7 @@ export const postUserAvatarById = <ThrowOnError extends boolean = false>(
  *
  * Gets the configuration settings for users.
  */
-export const getUserConfiguration = <ThrowOnError extends boolean = false>(
+export const getUserConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserConfigurationData, ThrowOnError>,
 ): RequestResult<GetUserConfigurationResponses, GetUserConfigurationErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -10484,7 +10484,7 @@ export const getUserConfiguration = <ThrowOnError extends boolean = false>(
  *
  * Gets the currently authenticated back office user's information and permissions.
  */
-export const getUserCurrent = <ThrowOnError extends boolean = false>(
+export const getUserCurrent = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentData, ThrowOnError>,
 ): RequestResult<GetUserCurrentResponses, GetUserCurrentErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetUserCurrentResponses, GetUserCurrentErrors, ThrowOnError>({
@@ -10498,7 +10498,7 @@ export const getUserCurrent = <ThrowOnError extends boolean = false>(
  *
  * Gets a list of available two-factor authentication providers for the current user.
  */
-export const getUserCurrent2Fa = <ThrowOnError extends boolean = false>(
+export const getUserCurrent2Fa = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrent2FaData, ThrowOnError>,
 ): RequestResult<GetUserCurrent2FaResponses, GetUserCurrent2FaErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -10516,7 +10516,7 @@ export const getUserCurrent2Fa = <ThrowOnError extends boolean = false>(
  *
  * Disables the specified two-factor authentication provider for the currently authenticated user.
  */
-export const deleteUserCurrent2FaByProviderName = <ThrowOnError extends boolean = false>(
+export const deleteUserCurrent2FaByProviderName = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserCurrent2FaByProviderNameData, ThrowOnError>,
 ): RequestResult<
   DeleteUserCurrent2FaByProviderNameResponses,
@@ -10538,7 +10538,7 @@ export const deleteUserCurrent2FaByProviderName = <ThrowOnError extends boolean 
  *
  * Gets the setup information for configuring a two-factor authentication provider.
  */
-export const getUserCurrent2FaByProviderName = <ThrowOnError extends boolean = false>(
+export const getUserCurrent2FaByProviderName = <ThrowOnError extends boolean = true>(
   options: Options<GetUserCurrent2FaByProviderNameData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrent2FaByProviderNameResponses,
@@ -10560,7 +10560,7 @@ export const getUserCurrent2FaByProviderName = <ThrowOnError extends boolean = f
  *
  * Enables the specified two-factor authentication provider for the currently authenticated user.
  */
-export const postUserCurrent2FaByProviderName = <ThrowOnError extends boolean = false>(
+export const postUserCurrent2FaByProviderName = <ThrowOnError extends boolean = true>(
   options: Options<PostUserCurrent2FaByProviderNameData, ThrowOnError>,
 ): RequestResult<
   PostUserCurrent2FaByProviderNameResponses,
@@ -10586,7 +10586,7 @@ export const postUserCurrent2FaByProviderName = <ThrowOnError extends boolean = 
  *
  * Removes the avatar image for the currently authenticated user.
  */
-export const deleteUserCurrentAvatar = <ThrowOnError extends boolean = false>(
+export const deleteUserCurrentAvatar = <ThrowOnError extends boolean = true>(
   options?: Options<DeleteUserCurrentAvatarData, ThrowOnError>,
 ): RequestResult<DeleteUserCurrentAvatarResponses, DeleteUserCurrentAvatarErrors, ThrowOnError> =>
   (options?.client ?? client).delete<
@@ -10604,7 +10604,7 @@ export const deleteUserCurrentAvatar = <ThrowOnError extends boolean = false>(
  *
  * Sets or updates the avatar image for the currently authenticated user.
  */
-export const postUserCurrentAvatar = <ThrowOnError extends boolean = false>(
+export const postUserCurrentAvatar = <ThrowOnError extends boolean = true>(
   options: Options<PostUserCurrentAvatarData, ThrowOnError>,
 ): RequestResult<PostUserCurrentAvatarResponses, PostUserCurrentAvatarErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -10626,7 +10626,7 @@ export const postUserCurrentAvatar = <ThrowOnError extends boolean = false>(
  *
  * Changes the password for the currently authenticated user.
  */
-export const postUserCurrentChangePassword = <ThrowOnError extends boolean = false>(
+export const postUserCurrentChangePassword = <ThrowOnError extends boolean = true>(
   options: Options<PostUserCurrentChangePasswordData, ThrowOnError>,
 ): RequestResult<
   PostUserCurrentChangePasswordResponses,
@@ -10652,7 +10652,7 @@ export const postUserCurrentChangePassword = <ThrowOnError extends boolean = fal
  *
  * Gets the configuration settings for the current user.
  */
-export const getUserCurrentConfiguration = <ThrowOnError extends boolean = false>(
+export const getUserCurrentConfiguration = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentConfigurationData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrentConfigurationResponses,
@@ -10674,7 +10674,7 @@ export const getUserCurrentConfiguration = <ThrowOnError extends boolean = false
  *
  * Gets a list of configured external login providers for authentication.
  */
-export const getUserCurrentLoginProviders = <ThrowOnError extends boolean = false>(
+export const getUserCurrentLoginProviders = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentLoginProvidersData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrentLoginProvidersResponses,
@@ -10696,7 +10696,7 @@ export const getUserCurrentLoginProviders = <ThrowOnError extends boolean = fals
  *
  * Gets the permissions for the currently authenticated user.
  */
-export const getUserCurrentPermissions = <ThrowOnError extends boolean = false>(
+export const getUserCurrentPermissions = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentPermissionsData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrentPermissionsResponses,
@@ -10718,7 +10718,7 @@ export const getUserCurrentPermissions = <ThrowOnError extends boolean = false>(
  *
  * Gets the document permissions for the currently authenticated user.
  */
-export const getUserCurrentPermissionsDocument = <ThrowOnError extends boolean = false>(
+export const getUserCurrentPermissionsDocument = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentPermissionsDocumentData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrentPermissionsDocumentResponses,
@@ -10735,7 +10735,7 @@ export const getUserCurrentPermissionsDocument = <ThrowOnError extends boolean =
     ...options,
   });
 
-export const getUserCurrentPermissionsElement = <ThrowOnError extends boolean = false>(
+export const getUserCurrentPermissionsElement = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentPermissionsElementData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrentPermissionsElementResponses,
@@ -10757,7 +10757,7 @@ export const getUserCurrentPermissionsElement = <ThrowOnError extends boolean = 
  *
  * Gets the media permissions for the currently authenticated user.
  */
-export const getUserCurrentPermissionsMedia = <ThrowOnError extends boolean = false>(
+export const getUserCurrentPermissionsMedia = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserCurrentPermissionsMediaData, ThrowOnError>,
 ): RequestResult<
   GetUserCurrentPermissionsMediaResponses,
@@ -10779,7 +10779,7 @@ export const getUserCurrentPermissionsMedia = <ThrowOnError extends boolean = fa
  *
  * Updates current user profile with the details from the request model.
  */
-export const putUserCurrentProfile = <ThrowOnError extends boolean = false>(
+export const putUserCurrentProfile = <ThrowOnError extends boolean = true>(
   options: Options<PutUserCurrentProfileData, ThrowOnError>,
 ): RequestResult<PutUserCurrentProfileResponses, PutUserCurrentProfileErrors, ThrowOnError> =>
   (options.client ?? client).put<
@@ -10801,7 +10801,7 @@ export const putUserCurrentProfile = <ThrowOnError extends boolean = false>(
  *
  * Disables the user accounts identified by the provided Ids.
  */
-export const postUserDisable = <ThrowOnError extends boolean = false>(
+export const postUserDisable = <ThrowOnError extends boolean = true>(
   options: Options<PostUserDisableData, ThrowOnError>,
 ): RequestResult<PostUserDisableResponses, PostUserDisableErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserDisableResponses, PostUserDisableErrors, ThrowOnError>({
@@ -10819,7 +10819,7 @@ export const postUserDisable = <ThrowOnError extends boolean = false>(
  *
  * Enables the user accounts identified by the provided Ids.
  */
-export const postUserEnable = <ThrowOnError extends boolean = false>(
+export const postUserEnable = <ThrowOnError extends boolean = true>(
   options: Options<PostUserEnableData, ThrowOnError>,
 ): RequestResult<PostUserEnableResponses, PostUserEnableErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserEnableResponses, PostUserEnableErrors, ThrowOnError>({
@@ -10837,7 +10837,7 @@ export const postUserEnable = <ThrowOnError extends boolean = false>(
  *
  * Sends invitation emails to create new user accounts with the specified details.
  */
-export const postUserInvite = <ThrowOnError extends boolean = false>(
+export const postUserInvite = <ThrowOnError extends boolean = true>(
   options: Options<PostUserInviteData, ThrowOnError>,
 ): RequestResult<PostUserInviteResponses, PostUserInviteErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserInviteResponses, PostUserInviteErrors, ThrowOnError>({
@@ -10855,7 +10855,7 @@ export const postUserInvite = <ThrowOnError extends boolean = false>(
  *
  * Creates an initial password for a newly invited user using the provided token.
  */
-export const postUserInviteCreatePassword = <ThrowOnError extends boolean = false>(
+export const postUserInviteCreatePassword = <ThrowOnError extends boolean = true>(
   options: Options<PostUserInviteCreatePasswordData, ThrowOnError>,
 ): RequestResult<
   PostUserInviteCreatePasswordResponses,
@@ -10880,7 +10880,7 @@ export const postUserInviteCreatePassword = <ThrowOnError extends boolean = fals
  *
  * Resends the invitation email for the users identified by the provided Ids.
  */
-export const postUserInviteResend = <ThrowOnError extends boolean = false>(
+export const postUserInviteResend = <ThrowOnError extends boolean = true>(
   options: Options<PostUserInviteResendData, ThrowOnError>,
 ): RequestResult<PostUserInviteResendResponses, PostUserInviteResendErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -10902,7 +10902,7 @@ export const postUserInviteResend = <ThrowOnError extends boolean = false>(
  *
  * Verifies that the invitation token is valid for creating a new user account.
  */
-export const postUserInviteVerify = <ThrowOnError extends boolean = false>(
+export const postUserInviteVerify = <ThrowOnError extends boolean = true>(
   options: Options<PostUserInviteVerifyData, ThrowOnError>,
 ): RequestResult<PostUserInviteVerifyResponses, PostUserInviteVerifyErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -10923,7 +10923,7 @@ export const postUserInviteVerify = <ThrowOnError extends boolean = false>(
  *
  * Updates the user group assignments for the specified users.
  */
-export const postUserSetUserGroups = <ThrowOnError extends boolean = false>(
+export const postUserSetUserGroups = <ThrowOnError extends boolean = true>(
   options: Options<PostUserSetUserGroupsData, ThrowOnError>,
 ): RequestResult<PostUserSetUserGroupsResponses, PostUserSetUserGroupsErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -10945,7 +10945,7 @@ export const postUserSetUserGroups = <ThrowOnError extends boolean = false>(
  *
  * Unlocks the user accounts identified by the provided Ids.
  */
-export const postUserUnlock = <ThrowOnError extends boolean = false>(
+export const postUserUnlock = <ThrowOnError extends boolean = true>(
   options: Options<PostUserUnlockData, ThrowOnError>,
 ): RequestResult<PostUserUnlockResponses, PostUserUnlockErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserUnlockResponses, PostUserUnlockErrors, ThrowOnError>({
@@ -10963,7 +10963,7 @@ export const postUserUnlock = <ThrowOnError extends boolean = false>(
  *
  * Gets user-specific data stored for the current authenticated user.
  */
-export const getUserData = <ThrowOnError extends boolean = false>(
+export const getUserData = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserDataData, ThrowOnError>,
 ): RequestResult<GetUserDataResponses, GetUserDataErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetUserDataResponses, GetUserDataErrors, ThrowOnError>({
@@ -10977,7 +10977,7 @@ export const getUserData = <ThrowOnError extends boolean = false>(
  *
  * Creates user-specific data for the current authenticated user with the provided key and value.
  */
-export const postUserData = <ThrowOnError extends boolean = false>(
+export const postUserData = <ThrowOnError extends boolean = true>(
   options: Options<PostUserDataData, ThrowOnError>,
 ): RequestResult<PostUserDataResponses, PostUserDataErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserDataResponses, PostUserDataErrors, ThrowOnError>({
@@ -10995,7 +10995,7 @@ export const postUserData = <ThrowOnError extends boolean = false>(
  *
  * Updates user-specific data for the current authenticated user.
  */
-export const putUserData = <ThrowOnError extends boolean = false>(
+export const putUserData = <ThrowOnError extends boolean = true>(
   options: Options<PutUserDataData, ThrowOnError>,
 ): RequestResult<PutUserDataResponses, PutUserDataErrors, ThrowOnError> =>
   (options.client ?? client).put<PutUserDataResponses, PutUserDataErrors, ThrowOnError>({
@@ -11013,7 +11013,7 @@ export const putUserData = <ThrowOnError extends boolean = false>(
  *
  * Deletes user data identified by the provided Id.
  */
-export const deleteUserDataById = <ThrowOnError extends boolean = false>(
+export const deleteUserDataById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserDataByIdData, ThrowOnError>,
 ): RequestResult<DeleteUserDataByIdResponses, DeleteUserDataByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -11031,7 +11031,7 @@ export const deleteUserDataById = <ThrowOnError extends boolean = false>(
  *
  * Gets user data identified by the provided Id.
  */
-export const getUserDataById = <ThrowOnError extends boolean = false>(
+export const getUserDataById = <ThrowOnError extends boolean = true>(
   options: Options<GetUserDataByIdData, ThrowOnError>,
 ): RequestResult<GetUserDataByIdResponses, GetUserDataByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetUserDataByIdResponses, GetUserDataByIdErrors, ThrowOnError>({
@@ -11045,7 +11045,7 @@ export const getUserDataById = <ThrowOnError extends boolean = false>(
  *
  * Filters user groups based on the provided criteria with support for pagination.
  */
-export const getFilterUserGroup = <ThrowOnError extends boolean = false>(
+export const getFilterUserGroup = <ThrowOnError extends boolean = true>(
   options?: Options<GetFilterUserGroupData, ThrowOnError>,
 ): RequestResult<GetFilterUserGroupResponses, GetFilterUserGroupErrors, ThrowOnError> =>
   (options?.client ?? client).get<
@@ -11063,7 +11063,7 @@ export const getFilterUserGroup = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of user group items identified by the provided Ids.
  */
-export const getItemUserGroup = <ThrowOnError extends boolean = false>(
+export const getItemUserGroup = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemUserGroupData, ThrowOnError>,
 ): RequestResult<GetItemUserGroupResponses, GetItemUserGroupErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemUserGroupResponses, GetItemUserGroupErrors, ThrowOnError>({
@@ -11077,7 +11077,7 @@ export const getItemUserGroup = <ThrowOnError extends boolean = false>(
  *
  * Deletes multiple user groups identified by the provided Ids. This operation cannot be undone.
  */
-export const deleteUserGroup = <ThrowOnError extends boolean = false>(
+export const deleteUserGroup = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserGroupData, ThrowOnError>,
 ): RequestResult<DeleteUserGroupResponses, DeleteUserGroupErrors, ThrowOnError> =>
   (options.client ?? client).delete<DeleteUserGroupResponses, DeleteUserGroupErrors, ThrowOnError>({
@@ -11095,7 +11095,7 @@ export const deleteUserGroup = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all user groups.
  */
-export const getUserGroup = <ThrowOnError extends boolean = false>(
+export const getUserGroup = <ThrowOnError extends boolean = true>(
   options?: Options<GetUserGroupData, ThrowOnError>,
 ): RequestResult<GetUserGroupResponses, GetUserGroupErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetUserGroupResponses, GetUserGroupErrors, ThrowOnError>({
@@ -11109,7 +11109,7 @@ export const getUserGroup = <ThrowOnError extends boolean = false>(
  *
  * Creates a new user group with the configuration specified in the request model.
  */
-export const postUserGroup = <ThrowOnError extends boolean = false>(
+export const postUserGroup = <ThrowOnError extends boolean = true>(
   options: Options<PostUserGroupData, ThrowOnError>,
 ): RequestResult<PostUserGroupResponses, PostUserGroupErrors, ThrowOnError> =>
   (options.client ?? client).post<PostUserGroupResponses, PostUserGroupErrors, ThrowOnError>({
@@ -11127,7 +11127,7 @@ export const postUserGroup = <ThrowOnError extends boolean = false>(
  *
  * Deletes a user group identified by the provided Id.
  */
-export const deleteUserGroupById = <ThrowOnError extends boolean = false>(
+export const deleteUserGroupById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserGroupByIdData, ThrowOnError>,
 ): RequestResult<DeleteUserGroupByIdResponses, DeleteUserGroupByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -11145,7 +11145,7 @@ export const deleteUserGroupById = <ThrowOnError extends boolean = false>(
  *
  * Gets a user group identified by the provided Id.
  */
-export const getUserGroupById = <ThrowOnError extends boolean = false>(
+export const getUserGroupById = <ThrowOnError extends boolean = true>(
   options: Options<GetUserGroupByIdData, ThrowOnError>,
 ): RequestResult<GetUserGroupByIdResponses, GetUserGroupByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetUserGroupByIdResponses, GetUserGroupByIdErrors, ThrowOnError>({
@@ -11159,7 +11159,7 @@ export const getUserGroupById = <ThrowOnError extends boolean = false>(
  *
  * Updates a user group identified by the provided Id with the details from the request model.
  */
-export const putUserGroupById = <ThrowOnError extends boolean = false>(
+export const putUserGroupById = <ThrowOnError extends boolean = true>(
   options: Options<PutUserGroupByIdData, ThrowOnError>,
 ): RequestResult<PutUserGroupByIdResponses, PutUserGroupByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutUserGroupByIdResponses, PutUserGroupByIdErrors, ThrowOnError>({
@@ -11177,7 +11177,7 @@ export const putUserGroupById = <ThrowOnError extends boolean = false>(
  *
  * Removes the specified users from the user group identified by the provided Id.
  */
-export const deleteUserGroupByIdUsers = <ThrowOnError extends boolean = false>(
+export const deleteUserGroupByIdUsers = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserGroupByIdUsersData, ThrowOnError>,
 ): RequestResult<DeleteUserGroupByIdUsersResponses, DeleteUserGroupByIdUsersErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -11199,7 +11199,7 @@ export const deleteUserGroupByIdUsers = <ThrowOnError extends boolean = false>(
  *
  * Adds the specified users to the user group identified by the provided Id.
  */
-export const postUserGroupByIdUsers = <ThrowOnError extends boolean = false>(
+export const postUserGroupByIdUsers = <ThrowOnError extends boolean = true>(
   options: Options<PostUserGroupByIdUsersData, ThrowOnError>,
 ): RequestResult<PostUserGroupByIdUsersResponses, PostUserGroupByIdUsersErrors, ThrowOnError> =>
   (options.client ?? client).post<
@@ -11221,7 +11221,7 @@ export const postUserGroupByIdUsers = <ThrowOnError extends boolean = false>(
  *
  * Gets a collection of webhook items identified by the provided Ids.
  */
-export const getItemWebhook = <ThrowOnError extends boolean = false>(
+export const getItemWebhook = <ThrowOnError extends boolean = true>(
   options?: Options<GetItemWebhookData, ThrowOnError>,
 ): RequestResult<GetItemWebhookResponses, GetItemWebhookErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetItemWebhookResponses, GetItemWebhookErrors, ThrowOnError>({
@@ -11235,7 +11235,7 @@ export const getItemWebhook = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of all webhooks.
  */
-export const getWebhook = <ThrowOnError extends boolean = false>(
+export const getWebhook = <ThrowOnError extends boolean = true>(
   options?: Options<GetWebhookData, ThrowOnError>,
 ): RequestResult<GetWebhookResponses, GetWebhookErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetWebhookResponses, GetWebhookErrors, ThrowOnError>({
@@ -11249,7 +11249,7 @@ export const getWebhook = <ThrowOnError extends boolean = false>(
  *
  * Creates a new webhook with the configuration specified in the request model.
  */
-export const postWebhook = <ThrowOnError extends boolean = false>(
+export const postWebhook = <ThrowOnError extends boolean = true>(
   options: Options<PostWebhookData, ThrowOnError>,
 ): RequestResult<PostWebhookResponses, PostWebhookErrors, ThrowOnError> =>
   (options.client ?? client).post<PostWebhookResponses, PostWebhookErrors, ThrowOnError>({
@@ -11267,7 +11267,7 @@ export const postWebhook = <ThrowOnError extends boolean = false>(
  *
  * Deletes a webhook identified by the provided Id.
  */
-export const deleteWebhookById = <ThrowOnError extends boolean = false>(
+export const deleteWebhookById = <ThrowOnError extends boolean = true>(
   options: Options<DeleteWebhookByIdData, ThrowOnError>,
 ): RequestResult<DeleteWebhookByIdResponses, DeleteWebhookByIdErrors, ThrowOnError> =>
   (options.client ?? client).delete<
@@ -11285,7 +11285,7 @@ export const deleteWebhookById = <ThrowOnError extends boolean = false>(
  *
  * Gets a webhook identified by the provided Id.
  */
-export const getWebhookById = <ThrowOnError extends boolean = false>(
+export const getWebhookById = <ThrowOnError extends boolean = true>(
   options: Options<GetWebhookByIdData, ThrowOnError>,
 ): RequestResult<GetWebhookByIdResponses, GetWebhookByIdErrors, ThrowOnError> =>
   (options.client ?? client).get<GetWebhookByIdResponses, GetWebhookByIdErrors, ThrowOnError>({
@@ -11299,7 +11299,7 @@ export const getWebhookById = <ThrowOnError extends boolean = false>(
  *
  * Updates a webhook identified by the provided Id with the details from the request model.
  */
-export const putWebhookById = <ThrowOnError extends boolean = false>(
+export const putWebhookById = <ThrowOnError extends boolean = true>(
   options: Options<PutWebhookByIdData, ThrowOnError>,
 ): RequestResult<PutWebhookByIdResponses, PutWebhookByIdErrors, ThrowOnError> =>
   (options.client ?? client).put<PutWebhookByIdResponses, PutWebhookByIdErrors, ThrowOnError>({
@@ -11317,7 +11317,7 @@ export const putWebhookById = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of webhook logs for the webhook identified by the provided Id.
  */
-export const getWebhookByIdLogs = <ThrowOnError extends boolean = false>(
+export const getWebhookByIdLogs = <ThrowOnError extends boolean = true>(
   options: Options<GetWebhookByIdLogsData, ThrowOnError>,
 ): RequestResult<GetWebhookByIdLogsResponses, GetWebhookByIdLogsErrors, ThrowOnError> =>
   (options.client ?? client).get<
@@ -11335,7 +11335,7 @@ export const getWebhookByIdLogs = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of available webhook events that can be subscribed to.
  */
-export const getWebhookEvents = <ThrowOnError extends boolean = false>(
+export const getWebhookEvents = <ThrowOnError extends boolean = true>(
   options?: Options<GetWebhookEventsData, ThrowOnError>,
 ): RequestResult<GetWebhookEventsResponses, GetWebhookEventsErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetWebhookEventsResponses, GetWebhookEventsErrors, ThrowOnError>({
@@ -11349,7 +11349,7 @@ export const getWebhookEvents = <ThrowOnError extends boolean = false>(
  *
  * Gets a paginated collection of webhook logs for all webhooks.
  */
-export const getWebhookLogs = <ThrowOnError extends boolean = false>(
+export const getWebhookLogs = <ThrowOnError extends boolean = true>(
   options?: Options<GetWebhookLogsData, ThrowOnError>,
 ): RequestResult<GetWebhookLogsResponses, GetWebhookLogsErrors, ThrowOnError> =>
   (options?.client ?? client).get<GetWebhookLogsResponses, GetWebhookLogsErrors, ThrowOnError>({

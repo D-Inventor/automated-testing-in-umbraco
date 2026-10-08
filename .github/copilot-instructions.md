@@ -1,2 +1,0 @@
-- Answer short and to the point
-- Do NOT repeat what the user asked for
