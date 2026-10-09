@@ -15,7 +15,7 @@ async function getAuthenticationToken(_: Auth): Promise<AuthToken> {
   const clientSecret = process.env.WEBSITE_CLIENTSECRET;
 
   if (!websiteUrl || !clientId || !clientSecret) {
-    throw new Error('WEBSITE_URL, WEBSITE_CLIENTID and WEBSITE_CLIENTSECRET must all be set');
+    return;
   }
 
   // Umbraco's Management API does not support OIDC discovery, so the server metadata is built manually.

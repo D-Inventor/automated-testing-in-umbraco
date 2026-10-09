@@ -1,3 +1,4 @@
+import type { RequestResult } from '../client/client';
 import {
   postDocument,
   putDocumentByIdDomains,
@@ -39,37 +40,43 @@ export class ApiScenario implements Scenario {
     );
 
     for (const item of sortedItems) {
-      const { error, response } = await postDocument({
-        body: convertToContentPostRequest(item),
-      });
-
-      if (error) {
-        throw new ApiError(response, error);
-      }
+      throwOnFailure(
+        await postDocument({
+          body: convertToContentPostRequest(item),
+        }),
+      );
 
       if (item.domains && item.domains.length > 0) {
-        const { error, response } = await putDocumentByIdDomains({
-          path: {
-            id: item.id,
-          },
-          body: {
-            domains: item.domains.map((domain) => ({
-              domainName: domain.url,
-              isoCode: domain.culture,
-            })),
-          },
-        });
-
-        if (error) {
-          throw new ApiError(response, error);
-        }
+        throwOnFailure(
+          await putDocumentByIdDomains({
+            path: {
+              id: item.id,
+            },
+            body: {
+              domains: item.domains.map((domain) => ({
+                domainName: domain.url,
+                isoCode: domain.culture,
+              })),
+            },
+          }),
+        );
       }
     }
   }
 }
 
+function throwOnFailure<T, U>(
+  input: Awaited<RequestResult<T, U, false>>,
+): Awaited<RequestResult<T, U, false>> {
+  if (input.error) {
+    throw new ApiError(input.response, input.error);
+  }
+
+  return input;
+}
+
 function convertToContentPostRequest(item: ContentItem): CreateDocumentRequestModel {
-  return {
+  const result = {
     id: item.id,
     parent: item.parent !== undefined ? convertToReference(item.parent) : null,
     documentType: convertToReference(item.documentType),
@@ -77,6 +84,8 @@ function convertToContentPostRequest(item: ContentItem): CreateDocumentRequestMo
     values: item.values.map(convertToRequestValue),
     variants: item.variants.map(convertToRequestVariant),
   };
+
+  return result;
 }
 
 function convertToReference(id: string): ReferenceByIdModel {

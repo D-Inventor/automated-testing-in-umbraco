@@ -1,11 +1,12 @@
 import test, { expect } from '@playwright/test';
-import { basicScenario, English } from '@scenario/basic-scenario';
+import { basicScenario } from '@scenario/basic-scenario';
+import { Invariant } from 'scenario-builder';
 
 test.describe('homepage', () => {
   test('should display title from content', async ({ page }) => {
     // given
     const { content, scenario } = basicScenario();
-    content.homepage.hasHeader(English, { title: 'welcome to the website' });
+    content.homepage.hasHeader(Invariant, { title: 'welcome to the website' });
     await scenario.build();
 
     // when

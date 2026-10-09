@@ -1,12 +1,9 @@
-import { ApiScenario, InvariantSegment, type Scenario, type Variation } from 'scenario-builder';
+import { ApiScenario, Invariant, type Scenario } from 'scenario-builder';
 import { Homepage } from './domain/homepage';
 import { Website } from './domain/website';
 import { ContentRoot } from './domain/content-root';
 import { SystemPages } from './domain/system-pages';
 import { DetailPage } from './domain/detail-page';
-
-export const EnglishCulture = 'en-US';
-export const English: Variation = { culture: EnglishCulture, segment: InvariantSegment };
 
 type BasicScenario = {
   platform: Website;
@@ -15,51 +12,53 @@ type BasicScenario = {
   systemPages: SystemPages;
 };
 
+export const EnglishCulture: string = 'en-US';
+
 export function basicScenario(): { content: BasicScenario; scenario: Scenario } {
   const scenario = new ApiScenario();
 
   const platform = new Website(scenario);
-  platform.hasVariation(English, 'Test website');
-  platform.isPublishedIn(English);
+  platform.hasVariation(Invariant, 'Test website');
+  platform.isPublishedIn(Invariant);
 
   const systemPages = new SystemPages(scenario);
+  systemPages.hasOrder(2);
   systemPages.hasParent(platform);
-  systemPages.hasVariation(English, 'System pages');
-  systemPages.isPublishedIn(English);
+  systemPages.hasVariation(Invariant, 'System pages');
+  systemPages.isPublishedIn(Invariant);
 
   const notFoundPage = new DetailPage(scenario);
   notFoundPage.hasParent(systemPages);
-  notFoundPage.hasVariation(English, '404 Page not found');
-  notFoundPage.hasHeader(English, {
+  notFoundPage.hasVariation(Invariant, '404 Page not found');
+  notFoundPage.hasHeader(Invariant, {
     title: '404 Page not found',
     intro: 'The content you are looking for does not exist.',
   });
-  notFoundPage.isPublishedIn(English);
+  notFoundPage.isPublishedIn(Invariant);
 
   const serverErrorPage = new DetailPage(scenario);
   serverErrorPage.hasParent(systemPages);
-  serverErrorPage.hasVariation(English, '500 Internal server error');
-  serverErrorPage.hasHeader(English, {
+  serverErrorPage.hasVariation(Invariant, '500 Internal server error');
+  serverErrorPage.hasHeader(Invariant, {
     title: '500 Internal server error',
     intro: 'Something went wrong while fetching this content.',
   });
-  serverErrorPage.isPublishedIn(English);
+  serverErrorPage.isPublishedIn(Invariant);
 
   const website = new ContentRoot(scenario);
-  website.hasVariation(English, 'website');
+  website.hasOrder(1);
+  website.hasVariation(Invariant, 'website');
   website.hasParent(platform);
   website.hasDomain(EnglishCulture, new URL('https://localhost:44356'));
-  website.hasErrorPages(English, {
-    notFound: notFoundPage,
-    serverError: serverErrorPage,
-  });
-  website.isPublishedIn(English);
+  website.isPublishedIn(Invariant);
 
   const homepage = new Homepage(scenario);
   homepage.hasParent(website);
-  homepage.hasVariation(English, 'Homepage');
-  homepage.hasHeader(English, { title: 'Welcome to our website' });
-  homepage.isPublishedIn(English);
+  homepage.hasVariation(Invariant, 'Homepage');
+  homepage.hasHeader(Invariant, { title: 'Welcome to our website' });
+  homepage.isPublishedIn(Invariant);
+
+  website.hasHomepage(Invariant, homepage);
 
   return {
     content: {
