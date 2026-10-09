@@ -9,7 +9,8 @@ export class Homepage extends ContentPage {
   constructor(scenario: Scenario) {
     super(scenario, 'f0cf962b-6398-477c-aa04-e4fbb4d69162');
   }
-  public hasHeader(_variation: Variation, _header: HomepageHeader): Homepage {
+  public hasHeader(variation: Variation, header: HomepageHeader): Homepage {
+    this.hasValue(variation, 'title', header.title);
     return this;
   }
 }

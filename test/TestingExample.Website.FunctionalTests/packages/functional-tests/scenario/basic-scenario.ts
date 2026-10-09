@@ -31,7 +31,6 @@ export function basicScenario(): { content: BasicScenario; scenario: Scenario } 
   notFoundPage.hasParent(systemPages);
   notFoundPage.hasVariation(Invariant, '404 Page not found');
   notFoundPage.hasHeader(Invariant, {
-    title: '404 Page not found',
     intro: 'The content you are looking for does not exist.',
   });
   notFoundPage.isPublishedIn(Invariant);
@@ -40,7 +39,6 @@ export function basicScenario(): { content: BasicScenario; scenario: Scenario } 
   serverErrorPage.hasParent(systemPages);
   serverErrorPage.hasVariation(Invariant, '500 Internal server error');
   serverErrorPage.hasHeader(Invariant, {
-    title: '500 Internal server error',
     intro: 'Something went wrong while fetching this content.',
   });
   serverErrorPage.isPublishedIn(Invariant);
@@ -49,7 +47,7 @@ export function basicScenario(): { content: BasicScenario; scenario: Scenario } 
   website.hasOrder(1);
   website.hasVariation(Invariant, 'website');
   website.hasParent(platform);
-  website.hasDomain(EnglishCulture, new URL('https://localhost:44356'));
+  website.hasDomain(EnglishCulture, new URL('https://localhost:44376'));
   website.isPublishedIn(Invariant);
 
   const homepage = new Homepage(scenario);
