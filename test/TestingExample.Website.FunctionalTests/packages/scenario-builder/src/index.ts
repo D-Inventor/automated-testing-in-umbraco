@@ -1,6 +1,5 @@
 export { ApiScenario } from './scenario/scenario';
 export { ContentPage } from './domain/content-page';
-export { setupClient } from './setup';
 
 export type { Scenario } from './scenario/scenario';
 export type { ContentItem } from './scenario/content-item';

@@ -1,4 +1,3 @@
-import { setupClient } from 'scenario-builder';
 import { test as setup } from '@playwright/test';
 
 setup('Setup connection with the server', async () => {
@@ -8,8 +7,6 @@ setup('Setup connection with the server', async () => {
   // - Initialize database
   // - Set environment variables
   // - Seed test data
-
-  await setupClient();
 
   console.log('✓ Global setup completed successfully');
 });

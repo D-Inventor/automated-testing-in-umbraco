@@ -14,7 +14,7 @@ class ApiError extends Error {
     error: unknown,
   ) {
     super(
-      `Response failed [${response?.status}: ${response?.statusText}]\n${JSON.stringify(error)}`,
+      `Response failed [${response?.status}: ${response?.statusText}]\n${JSON.stringify(error, null, 2)}`,
     );
     this.name = 'ApiError';
   }
