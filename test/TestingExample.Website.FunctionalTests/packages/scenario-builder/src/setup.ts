@@ -3,14 +3,15 @@ import type { AuthToken } from './client/core/auth.gen';
 import * as openidclient from 'openid-client';
 
 export async function setupClient() {
-  client.setConfig({
-    baseUrl: process.env.WEBSITE_URL,
-  });
-
   const token = await getAuthenticationToken();
   client.interceptors.request.use((request) => {
     request.headers.set('Authorization', `Bearer ${token}`);
     return request;
+  });
+
+  client.interceptors.response.use((response, request) => {
+    if (response.status >= 400) console.log(response, request);
+    return response;
   });
 }
 

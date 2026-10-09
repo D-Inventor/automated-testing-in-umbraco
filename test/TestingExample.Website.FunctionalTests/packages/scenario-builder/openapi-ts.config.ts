@@ -6,7 +6,11 @@ export default defineConfig({
   plugins: [
     {
       name: '@hey-api/client-fetch',
-      throwOnError: true,
+      throwOnError: false,
+      runtimeConfigPath: './src/client-config.ts',
     },
+    '@hey-api/sdk',
+    '@hey-api/schemas',
+    'msw',
   ],
 });

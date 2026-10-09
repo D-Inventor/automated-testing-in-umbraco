@@ -8,6 +8,18 @@ import {
 } from '../client';
 import type { ContentItem, ContentItemValue, ContentItemVariant } from './content-item';
 
+class ApiError extends Error {
+  constructor(
+    public response: Response | undefined,
+    error: unknown,
+  ) {
+    super(
+      `Response failed [${response?.status}: ${response?.statusText}]\n${JSON.stringify(error)}`,
+    );
+    this.name = 'ApiError';
+  }
+}
+
 export interface Scenario {
   add(content: ContentItem): void;
 
@@ -27,12 +39,16 @@ export class ApiScenario implements Scenario {
     );
 
     for (const item of sortedItems) {
-      await postDocument({
+      const { error, response } = await postDocument({
         body: convertToContentPostRequest(item),
       });
 
+      if (error) {
+        throw new ApiError(response, error);
+      }
+
       if (item.domains && item.domains.length > 0) {
-        await putDocumentByIdDomains({
+        const { error, response } = await putDocumentByIdDomains({
           path: {
             id: item.id,
           },
@@ -43,6 +59,10 @@ export class ApiScenario implements Scenario {
             })),
           },
         });
+
+        if (error) {
+          throw new ApiError(response, error);
+        }
       }
     }
   }

@@ -6,15 +6,10 @@ test.describe('homepage', () => {
     // given
     const { content, scenario } = basicScenario();
     content.homepage.hasHeader(English, { title: 'welcome to the website' });
-    try {
-      await scenario.build();
-    } catch (error) {
-      const stack = error.stack;
-      console.log(error);
-    }
+    await scenario.build();
 
     // when
-    await page.goto('https://localhost:44356/');
+    await page.goto('https://localhost:44376/');
 
     // then
     await expect(page).toHaveTitle('welcome to the website');
