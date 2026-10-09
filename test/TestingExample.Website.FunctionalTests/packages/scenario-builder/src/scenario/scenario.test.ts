@@ -3,27 +3,22 @@ import { ApiScenario } from './scenario';
 import type { ContentItem } from './content-item';
 import { cultureVariant } from '../domain/variation';
 import { ContentPage, type Scenario } from '../domain/content-page';
-import { afterAll, afterEach, beforeAll, vi } from 'vitest';
-import { setupServer } from 'msw/node';
-import { createMswHandlers } from '../client/msw.gen';
+import { afterAll, beforeAll, beforeEach } from 'vitest';
 import { client } from '../client/client.gen';
+import { UmbracoClient } from './fixtures/umbraco-client';
 
-const BASE_URL = 'https://localhost:3000';
-const handlers = createMswHandlers({ baseUrl: BASE_URL });
-const server = setupServer();
+const umbracoClient = new UmbracoClient();
 
 beforeAll(() => {
-  client.setConfig({ baseUrl: BASE_URL });
-  server.listen({ onUnhandledFrame: 'error' });
+  umbracoClient.initialize(client);
 });
 
-afterEach(() => {
-  server.resetHandlers();
-  vi.clearAllMocks();
+beforeEach(() => {
+  umbracoClient.reset();
 });
 
 afterAll(() => {
-  server.close();
+  umbracoClient.close();
 });
 
 class TestContentType extends ContentPage {
@@ -38,16 +33,6 @@ describe('Scenario', () => {
   it('should create new content items', async () => {
     // given
     const contentId = 'e5de3c64-30bb-47e5-9705-43b078515c4f';
-    let capturedBody: unknown;
-    server.use(
-      handlers.pick.postDocument(({ request }) => {
-        return request.json().then((body) => {
-          capturedBody = body;
-          return new Response(undefined, { status: 201 });
-        });
-      }),
-    );
-
     const scenario = new ApiScenario();
 
     // when
@@ -77,7 +62,7 @@ describe('Scenario', () => {
     await scenario.build();
 
     // then
-    expect(capturedBody).toEqual({
+    expect(umbracoClient.lastPostDocument).toEqual({
       id: contentId,
       parent: { id: '7c0aa964-8deb-4c09-acfe-c5a4b56a498b' },
       documentType: { id: 'a654b58b-3abf-4162-a21f-34892ba27508' },
@@ -103,34 +88,24 @@ describe('Scenario', () => {
   it('should create new domains', async () => {
     // given
     const contentId = 'c9a7115f-11c7-410f-98eb-a48f0da125cb';
-    let capturedDomainBody: unknown;
-    server.use(
-      handlers.pick.postDocument(() => {
-        return new Response(undefined, { status: 201 });
-      }),
-      handlers.pick.putDocumentByIdDomains(({ request }) => {
-        return request.json().then((body) => {
-          capturedDomainBody = body;
-          return new Response(undefined, { status: 200 });
-        });
+    const scenario = new ApiScenario();
+    scenario.add(
+      createMinimalContentItem({
+        id: contentId,
+        domains: [
+          {
+            culture: 'nl',
+            url: 'https://localhost:44384/',
+          },
+        ],
       }),
     );
-
-    const scenario = new ApiScenario();
-    const contentItem = createMinimalContentItem({ id: contentId });
-    contentItem.domains = [
-      {
-        culture: 'nl',
-        url: 'https://localhost:44384/',
-      },
-    ];
-    scenario.add(contentItem);
 
     // when
     await scenario.build();
 
     // then
-    expect(capturedDomainBody).toEqual({
+    expect(umbracoClient.lastPutDomains).toEqual({
       domains: [
         {
           domainName: 'https://localhost:44384/',
@@ -142,16 +117,6 @@ describe('Scenario', () => {
 
   it('should create content items in order of level', async () => {
     // given
-    const callOrder: (string | null | undefined)[] = [];
-    server.use(
-      handlers.pick.postDocument(({ request }) => {
-        return request.json().then((body) => {
-          callOrder.push(body.id);
-          return new Response(undefined, { status: 201 });
-        });
-      }),
-    );
-
     const apiScenario = new ApiScenario();
     const child = new TestContentType(apiScenario);
     const parent = new TestContentType(apiScenario);
@@ -164,24 +129,14 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(callOrder).toHaveLength(3);
-    expect(callOrder[0]).toBe(grandparent.id); // level 0 created first
-    expect(callOrder[1]).toBe(parent.id); // level 1 created second
-    expect(callOrder[2]).toBe(child.id); // level 2 created third
+    expect(umbracoClient.postedDocumentIds).toHaveLength(3);
+    expect(umbracoClient.postedDocumentIds[0]).toBe(grandparent.id); // level 0 created first
+    expect(umbracoClient.postedDocumentIds[1]).toBe(parent.id); // level 1 created second
+    expect(umbracoClient.postedDocumentIds[2]).toBe(child.id); // level 2 created third
   });
 
   it('should sort items by level', async () => {
     // given
-    const callOrder: (string | null | undefined)[] = [];
-    server.use(
-      handlers.pick.postDocument(({ request }) => {
-        return request.json().then((body) => {
-          callOrder.push(body.id);
-          return new Response(undefined, { status: 201 });
-        });
-      }),
-    );
-
     const apiScenario = new ApiScenario();
     const level0Item = new TestContentType(apiScenario);
     const level1Item = new TestContentType(apiScenario);
@@ -191,23 +146,13 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(callOrder).toHaveLength(2);
-    expect(callOrder[0]).toBe(level0Item.id);
-    expect(callOrder[1]).toBe(level1Item.id);
+    expect(umbracoClient.postedDocumentIds).toHaveLength(2);
+    expect(umbracoClient.postedDocumentIds[0]).toBe(level0Item.id);
+    expect(umbracoClient.postedDocumentIds[1]).toBe(level1Item.id);
   });
 
   it('should sort items by order when at the same level', async () => {
     // given
-    const callOrder: (string | null | undefined)[] = [];
-    server.use(
-      handlers.pick.postDocument(({ request }) => {
-        return request.json().then((body) => {
-          callOrder.push(body.id);
-          return new Response(undefined, { status: 201 });
-        });
-      }),
-    );
-
     const apiScenario = new ApiScenario();
     const parent = new TestContentType(apiScenario);
 
@@ -223,24 +168,14 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(callOrder).toHaveLength(3);
-    expect(callOrder[0]).toBe(parent.id); // level 0
-    expect(callOrder[1]).toBe(secondChild.id); // level 1, order 1
-    expect(callOrder[2]).toBe(firstChild.id); // level 1, order 2
+    expect(umbracoClient.postedDocumentIds).toHaveLength(3);
+    expect(umbracoClient.postedDocumentIds[0]).toBe(parent.id); // level 0
+    expect(umbracoClient.postedDocumentIds[1]).toBe(secondChild.id); // level 1, order 1
+    expect(umbracoClient.postedDocumentIds[2]).toBe(firstChild.id); // level 1, order 2
   });
 
   it('should prioritize level over order in sorting', async () => {
     // given
-    const callOrder: (string | null | undefined)[] = [];
-    server.use(
-      handlers.pick.postDocument(({ request }) => {
-        return request.json().then((body) => {
-          callOrder.push(body.id);
-          return new Response(undefined, { status: 201 });
-        });
-      }),
-    );
-
     const apiScenario = new ApiScenario();
     const grandparent = new TestContentType(apiScenario);
 
@@ -256,20 +191,17 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(callOrder).toHaveLength(3);
-    expect(callOrder[0]).toBe(grandparent.id); // level 0
-    expect(callOrder[1]).toBe(parent.id); // level 1, order 99
-    expect(callOrder[2]).toBe(child.id); // level 2, order 1
+    expect(umbracoClient.postedDocumentIds).toHaveLength(3);
+    expect(umbracoClient.postedDocumentIds[0]).toBe(grandparent.id); // level 0
+    expect(umbracoClient.postedDocumentIds[1]).toBe(parent.id); // level 1, order 99
+    expect(umbracoClient.postedDocumentIds[2]).toBe(child.id); // level 2, order 1
   });
 
   it('should throw when postDocument fails', async () => {
     // given
-    const errorMessage = 'Failed to post the document';
-    server.use(
-      handlers.pick.postDocument(() => {
-        return new Response(JSON.stringify({ message: errorMessage }), {
-          status: 500,
-        });
+    umbracoClient.postDocumentResponse(
+      new Response(JSON.stringify({ message: 'Failed to post the document' }), {
+        status: 500,
       }),
     );
 
@@ -282,16 +214,9 @@ describe('Scenario', () => {
 
   it('should throw when putDocumentByIdDomains fails', async () => {
     // given
-    const errorMessage = 'Failed to configure domains';
-    server.use(
-      handlers.pick.postDocument({
-        body: undefined,
-        status: 201,
-      }),
-      handlers.pick.putDocumentByIdDomains(() => {
-        return new Response(JSON.stringify({ message: errorMessage }), {
-          status: 500,
-        });
+    umbracoClient.putDomainsResponse(
+      new Response(JSON.stringify({ message: 'Failed to configure domains' }), {
+        status: 500,
       }),
     );
 
