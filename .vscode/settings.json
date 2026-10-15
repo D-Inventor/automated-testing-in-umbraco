@@ -13,4 +13,5 @@
     ],
     "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
     "chat.useAgentSkills": true,
+    "chat.agentHost.agentDebugLog.enabled": true,
 }

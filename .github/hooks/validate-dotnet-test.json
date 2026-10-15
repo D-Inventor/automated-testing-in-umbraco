@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": ".github/hooks/validate-dotnet-test.ps1"
+      }
+    ]
+  }
+}
