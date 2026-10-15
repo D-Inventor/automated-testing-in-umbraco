@@ -1,9 +1,5 @@
 import type { RequestResult } from '../client/client';
-import {
-  postDocument,
-  putDocumentByIdDomains,
-  putDocumentByIdPublish,
-} from '../client';
+import { postDocument, putDocumentByIdDomains, putDocumentByIdPublish } from '../client';
 import type { ContentItem } from './content-item';
 import { convertToContentPostRequest } from './mappers';
 
@@ -37,7 +33,31 @@ export class ApiScenario implements Scenario {
       (a, b) => (a.level ?? 0) - (b.level ?? 0) || (a.order ?? 0) - (b.order ?? 0),
     );
 
-    // Post all documents first
+    await this.createContentTree(sortedItems);
+
+    await this.publishContentTree(sortedItems);
+  }
+
+  private async publishContentTree(sortedItems: ContentItem[]) {
+    for (const item of sortedItems) {
+      if (item.published && item.published.length > 0) {
+        throwOnFailure(
+          await putDocumentByIdPublish({
+            path: {
+              id: item.id,
+            },
+            body: {
+              publishSchedules: item.published.map((variation) => ({
+                culture: variation.culture,
+              })),
+            },
+          }),
+        );
+      }
+    }
+  }
+
+  private async createContentTree(sortedItems: ContentItem[]) {
     for (const item of sortedItems) {
       throwOnFailure(
         await postDocument({
@@ -55,24 +75,6 @@ export class ApiScenario implements Scenario {
               domains: item.domains.map((domain) => ({
                 domainName: domain.url,
                 isoCode: domain.culture,
-              })),
-            },
-          }),
-        );
-      }
-    }
-
-    // Publish documents after all have been posted
-    for (const item of sortedItems) {
-      if (item.published && item.published.length > 0) {
-        throwOnFailure(
-          await putDocumentByIdPublish({
-            path: {
-              id: item.id,
-            },
-            body: {
-              publishSchedules: item.published.map((variation) => ({
-                culture: variation.culture,
               })),
             },
           }),
