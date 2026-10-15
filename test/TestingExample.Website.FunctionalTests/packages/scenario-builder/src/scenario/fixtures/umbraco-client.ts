@@ -10,8 +10,11 @@ export class UmbracoClient {
 
   private _postDocumentRequests: CreateDocumentRequestModel[];
   private _putDomainsRequests: UpdateDomainsRequestModel[];
+  private _publishDocumentIds: string[];
+  private _operationOrder: Array<'post' | 'publish'>;
   private _postDocumentResponse?: Response;
   private _putDomainsResponse?: Response;
+  private _putPublishResponse?: Response;
 
   constructor() {
     this.BASE_URL = 'https://localhost:3000';
@@ -20,6 +23,8 @@ export class UmbracoClient {
 
     this._postDocumentRequests = [];
     this._putDomainsRequests = [];
+    this._publishDocumentIds = [];
+    this._operationOrder = [];
   }
 
   public get lastPostDocument(): CreateDocumentRequestModel | undefined {
@@ -34,12 +39,24 @@ export class UmbracoClient {
     return this._postDocumentRequests.map((req) => req.id);
   }
 
+  public get publishedDocumentIds(): string[] {
+    return this._publishDocumentIds;
+  }
+
+  public get operationOrder(): Array<'post' | 'publish'> {
+    return this._operationOrder;
+  }
+
   public postDocumentResponse(value: Response) {
     this._postDocumentResponse = value;
   }
 
   public putDomainsResponse(value: Response) {
     this._putDomainsResponse = value;
+  }
+
+  public putPublishResponse(value: Response) {
+    this._putPublishResponse = value;
   }
 
   public initialize(client: Client) {
@@ -51,12 +68,16 @@ export class UmbracoClient {
     this.server.resetHandlers();
     this._postDocumentRequests = [];
     this._putDomainsRequests = [];
+    this._publishDocumentIds = [];
+    this._operationOrder = [];
     this._postDocumentResponse = undefined;
     this._putDomainsResponse = undefined;
+    this._putPublishResponse = undefined;
     this.server.use(
       this.handlers.pick.postDocument(({ request }) => {
         return request.json().then((body) => {
           this._postDocumentRequests.push(body);
+          this._operationOrder.push('post');
           return this._postDocumentResponse ?? new Response(undefined, { status: 201 });
         });
       }),
@@ -65,6 +86,11 @@ export class UmbracoClient {
           this._putDomainsRequests.push(body);
           return this._putDomainsResponse ?? new Response(undefined, { status: 200 });
         });
+      }),
+      this.handlers.pick.putDocumentByIdPublish(({ request, params }) => {
+        this._publishDocumentIds.push(params.id as string);
+        this._operationOrder.push('publish');
+        return this._putPublishResponse ?? new Response(undefined, { status: 200 });
       }),
     );
   }

@@ -5,6 +5,7 @@ import { ContentPage, type Scenario } from '../domain/content-page';
 import { afterAll, beforeAll, beforeEach } from 'vitest';
 import { client } from '../client/client.gen';
 import { UmbracoClient } from './fixtures/umbraco-client';
+import { Invariant } from '../domain/variation';
 
 const umbracoClient = new UmbracoClient();
 
@@ -127,7 +128,39 @@ describe('Scenario', () => {
     // when & then
     await expect(apiScenario.build()).rejects.toThrow();
   });
+
+  it('should publish documents in the same order as posting them', async () => {
+    // given
+    const apiScenario = new ApiScenario();
+    const first = createTestContentType(apiScenario, { published: true });
+    const second = createTestContentType(apiScenario, { published: true });
+    const third = createTestContentType(apiScenario, { published: true });
+
+    // when
+    await apiScenario.build();
+
+    // then
+    expect(umbracoClient.publishedDocumentIds).toEqual([first.id, second.id, third.id]);
+  });
+
+  it('should publish content after ALL content has been posted', async () => {
+    // given
+    const apiScenario = new ApiScenario();
+    createTestContentType(apiScenario, { published: true });
+    createTestContentType(apiScenario, { published: true });
+    createTestContentType(apiScenario, { published: true });
+
+    // when
+    await apiScenario.build();
+
+    // then
+    const lastPostIndex = umbracoClient.operationOrder.lastIndexOf('post');
+    const firstPublishIndex = umbracoClient.operationOrder.indexOf('publish');
+    
+    expect(lastPostIndex).toBeLessThan(firstPublishIndex);
+  });
 });
+
 
 class TestContentType extends ContentPage {
   public static contenttype = 'fd4a241b-f3fe-4870-81cd-58fa96f029b9';
@@ -140,6 +173,7 @@ class TestContentType extends ContentPage {
 interface TestContentTypeOptions {
   parent?: TestContentType;
   order?: number;
+  published?: boolean;
 }
 
 function http500Response(message: string): Response {
@@ -158,6 +192,10 @@ function createTestContentType(
   }
   if (options?.order !== undefined) {
     item.hasOrder(options.order);
+  }
+  if (options?.published) {
+    item.hasVariation(Invariant, 'Invariant');
+    item.isPublishedIn(Invariant);
   }
   return item;
 }
