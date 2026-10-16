@@ -67,7 +67,7 @@ describe('Scenario', () => {
     expect(scenarioClient.createdItemIds).toEqual([grandparent.id, parent.id, child.id]);
   });
 
-  it('should create, then publish, then backfill urls', async () => {
+  it('should call operations in correct order', async () => {
     // given
     const apiScenario = new ApiScenario();
     createTestContentType(apiScenario);
@@ -76,7 +76,7 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(scenarioClient.operationOrder).toEqual(['create', 'publish', 'backfill']);
+    expect(scenarioClient.operationOrder).toEqual(['clean', 'create', 'publish', 'backfill']);
   });
 });
 

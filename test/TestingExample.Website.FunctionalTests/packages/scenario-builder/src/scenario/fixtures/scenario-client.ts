@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 import type { ContentItem } from '../content-item';
-import { backfillContentUrls, createContentTree, publishContentTree } from '../scenario-client';
+import { backfillContentUrls, clearExistingContent, createContentTree, publishContentTree } from '../scenario-client';
 
-type Operation = 'create' | 'publish' | 'backfill';
+type Operation = 'clean' | 'create' | 'publish' | 'backfill';
 
 export class ScenarioClient {
   private _operationOrder: Operation[] = [];
@@ -34,6 +34,11 @@ export class ScenarioClient {
   public reset() {
     this._operationOrder = [];
 
+    vi.mocked(clearExistingContent)
+      .mockReset()
+      .mockImplementation(async () => {
+        this._operationOrder.push('clean');
+      });
     vi.mocked(createContentTree)
       .mockReset()
       .mockImplementation(async () => {

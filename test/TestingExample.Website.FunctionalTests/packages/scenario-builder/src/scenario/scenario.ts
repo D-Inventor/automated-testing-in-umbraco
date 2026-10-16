@@ -1,5 +1,5 @@
 import type { ContentItem } from './content-item';
-import { backfillContentUrls, createContentTree, publishContentTree } from './scenario-client';
+import { backfillContentUrls, clearExistingContent, createContentTree, publishContentTree } from './scenario-client';
 
 export interface Scenario {
   add(content: ContentItem): void;
@@ -15,6 +15,8 @@ export class ApiScenario implements Scenario {
   }
 
   public async build(): Promise<void> {
+    await clearExistingContent();
+
     const sortedItems = Object.values(this.added).sort(
       (a, b) => (a.level ?? 0) - (b.level ?? 0) || (a.order ?? 0) - (b.order ?? 0),
     );
