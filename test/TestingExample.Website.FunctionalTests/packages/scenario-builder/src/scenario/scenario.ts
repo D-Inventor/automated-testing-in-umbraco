@@ -1,7 +1,13 @@
 import type { RequestResult } from '../client/client';
-import { postDocument, putDocumentByIdDomains, putDocumentByIdPublish } from '../client';
+import {
+  getDocumentUrls,
+  postDocument,
+  putDocumentByIdDomains,
+  putDocumentByIdPublish,
+} from '../client';
 import type { ContentItem } from './content-item';
 import { convertToContentPostRequest } from './mappers';
+import { client } from '@/client/client.gen';
 
 class ApiError extends Error {
   constructor(
@@ -36,6 +42,29 @@ export class ApiScenario implements Scenario {
     await this.createContentTree(sortedItems);
 
     await this.publishContentTree(sortedItems);
+
+    await this.fetchContentUrls(sortedItems);
+  }
+
+  private async fetchContentUrls(sortedItems: ContentItem[]) {
+    const result = throwOnFailure(
+      await getDocumentUrls({
+        query: {
+          id: sortedItems.map((item) => item.id),
+        },
+      }),
+    );
+
+    result.data?.forEach((urlInfo) => {
+      const contentItem = sortedItems.find((item) => item.id === urlInfo.id);
+      if (contentItem)
+        contentItem.urls = urlInfo.urlInfos
+          .filter((info) => !!info.url)
+          .map((info) => ({
+            culture: info.culture,
+            url: new URL(info.url!, client.getConfig().baseUrl),
+          }));
+    });
   }
 
   private async publishContentTree(sortedItems: ContentItem[]) {

@@ -4,9 +4,10 @@ export type Variation = {
 };
 
 export const InvariantCulture = null;
+export type LanguageCulture = string;
 
 // TODO: what is the actual format for culture?
-export type Culture = string | typeof InvariantCulture;
+export type Culture = LanguageCulture | typeof InvariantCulture;
 
 export const InvariantSegment = null;
 

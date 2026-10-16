@@ -5,6 +5,7 @@ export type { Scenario } from './scenario/scenario';
 export type { ContentItem } from './scenario/content-item';
 export {
   type Variation,
+  type LanguageCulture,
   type Culture,
   type Segment,
   Invariant,

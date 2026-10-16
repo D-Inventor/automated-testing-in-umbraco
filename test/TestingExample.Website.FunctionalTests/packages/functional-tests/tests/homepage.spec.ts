@@ -10,9 +10,9 @@ test.describe('homepage', () => {
     await scenario.build();
 
     // when
-    await page.goto('https://localhost:44376/');
+    await page.goto(content.website.url('en-US').toString());
 
     // then
-    await expect(page).toHaveTitle('welcome to the website');
+    await expect(page.locator('h1').innerText()).resolves.toBe('welcome to the website');
   });
 });

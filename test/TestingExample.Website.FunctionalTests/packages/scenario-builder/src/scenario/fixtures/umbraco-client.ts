@@ -1,7 +1,13 @@
-import type { CreateDocumentRequestModel, UpdateDomainsRequestModel } from '@/client';
+import type {
+  CreateDocumentRequestModel,
+  DocumentUrlInfoModel,
+  UpdateDomainsRequestModel,
+} from '@/client';
 import type { Client } from '@/client/client';
 import { createMswHandlers, type CreateMswHandlersResult } from '@/client/msw.gen';
 import { setupServer, type SetupServer } from 'msw/node';
+import type { LanguageCulture } from '@/domain/variation';
+import { HttpResponse } from 'msw';
 
 export class UmbracoClient {
   private handlers: CreateMswHandlersResult;
@@ -11,10 +17,11 @@ export class UmbracoClient {
   private _postDocumentRequests: CreateDocumentRequestModel[];
   private _putDomainsRequests: UpdateDomainsRequestModel[];
   private _publishDocumentIds: string[];
-  private _operationOrder: Array<'post' | 'publish'>;
+  private _operationOrder: Array<'post' | 'publish' | 'fetchUrls'>;
   private _postDocumentResponse?: Response;
   private _putDomainsResponse?: Response;
   private _putPublishResponse?: Response;
+  private _contentUrlsResponses: Map<string, DocumentUrlInfoModel[]>;
 
   constructor() {
     this.BASE_URL = 'https://localhost:3000';
@@ -25,6 +32,7 @@ export class UmbracoClient {
     this._putDomainsRequests = [];
     this._publishDocumentIds = [];
     this._operationOrder = [];
+    this._contentUrlsResponses = new Map();
   }
 
   public get lastPostDocument(): CreateDocumentRequestModel | undefined {
@@ -43,7 +51,7 @@ export class UmbracoClient {
     return this._publishDocumentIds;
   }
 
-  public get operationOrder(): Array<'post' | 'publish'> {
+  public get operationOrder(): Array<'post' | 'publish' | 'fetchUrls'> {
     return this._operationOrder;
   }
 
@@ -57,6 +65,21 @@ export class UmbracoClient {
 
   public putPublishResponse(value: Response) {
     this._putPublishResponse = value;
+  }
+
+  public contentUrlsResponse(contentId: string, culture: LanguageCulture, urls: string[]) {
+    let infos = this._contentUrlsResponses.get(contentId) ?? [];
+
+    infos = infos.filter((info) => info.culture !== culture);
+    urls.forEach((url) =>
+      infos.push({ culture: culture, message: null, provider: 'umbDocumentUrlProvider', url: url }),
+    );
+
+    this._contentUrlsResponses.set(contentId, infos);
+  }
+
+  public absoluteUrl(relativeUrl: string): URL {
+    return new URL(relativeUrl, this.BASE_URL);
   }
 
   public initialize(client: Client) {
@@ -73,6 +96,7 @@ export class UmbracoClient {
     this._postDocumentResponse = undefined;
     this._putDomainsResponse = undefined;
     this._putPublishResponse = undefined;
+    this._contentUrlsResponses.clear();
     this.server.use(
       this.handlers.pick.postDocument(({ request }) => {
         return request.json().then((body) => {
@@ -87,10 +111,21 @@ export class UmbracoClient {
           return this._putDomainsResponse ?? new Response(undefined, { status: 200 });
         });
       }),
-      this.handlers.pick.putDocumentByIdPublish(({ request, params }) => {
+      this.handlers.pick.putDocumentByIdPublish(({ params }) => {
         this._publishDocumentIds.push(params.id as string);
         this._operationOrder.push('publish');
         return this._putPublishResponse ?? new Response(undefined, { status: 200 });
+      }),
+      this.handlers.pick.getDocumentUrls(({ request }) => {
+        const searchParams = new URL(request.url).searchParams;
+        const ids = searchParams.getAll('id');
+
+        const responseModel = ids.map((id) => ({
+          id: id,
+          urlInfos: this._contentUrlsResponses.get(id) ?? [],
+        }));
+
+        return HttpResponse.json(responseModel, { status: 200 });
       }),
     );
   }

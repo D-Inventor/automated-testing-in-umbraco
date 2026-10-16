@@ -1,7 +1,7 @@
-import type { Variation } from '../domain/variation';
+import type { LanguageCulture, Variation } from '../domain/variation';
 
 export type ContentItemDomain = {
-  culture: string;
+  culture: LanguageCulture;
   url: string;
 };
 
@@ -14,6 +14,7 @@ export type ContentItem = {
   variants: ContentItemVariant[];
   domains: ContentItemDomain[];
   published: Variation[];
+  urls: { culture: LanguageCulture; url: URL }[];
   level: number;
   order: number;
 };

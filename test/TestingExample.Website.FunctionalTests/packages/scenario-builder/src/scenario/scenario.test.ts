@@ -156,11 +156,37 @@ describe('Scenario', () => {
     // then
     const lastPostIndex = umbracoClient.operationOrder.lastIndexOf('post');
     const firstPublishIndex = umbracoClient.operationOrder.indexOf('publish');
-    
+
     expect(lastPostIndex).toBeLessThan(firstPublishIndex);
   });
-});
 
+  it('should populate urls for published content in invariant culture', async () => {
+    // given
+    const apiScenario = new ApiScenario();
+    const item = createTestContentType(apiScenario, { published: true });
+    umbracoClient.contentUrlsResponse(item.id, 'en', ['https://example.com/home']);
+
+    // when
+    await apiScenario.build();
+
+    // then
+    expect(item.url('en')).toEqual(new URL('https://example.com/home'));
+  });
+
+  it('should make relative URLs absolute', async () => {
+    // given
+    const apiScenario = new ApiScenario();
+    const item = createTestContentType(apiScenario, { published: true });
+    umbracoClient.contentUrlsResponse(item.id, 'en', ['/home']);
+    const expectedUrl = umbracoClient.absoluteUrl('/home');
+
+    // when
+    await apiScenario.build();
+
+    // then
+    expect(item.url('en')).toEqual(expectedUrl);
+  });
+});
 
 class TestContentType extends ContentPage {
   public static contenttype = 'fd4a241b-f3fe-4870-81cd-58fa96f029b9';
@@ -174,6 +200,7 @@ interface TestContentTypeOptions {
   parent?: TestContentType;
   order?: number;
   published?: boolean;
+  culture?: { culture: string; segment: null };
 }
 
 function http500Response(message: string): Response {
@@ -197,6 +224,10 @@ function createTestContentType(
     item.hasVariation(Invariant, 'Invariant');
     item.isPublishedIn(Invariant);
   }
+  if (options?.culture) {
+    item.hasVariation(options.culture, options.culture.culture);
+    item.isPublishedIn(options.culture);
+  }
   return item;
 }
 
@@ -208,6 +239,7 @@ function createMinimalContentItem(values: Partial<ContentItem>): ContentItem {
     variants: [],
     domains: [],
     published: [],
+    urls: [],
     level: 0,
     order: 0,
     ...values,

@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import type { ContentItem } from '../scenario/content-item';
-import type { Variation } from './variation';
+import type { LanguageCulture, Variation } from './variation';
 
 export interface Scenario {
   add(content: ContentItem): void;
@@ -22,6 +22,7 @@ export class ContentPage {
       variants: [],
       domains: [],
       published: [],
+      urls: [],
       level: 0,
       order: 0,
     };
@@ -68,7 +69,14 @@ export class ContentPage {
     return this.contentItem.order;
   }
 
-  hasDomain(culture: string, url: URL): void {
+  url(culture: LanguageCulture): URL {
+    const result = this.contentItem.urls.find((url) => url.culture === culture)?.url;
+    if (!result) throw new Error(`This content does not have a URL for culture: ${culture}`);
+
+    return result;
+  }
+
+  hasDomain(culture: LanguageCulture, url: URL): void {
     this.contentItem.domains!.push({ culture, url: url.toString() });
   }
 

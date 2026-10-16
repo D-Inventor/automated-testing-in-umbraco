@@ -231,4 +231,17 @@ describe('ContentPage', () => {
     expect(contentItem!.values).toHaveLength(1);
     expect(contentItem!.values[0]).toEqual({ variation, alias, value: newValue });
   });
+
+  it('should read url from content item', () => {
+    // given
+    const scenario = new SpyScenario();
+    const content = new TestContentType(scenario);
+    const contentItem = scenario.registered_content[0]!;
+
+    // when
+    contentItem.urls.push({ culture: 'en', url: new URL('https://example.com/en') });
+
+    // then
+    expect(content.url('en')).toEqual(new URL('https://example.com/en'));
+  });
 });
