@@ -59,9 +59,9 @@ export class ApiScenario implements Scenario {
       const contentItem = sortedItems.find((item) => item.id === urlInfo.id);
       if (contentItem)
         contentItem.urls = urlInfo.urlInfos
-          .filter((info) => !!info.url)
+          .filter((info) => !!info.url && !!info.culture)
           .map((info) => ({
-            culture: info.culture,
+            culture: info.culture!,
             url: new URL(info.url!, client.getConfig().baseUrl),
           }));
     });
