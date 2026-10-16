@@ -3,7 +3,7 @@
     "PreToolUse": [
       {
         "type": "command",
-        "command": ".github/hooks/validate-pnpm-test.ps1"
+        "command": ".github/hooks/redirect-test-commands.ps1"
       }
     ]
   }

@@ -15,3 +15,4 @@ The functional tests are based on playwright and consume the scenario builder to
 
 ## General guidelines
 - Use the typescript-testing skill when you write, modify or run tests
+- This project uses PNPM

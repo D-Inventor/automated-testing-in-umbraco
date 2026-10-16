@@ -3,7 +3,7 @@
     "PreToolUse": [
       {
         "type": "command",
-        "command": ".github/hooks/validate-dotnet-test.ps1"
+        "command": ".github/hooks/redirect-npm.ps1"
       }
     ]
   }
