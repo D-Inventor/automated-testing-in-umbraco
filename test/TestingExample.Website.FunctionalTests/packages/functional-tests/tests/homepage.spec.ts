@@ -15,4 +15,16 @@ test.describe('homepage', () => {
     // then
     await expect(page.locator('h1').innerText()).resolves.toBe('welcome to the website');
   });
+
+  test('should look as expected', async ({ page }) => {
+    // given
+    const { content, scenario } = basicScenario();
+    await scenario.build();
+
+    // when
+    await page.goto(content.website.url('en-US').toString());
+
+    // then
+    await expect(page).toHaveScreenshot({ fullPage: true });
+  });
 });
