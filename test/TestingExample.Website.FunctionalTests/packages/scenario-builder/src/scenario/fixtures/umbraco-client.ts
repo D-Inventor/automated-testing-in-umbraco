@@ -19,7 +19,7 @@ export class UmbracoClient {
   private _putDomainsRequests: UpdateDomainsRequestModel[];
   private _publishDocumentIds: string[];
   private _deletedContentIds: string[];
-  private _operationOrder: Array<'post' | 'publish' | 'fetchUrls'>;
+  private _operationOrder: Array<'delete' | 'reset-cache' | 'post' | 'publish' | 'fetchUrls'>;
   private _postDocumentResponse?: Response;
   private _putDomainsResponse?: Response;
   private _putPublishResponse?: Response;
@@ -60,7 +60,7 @@ export class UmbracoClient {
     return this._deletedContentIds;
   }
 
-  public get operationOrder(): Array<'post' | 'publish' | 'fetchUrls'> {
+  public get operationOrder(): Array<'delete' | 'reset-cache' | 'post' | 'publish' | 'fetchUrls'> {
     return this._operationOrder;
   }
 
@@ -143,10 +143,18 @@ export class UmbracoClient {
         return HttpResponse.json(responseModel, { status: 200 });
       }),
       this.handlers.pick.getTreeDocumentRoot(() => {
-        return HttpResponse.json(this._contentAtRoot, { status: 200 });
+        return HttpResponse.json(
+          { total: this._contentAtRoot.length, items: this._contentAtRoot },
+          { status: 200 },
+        );
       }),
       this.handlers.pick.deleteDocumentById(({ params }) => {
         this._deletedContentIds.push(params.id as string);
+        this._operationOrder.push('delete');
+        return new Response(undefined, { status: 200 });
+      }),
+      this.handlers.pick.postPublishedCacheReload(() => {
+        this._operationOrder.push('reset-cache');
         return new Response(undefined, { status: 200 });
       }),
     );

@@ -126,6 +126,19 @@ describe('clearExistingContent', () => {
     // then
     expect(umbracoClient.deletedContentIds).toEqual(['e7250df5-17d4-4686-b456-221479b16071']);
   });
+
+  it('should clear cache after deleting all content', async () => {
+    // given
+    umbracoClient.contentAtRootIs([
+      createContentAtRoot({ id: '13816441-2f28-46fb-8159-6657926264cd' }),
+    ]);
+
+    // when
+    await clearExistingContent();
+
+    // then
+    expect(umbracoClient.operationOrder).toEqual(['delete', 'reset-cache']);
+  });
 });
 
 function http500Response(message: string): Response {

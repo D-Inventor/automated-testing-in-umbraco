@@ -80,6 +80,10 @@ function Test-HasPnpmTest {
                 if ($elementText -match '^test(:\w+)?$') {
                     return $true
                 }
+
+                if ($elementText -match '^vitest$') {
+                    return $true
+                }
             }
         }
     }

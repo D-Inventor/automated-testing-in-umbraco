@@ -3,6 +3,7 @@ import {
   getDocumentUrls,
   getTreeDocumentRoot,
   postDocument,
+  postPublishedCacheReload,
   putDocumentByIdDomains,
   putDocumentByIdPublish,
 } from '../client';
@@ -112,4 +113,6 @@ export async function clearExistingContent() {
       }),
     );
   }
+
+  throwOnFailure(await postPublishedCacheReload());
 }
