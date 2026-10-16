@@ -1,0 +1,117 @@
+import { randomUUID } from 'crypto';
+import type { ContentItem } from '../scenario/content-item';
+import type { LanguageCulture, Variation } from './variation';
+
+export interface Scenario {
+  add(content: ContentItem): void;
+}
+
+export class ContentPage {
+  private contentItem: ContentItem;
+  private parentPage: ContentPage | undefined;
+  private children: ContentPage[] = [];
+
+  constructor(
+    private scenario: Scenario,
+    private contenttype: string,
+  ) {
+    this.contentItem = {
+      id: randomUUID(),
+      documentType: this.contenttype,
+      values: [],
+      variants: [],
+      domains: [],
+      published: [],
+      urls: [],
+      level: 0,
+      order: 0,
+    };
+    this.scenario.add(this.contentItem);
+  }
+
+  hasParent(parent: ContentPage): void {
+    if (this.parentPage) {
+      this.parentPage.children = this.parentPage.children.filter((c) => c !== this);
+    }
+
+    this.parentPage = parent;
+    this.contentItem.parent = parent.id;
+
+    parent.children.push(this);
+
+    this.updateLevel();
+  }
+
+  private updateLevel(): void {
+    const newLevel = (this.parentPage?.level ?? -1) + 1;
+
+    if (this.contentItem.level !== newLevel) {
+      this.contentItem.level = newLevel;
+      this.notifyLevelHasChanged();
+    }
+  }
+
+  private notifyLevelHasChanged(): void {
+    for (const child of this.children) {
+      child.updateLevel();
+    }
+  }
+
+  get level(): number {
+    return this.contentItem.level ?? 0;
+  }
+
+  hasOrder(orderValue: number): void {
+    this.contentItem.order = orderValue;
+  }
+
+  get order(): number {
+    return this.contentItem.order;
+  }
+
+  url(culture: LanguageCulture): URL {
+    const result = this.contentItem.urls.find((url) => url.culture === culture)?.url;
+    if (!result) throw new Error(`This content does not have a URL for culture: ${culture}`);
+
+    return result;
+  }
+
+  hasDomain(culture: LanguageCulture, url: URL): void {
+    this.contentItem.domains!.push({ culture, url: url.toString() });
+  }
+
+  hasVariation(variation: Variation, name: string): void {
+    this.contentItem.variants.push({ variation, name });
+  }
+
+  isPublishedIn(variation: Variation): void {
+    const hasVariant = this.contentItem.variants.some(
+      (v) => v.variation.culture === variation.culture && v.variation.segment === variation.segment,
+    );
+    if (!hasVariant) {
+      throw new Error(
+        `Variation not added: culture="${variation.culture}", segment=${variation.segment}`,
+      );
+    }
+    this.contentItem.published!.push(variation);
+  }
+
+  hasValue(variation: Variation, alias: string, value: unknown): void {
+    const existingValue = this.contentItem.values.find(
+      (v) =>
+        v.alias === alias &&
+        v.variation.culture === variation.culture &&
+        v.variation.segment === variation.segment,
+    );
+
+    if (existingValue) {
+      existingValue.value = value;
+    } else {
+      this.contentItem.values.push({ variation, alias, value });
+    }
+  }
+
+  get id(): string {
+    return this.contentItem.id;
+  }
+}

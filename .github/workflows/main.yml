@@ -1,5 +1,8 @@
 name: Run Unit and Integration tests
-on: [push]
+on:
+  push:
+    branches:
+      - 'main'
 jobs:
   Build-And-Test:
     runs-on: ubuntu-latest
