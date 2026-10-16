@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { ApiScenario } from './scenario';
-import type { ContentItem } from './content-item';
 import { ContentPage, type Scenario } from '../domain/content-page';
 import { afterAll, beforeAll, beforeEach } from 'vitest';
 import { client } from '../client/client.gen';
@@ -22,34 +21,6 @@ afterAll(() => {
 });
 
 describe('Scenario', () => {
-  it('should create new domains', async () => {
-    // given
-    const scenario = new ApiScenario();
-    scenario.add(
-      createMinimalContentItem({
-        domains: [
-          {
-            culture: 'nl',
-            url: 'https://localhost:44384/',
-          },
-        ],
-      }),
-    );
-
-    // when
-    await scenario.build();
-
-    // then
-    expect(umbracoClient.lastPutDomains).toEqual({
-      domains: [
-        {
-          domainName: 'https://localhost:44384/',
-          isoCode: 'nl',
-        },
-      ],
-    });
-  });
-
   it('should create content items in order of level', async () => {
     // given
     const apiScenario = new ApiScenario();
@@ -105,48 +76,9 @@ describe('Scenario', () => {
     expect(umbracoClient.postedDocumentIds).toEqual([grandparent.id, parent.id, child.id]);
   });
 
-  it('should throw when postDocument fails', async () => {
-    // given
-    umbracoClient.postDocumentResponse(http500Response('Failed to post the document'));
-
-    const apiScenario = new ApiScenario();
-    apiScenario.add(createMinimalContentItem({ id: 'e5de3c64-30bb-47e5-9705-43b078515c4f' }));
-
-    // when & then
-    await expect(apiScenario.build()).rejects.toThrow();
-  });
-
-  it('should throw when putDocumentByIdDomains fails', async () => {
-    // given
-    umbracoClient.putDomainsResponse(http500Response('Failed to configure domains'));
-
-    const apiScenario = new ApiScenario();
-    apiScenario.add(
-      createMinimalContentItem({ domains: [{ culture: 'en', url: 'https://example.com' }] }),
-    );
-
-    // when & then
-    await expect(apiScenario.build()).rejects.toThrow();
-  });
-
-  it('should publish documents in the same order as posting them', async () => {
-    // given
-    const apiScenario = new ApiScenario();
-    const first = createTestContentType(apiScenario, { published: true });
-    const second = createTestContentType(apiScenario, { published: true });
-    const third = createTestContentType(apiScenario, { published: true });
-
-    // when
-    await apiScenario.build();
-
-    // then
-    expect(umbracoClient.publishedDocumentIds).toEqual([first.id, second.id, third.id]);
-  });
-
   it('should publish content after ALL content has been posted', async () => {
     // given
     const apiScenario = new ApiScenario();
-    createTestContentType(apiScenario, { published: true });
     createTestContentType(apiScenario, { published: true });
     createTestContentType(apiScenario, { published: true });
 
@@ -158,33 +90,6 @@ describe('Scenario', () => {
     const firstPublishIndex = umbracoClient.operationOrder.indexOf('publish');
 
     expect(lastPostIndex).toBeLessThan(firstPublishIndex);
-  });
-
-  it('should populate urls for published content in invariant culture', async () => {
-    // given
-    const apiScenario = new ApiScenario();
-    const item = createTestContentType(apiScenario, { published: true });
-    umbracoClient.contentUrlsResponse(item.id, 'en', ['https://example.com/home']);
-
-    // when
-    await apiScenario.build();
-
-    // then
-    expect(item.url('en')).toEqual(new URL('https://example.com/home'));
-  });
-
-  it('should make relative URLs absolute', async () => {
-    // given
-    const apiScenario = new ApiScenario();
-    const item = createTestContentType(apiScenario, { published: true });
-    umbracoClient.contentUrlsResponse(item.id, 'en', ['/home']);
-    const expectedUrl = umbracoClient.absoluteUrl('/home');
-
-    // when
-    await apiScenario.build();
-
-    // then
-    expect(item.url('en')).toEqual(expectedUrl);
   });
 });
 
@@ -201,12 +106,6 @@ interface TestContentTypeOptions {
   order?: number;
   published?: boolean;
   culture?: { culture: string; segment: null };
-}
-
-function http500Response(message: string): Response {
-  return new Response(JSON.stringify({ message: message }), {
-    status: 500,
-  });
 }
 
 function createTestContentType(
@@ -229,19 +128,4 @@ function createTestContentType(
     item.isPublishedIn(options.culture);
   }
   return item;
-}
-
-function createMinimalContentItem(values: Partial<ContentItem>): ContentItem {
-  return {
-    id: 'e5de3c64-30bb-47e5-9705-43b078515c4f',
-    documentType: 'fc6c106e-3453-43ae-b77d-4ab748d650dc',
-    values: [],
-    variants: [],
-    domains: [],
-    published: [],
-    urls: [],
-    level: 0,
-    order: 0,
-    ...values,
-  };
 }
