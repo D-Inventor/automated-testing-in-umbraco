@@ -1,23 +1,14 @@
-import { describe, it, expect } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { ScenarioClient } from './fixtures/scenario-client';
 import { ApiScenario } from './scenario';
 import { ContentPage, type Scenario } from '../domain/content-page';
-import { afterAll, beforeAll, beforeEach } from 'vitest';
-import { client } from '../client/client.gen';
-import { UmbracoClient } from './fixtures/umbraco-client';
-import { Invariant } from '../domain/variation';
 
-const umbracoClient = new UmbracoClient();
+vi.mock('./scenario-client');
 
-beforeAll(() => {
-  umbracoClient.initialize(client);
-});
+const scenarioClient = new ScenarioClient();
 
 beforeEach(() => {
-  umbracoClient.reset();
-});
-
-afterAll(() => {
-  umbracoClient.close();
+  scenarioClient.reset();
 });
 
 describe('Scenario', () => {
@@ -32,7 +23,7 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(umbracoClient.postedDocumentIds).toEqual([grandparent.id, parent.id, child.id]);
+    expect(scenarioClient.createdItemIds).toEqual([grandparent.id, parent.id, child.id]);
   });
 
   it('should sort items by level', async () => {
@@ -45,7 +36,7 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(umbracoClient.postedDocumentIds).toEqual([level0Item.id, level1Item.id]);
+    expect(scenarioClient.createdItemIds).toEqual([level0Item.id, level1Item.id]);
   });
 
   it('should sort items by order when at the same level', async () => {
@@ -59,7 +50,7 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(umbracoClient.postedDocumentIds).toEqual([parent.id, secondChild.id, firstChild.id]);
+    expect(scenarioClient.createdItemIds).toEqual([parent.id, secondChild.id, firstChild.id]);
   });
 
   it('should prioritize level over order in sorting', async () => {
@@ -73,23 +64,19 @@ describe('Scenario', () => {
     await apiScenario.build();
 
     // then
-    expect(umbracoClient.postedDocumentIds).toEqual([grandparent.id, parent.id, child.id]);
+    expect(scenarioClient.createdItemIds).toEqual([grandparent.id, parent.id, child.id]);
   });
 
-  it('should publish content after ALL content has been posted', async () => {
+  it('should create, then publish, then backfill urls', async () => {
     // given
     const apiScenario = new ApiScenario();
-    createTestContentType(apiScenario, { published: true });
-    createTestContentType(apiScenario, { published: true });
+    createTestContentType(apiScenario);
 
     // when
     await apiScenario.build();
 
     // then
-    const lastPostIndex = umbracoClient.operationOrder.lastIndexOf('post');
-    const firstPublishIndex = umbracoClient.operationOrder.indexOf('publish');
-
-    expect(lastPostIndex).toBeLessThan(firstPublishIndex);
+    expect(scenarioClient.operationOrder).toEqual(['create', 'publish', 'backfill']);
   });
 });
 
@@ -104,8 +91,6 @@ class TestContentType extends ContentPage {
 interface TestContentTypeOptions {
   parent?: TestContentType;
   order?: number;
-  published?: boolean;
-  culture?: { culture: string; segment: null };
 }
 
 function createTestContentType(
@@ -118,14 +103,6 @@ function createTestContentType(
   }
   if (options?.order !== undefined) {
     item.hasOrder(options.order);
-  }
-  if (options?.published) {
-    item.hasVariation(Invariant, 'Invariant');
-    item.isPublishedIn(Invariant);
-  }
-  if (options?.culture) {
-    item.hasVariation(options.culture, options.culture.culture);
-    item.isPublishedIn(options.culture);
   }
   return item;
 }
