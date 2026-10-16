@@ -1,13 +1,14 @@
+import { setupServer, type SetupServer } from 'msw/node';
+import { HttpResponse } from 'msw';
+import { createMswHandlers, type CreateMswHandlersResult } from '../../client/msw.gen';
 import type {
   CreateDocumentRequestModel,
+  DocumentTreeItemResponseModel,
   DocumentUrlInfoModel,
   UpdateDomainsRequestModel,
-} from '@/client';
-import type { Client } from '@/client/client';
-import { createMswHandlers, type CreateMswHandlersResult } from '@/client/msw.gen';
-import { setupServer, type SetupServer } from 'msw/node';
-import type { LanguageCulture } from '@/domain/variation';
-import { HttpResponse } from 'msw';
+} from '../../client';
+import type { LanguageCulture } from '../../domain/variation';
+import type { Client } from '../../client/client';
 
 export class UmbracoClient {
   private handlers: CreateMswHandlersResult;
@@ -17,11 +18,13 @@ export class UmbracoClient {
   private _postDocumentRequests: CreateDocumentRequestModel[];
   private _putDomainsRequests: UpdateDomainsRequestModel[];
   private _publishDocumentIds: string[];
+  private _deletedContentIds: string[];
   private _operationOrder: Array<'post' | 'publish' | 'fetchUrls'>;
   private _postDocumentResponse?: Response;
   private _putDomainsResponse?: Response;
   private _putPublishResponse?: Response;
   private _contentUrlsResponses: Map<string, DocumentUrlInfoModel[]>;
+  private _contentAtRoot: DocumentTreeItemResponseModel[];
 
   constructor() {
     this.BASE_URL = 'https://localhost:3000';
@@ -31,8 +34,10 @@ export class UmbracoClient {
     this._postDocumentRequests = [];
     this._putDomainsRequests = [];
     this._publishDocumentIds = [];
+    this._deletedContentIds = [];
     this._operationOrder = [];
     this._contentUrlsResponses = new Map();
+    this._contentAtRoot = [];
   }
 
   public get lastPostDocument(): CreateDocumentRequestModel | undefined {
@@ -49,6 +54,10 @@ export class UmbracoClient {
 
   public get publishedDocumentIds(): string[] {
     return this._publishDocumentIds;
+  }
+
+  public get deletedContentIds(): string[] {
+    return this._deletedContentIds;
   }
 
   public get operationOrder(): Array<'post' | 'publish' | 'fetchUrls'> {
@@ -78,6 +87,10 @@ export class UmbracoClient {
     this._contentUrlsResponses.set(contentId, infos);
   }
 
+  public contentAtRootIs(items: DocumentTreeItemResponseModel[]) {
+    this._contentAtRoot = items;
+  }
+
   public absoluteUrl(relativeUrl: string): URL {
     return new URL(relativeUrl, this.BASE_URL);
   }
@@ -92,11 +105,13 @@ export class UmbracoClient {
     this._postDocumentRequests = [];
     this._putDomainsRequests = [];
     this._publishDocumentIds = [];
+    this._deletedContentIds = [];
     this._operationOrder = [];
     this._postDocumentResponse = undefined;
     this._putDomainsResponse = undefined;
     this._putPublishResponse = undefined;
     this._contentUrlsResponses.clear();
+    this._contentAtRoot = [];
     this.server.use(
       this.handlers.pick.postDocument(({ request }) => {
         return request.json().then((body) => {
@@ -126,6 +141,13 @@ export class UmbracoClient {
         }));
 
         return HttpResponse.json(responseModel, { status: 200 });
+      }),
+      this.handlers.pick.getTreeDocumentRoot(() => {
+        return HttpResponse.json(this._contentAtRoot, { status: 200 });
+      }),
+      this.handlers.pick.deleteDocumentById(({ params }) => {
+        this._deletedContentIds.push(params.id as string);
+        return new Response(undefined, { status: 200 });
       }),
     );
   }

@@ -8,6 +8,7 @@
     "isolatedModules": true,
     "types": ["node"],
     "skipLibCheck": true,
+    "allowImportingTsExtensions": false,
     "paths": {
       "@scenario/*": ["./scenario/*"]
     }

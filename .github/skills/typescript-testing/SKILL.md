@@ -6,7 +6,10 @@ user-invocable: false
 
 # Typescript Testing workflow
 Follow these steps:
-1. Verify that there are no typescript errors
+1. Verify that there are no typescript errors by running the following command:
+   ```
+   pnpm -r typecheck
+   ```
 2. Execute the tests using #tool:execute/runTests .
 
 ## Avoid this

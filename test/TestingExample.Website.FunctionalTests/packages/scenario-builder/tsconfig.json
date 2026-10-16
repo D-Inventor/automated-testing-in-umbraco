@@ -13,9 +13,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    },
+    "allowImportingTsExtensions": false,
     "types": ["node"]
   },
   "include": ["src/**/*"]

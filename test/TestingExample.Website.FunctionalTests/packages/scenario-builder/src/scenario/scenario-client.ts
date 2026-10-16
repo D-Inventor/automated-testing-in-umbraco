@@ -1,13 +1,14 @@
-import type { RequestResult } from '@/client/client';
-import type { ContentItem } from './content-item';
 import {
+  deleteDocumentById,
   getDocumentUrls,
+  getTreeDocumentRoot,
   postDocument,
   putDocumentByIdDomains,
   putDocumentByIdPublish,
-} from '@/client';
+} from '../client';
+import { client } from '../client/client.gen';
+import type { ContentItem } from './content-item';
 import { convertToContentPostRequest } from './mappers';
-import { client } from '@/client/client.gen';
 
 class ApiError extends Error {
   constructor(
@@ -21,14 +22,16 @@ class ApiError extends Error {
   }
 }
 
-function throwOnFailure<T, U>(
-  input: Awaited<RequestResult<T, U, false>>,
-): Awaited<RequestResult<T, U, false>> {
-  if (input.error) {
+type RequestOutcome<TData, TError> =
+  | { data: TData; error: undefined; response?: Response }
+  | { data: undefined; error: TError; response?: Response };
+
+function throwOnFailure<TData, TError>(input: RequestOutcome<TData, TError>): TData {
+  if (input.error || input.data === undefined) {
     throw new ApiError(input.response, input.error);
   }
 
-  return input;
+  return input.data;
 }
 
 export async function createContentTree(sortedItems: ContentItem[]) {
@@ -85,7 +88,7 @@ export async function backfillContentUrls(sortedItems: ContentItem[]) {
     }),
   );
 
-  result.data?.forEach((urlInfo) => {
+  result?.forEach((urlInfo) => {
     const contentItem = sortedItems.find((item) => item.id === urlInfo.id);
     if (contentItem)
       contentItem.urls = urlInfo.urlInfos
@@ -95,4 +98,18 @@ export async function backfillContentUrls(sortedItems: ContentItem[]) {
           url: new URL(info.url!, client.getConfig().baseUrl),
         }));
   });
+}
+
+export async function clearExistingContent() {
+  const result = throwOnFailure(await getTreeDocumentRoot());
+
+  for (const item of result?.items ?? []) {
+    throwOnFailure(
+      await deleteDocumentById({
+        path: {
+          id: item.id,
+        },
+      }),
+    );
+  }
 }

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "test:headed": "playwright test --headed"
+    "test:headed": "playwright test --headed",
+    "typecheck": "tsc --noEmit"
   },
   "type": "module",
   "devDependencies": {

@@ -3,20 +3,6 @@ import { convertToContentPostRequest } from './mappers';
 import type { ContentItem } from './content-item';
 import { cultureVariant } from '../domain/variation';
 
-function createMinimalContentItem(values: Partial<ContentItem>): ContentItem {
-  return {
-    id: 'e5de3c64-30bb-47e5-9705-43b078515c4f',
-    documentType: 'fc6c106e-3453-43ae-b77d-4ab748d650dc',
-    values: [],
-    variants: [],
-    domains: [],
-    published: [],
-    level: 0,
-    order: 0,
-    ...values,
-  };
-}
-
 describe('Content Model Mappers', () => {
   it('should map content item to post request', () => {
     // given
@@ -83,3 +69,18 @@ describe('Content Model Mappers', () => {
     expect(result.documentType).toEqual({ id: 'a654b58b-3abf-4162-a21f-34892ba27508' });
   });
 });
+
+function createMinimalContentItem(values: Partial<ContentItem>): ContentItem {
+  return {
+    id: 'e5de3c64-30bb-47e5-9705-43b078515c4f',
+    documentType: 'fc6c106e-3453-43ae-b77d-4ab748d650dc',
+    values: [],
+    variants: [],
+    domains: [],
+    published: [],
+    urls: [],
+    level: 0,
+    order: 0,
+    ...values,
+  };
+}

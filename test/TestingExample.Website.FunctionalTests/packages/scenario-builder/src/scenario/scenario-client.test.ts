@@ -1,9 +1,15 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { UmbracoClient } from './fixtures/umbraco-client';
-import { client } from '@/client/client.gen';
 import type { ContentItem } from './content-item';
-import { backfillContentUrls, createContentTree, publishContentTree } from './scenario-client';
-import { Invariant } from '@/domain/variation';
+import {
+  backfillContentUrls,
+  clearExistingContent,
+  createContentTree,
+  publishContentTree,
+} from './scenario-client';
+import { client } from '../client/client.gen';
+import { Invariant } from '../domain/variation';
+import type { DocumentTreeItemResponseModel } from '../client';
 
 const umbracoClient = new UmbracoClient();
 
@@ -107,10 +113,43 @@ describe('backfillContentUrls', () => {
   });
 });
 
+describe('clearExistingContent', () => {
+  it('should delete content at root', async () => {
+    // given
+    umbracoClient.contentAtRootIs([
+      createContentAtRoot({ id: 'e7250df5-17d4-4686-b456-221479b16071' }),
+    ]);
+
+    // when
+    await clearExistingContent();
+
+    // then
+    expect(umbracoClient.deletedContentIds).toEqual(['e7250df5-17d4-4686-b456-221479b16071']);
+  });
+});
+
 function http500Response(message: string): Response {
   return new Response(JSON.stringify({ message: message }), {
     status: 500,
   });
+}
+
+function createContentAtRoot(
+  input: Partial<DocumentTreeItemResponseModel>,
+): DocumentTreeItemResponseModel {
+  return {
+    id: '5e2c973d-923c-4f50-b4d2-681749b4fa62',
+    isProtected: false,
+    ancestors: [],
+    documentType: { id: '5ea1d0af-08af-4dd2-b24c-b88ac1cadc9e', icon: '' },
+    variants: [],
+    noAccess: false,
+    isTrashed: false,
+    createDate: '2026-10-16T12:00:00.000000Z',
+    flags: [],
+    hasChildren: true,
+    ...input,
+  };
 }
 
 function createMinimalContentItem(values: Partial<ContentItem>): ContentItem {
