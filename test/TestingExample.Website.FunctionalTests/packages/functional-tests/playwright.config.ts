@@ -40,30 +40,18 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup api',
-      testMatch: /global\.setup\.ts/,
-      teardown: 'cleanup api',
-    },
-    {
-      name: 'cleanup api',
-      testMatch: /global\.teardown\.ts/,
-    },
-    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup api'],
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-      dependencies: ['setup api'],
     },
 
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
-    //   dependencies: ['setup api'],
     // },
 
     /* Test against mobile viewports. */
