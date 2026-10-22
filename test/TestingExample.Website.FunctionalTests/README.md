@@ -1,5 +1,10 @@
 # Acceptance testing / End-to-end testing
+
 This testing project demonstrates acceptance testing. When an application is deployed to a real environment, you can use acceptance testing to interact with your system as if you're a user and you can verify that your application responds how you expect.
+
+| ℹ️ About commands |
+|---|
+| All commands are executed from the workspace root (The top-level folder where the license and TestingExample.slnx file are). Commands that are executed elsewhere are preceded with a `cd` command relative to the workspace root. |
 
 ## How to run the tests in this project
 In order to run these tests, you need to host the website in a real environment. The easiest way to "host" the project is by simply starting the website in debug mode:
@@ -8,20 +13,24 @@ In order to run these tests, you need to host the website in a real environment.
 dotnet run --project .\src\TestingExample.Website\
 ```
 
-When the website is running, you need to configure several settings. You need to log in to the backoffice and create an API user with client credentials. Make a note of the client id and client secret. This API User must have full access to the content tree, so give it at least the role of Editor. Use the following commands to configure user secrets in this project:
+When the website is running, you need to configure several settings. You need to log in to the backoffice and create an API user with client credentials. Make a note of the client id and client secret. This API User must have full access to the content tree, so give it at least the role of Editor. Create a file `./test/TestingExample.Website.FunctionalTests/packages/functional-tests/.env` with the following content:
 
 ```
-cd .\test\TestingExample.Website.FunctionalTests
-dotnet user-secrets set ScenarioBuilder:ClientSecret "INSERT CLIENT SECRET HERE"
-dotnet user-secrets set ScenarioBuilder:ClientID "INSERT CLIENT ID HERE"
-dotnet user-secrets set domain "localhost:44376"
+WEBSITE_URL=https://localhost:44376/
+WEBSITE_CLIENTID=INSERT CLIENT ID HERE
+WEBSITE_CLIENTSECRET=INSERT CLIENT SECRET HERE
+
+# This line is only required when you test against localhost
+# It can be omitted when you test against a real hosted environment
+NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
 You are now ready to run the tests. Use the following commands to run the end-to-end tests:
 
 ```
 cd .\test\TestingExample.Website.FunctionalTests
-dotnet test
+pnpm install
+pnpm --filter functional-tests test
 ```
 
 | ⚠️ Loss of content! |
@@ -30,156 +39,130 @@ dotnet test
 
 ## Relevant source code
 
-- [Example content model for constructing a content scenario](./Domain/HomepageContent.cs)
-- [Example test that tests a simple content scenario](./HomepageTests.cs)
-- [Management API client implementation](../TestingExample.ManagementApiClient/)
-- [Implementation of the scenario builder](../TestingExample.ManagementApiClient/Scenario/ScenarioBuilder.cs)
+- [Example content model for constructing a content scenario](./packages/functional-tests/scenario/domain/homepage.ts)
+- [Example test that tests a simple content scenario](./packages/functional-tests/tests/homepage.spec.ts)
+- [Management API client generated with @hey-api/openapi-ts](./packages/scenario-builder/openapi-ts.config.ts)
+- [Implementation of the scenario builder](./packages/scenario-builder/src/scenario/scenario.ts)
+
+Notice that the scenario builder itself is also built with test-driven development with unit tests based on vitest.
 
 ## How it works
-Each test prepares a scenario using the `ScenarioBuilder`. This builder is an interface that allows you to specify content and their relations. You use the scenario builder to define how the content tree should look for your specific test. By calling the `.BuildAsync( ... )` method, this content tree definition is applied to your Umbraco website.
+Each test prepares a scenario using the `ApiScenario`. This type acts as a simplified unit-of-work pattern to collect the content items that you want to create. You use this scenario to define how the content tree should look for your specific test. By calling the `.build()` method, this content tree definition is applied to your Umbraco website.
 
-The ScenarioBuilder works because Umbraco exposes a _Content Management API_ which has operations for creating and changing content in your application. The scenario builder has access to the content management api, because you created an API User in the backoffice.
+The `ApiScenario` works because Umbraco exposes a _Content Management API_ which has operations for creating and changing content in your application. The scenario has access to the content management api, because you created an API user in the backoffice.
 
 ## How to use
 There is a decent amount of upfront work that you need to do to get started. All the steps are explained here in recommended order.
 
 ### Copy/paste the api client project
-You need all the code in `TestingExample.ManagementApiClient`. It contains all the base types that we need and it has the api client that connects to your Umbraco website. Copy and paste it into your own project and add a reference to it in your automated tests.
-
-_Fun fact: I built the api client and the scenario builder using test-driven development. The tests that I used to develop it, are in [TestingExample.ManagementApiClient.UnitTests](../TestingExample.ManagementApiClient.UnitTests/)._
-
-### Configure a connection to your application
-The `ScenarioBuilder` has several dependencies that you need before you can use it:
-- A `TokenConfiguration`
-- A `TokenClient`
-- A `TokenManager`
-- A `DocumentClient`
-- An `HttpClient`
-
-All of these things are set up by [UmbracoWebsiteFixture](./UmbracoWebsiteFixture.cs) and [TestConfiguration](./TestConfiguration.cs). You may copy/paste those types into your testing project to get started. [If you use these types, you can configure your connection as explained in the earlier chapter](#how-to-run-the-tests-in-this-project).
+You need all the code in `packages/scenario-builder`. It contains all the base types that we need and it has the api client that connects to your Umbraco website. Copy and paste it into your own project. Make sure that you add the necessary dependencies in your test project so that you can import the `ApiScenario`.
 
 ### Define a minimal content tree
-You should begin by defining your content types as models. A minimal content type model would look like this:
+You should begin by defining your content types as models. [The system-pages model is a good example that you can use as a base](./packages/functional-tests/scenario/domain/system-pages.ts). The GUID in here is the content type key. You can find it in the backoffice in the URL bar when you edit the content type that you want to model:
 
-```csharp
-public class DetailPageContentModel(VariationModel variation, PageModel<DetailPageContentModel> page)
-    : ContentModel<DetailPageContentModel>(variation, page)
-{
+![When editing the content type, the URL looks like /umbraco/section/settings/workspace/document-type/edit/e1ed1f3c-18a1-44ad-bab2-ee6a08b7c328/view/design/root. You can see the GUID in the URL.](./docs/contenttypekey.png)
+
+The shape of the content tree depends a lot on how you define it. You should make the basic scenario as minimal as possible; what content is strictly necessary, in order to have a working application? For example: "For a minimal functional application, I need a root node, a homepage, a 404 page and at least one content page". Define empty content models for the content types that you need in this minimal scenario. In this case: "I need a website root type, a homepage type and a content page type".
+
+You should then create your minimal content scenario using these content types. Just define the tree structure, avoid property values at this point. This will be your base scenario and you should create it in a function like this:
+
+```typescript
+type BasicScenario = {
+  platform: Website;
+  website: ContentRoot;
+  homepage: Homepage;
+  systemPages: SystemPages;
+};
+
+export function basicScenario(): { content: BasicScenario; scenario: Scenario } {
+  const scenario = new ApiScenario();
+
+  const platform = new Website(scenario);
+  platform.hasVariation(Invariant, 'Test website');
+  platform.isPublishedIn(Invariant);
+
+  const systemPages = new SystemPages(scenario);
+  systemPages.hasOrder(2);
+  systemPages.hasParent(platform);
+  systemPages.hasVariation(Invariant, 'System pages');
+  systemPages.isPublishedIn(Invariant);
+
+  const notFoundPage = new DetailPage(scenario);
+  notFoundPage.hasParent(systemPages);
+  notFoundPage.hasVariation(Invariant, '404 Page not found');
+  notFoundPage.isPublishedIn(Invariant);
+
+  const website = new ContentRoot(scenario);
+  website.hasOrder(1);
+  website.hasVariation(Invariant, 'website');
+  website.hasParent(platform);
+  website.hasDomain('en-US', new URL('https://localhost:44376'));
+  website.isPublishedIn(Invariant);
+
+  const homepage = new Homepage(scenario);
+  homepage.hasParent(website);
+  homepage.hasVariation(Invariant, 'Homepage');
+  homepage.isPublishedIn(Invariant);
+
+  return {
+    content: {
+      platform: platform,
+      website: website,
+      homepage: homepage,
+      systemPages: systemPages,
+    },
+    scenario: scenario,
+  };
 }
 ```
 
-Look at your application and define what a minimal content model would look like. What content is strictly necessary, in order to have a working application? For example: "For a minimal functional application, I need a root node, a homepage, a 404 page and at least one content page". Define empty content models, like the example above, for the content types that you need for your minimal example. In this case: "I need a website root type, a homepage type and a content page type".
+It is wise to create a dummy test at this point to see if you can actually create the tree structure in Umbraco without any issues. You could make test like this:
 
-The next step is to create your minimal content tree. Only the tree structure, without the property values. You would make a call like this to the scenario builder to create new content items:
+```typescript
+test.describe('basic scenario', () => {
+  test('should be constructed in the backoffice', async ({ page }) => {
+    
+    const { content, scenario } = basicScenario();
+    await scenario.build();
 
-```csharp
-var detailpage = Scenario.Add<DetailPageContentModel>(
-    contentType: Guid.Parse("fe1eef0b-4752-4c91-a6d4-fa0a46f3e7e3"),
-    template: Guid.Parse("08c41579-0c2e-4bd8-9a8d-8cb21b1841ca"),
-    parent: Guid.Parse("e1ed3777-9ac5-422d-9a36-f3227cd01845"));
+    throw Error('The outcome of this test is not relevant for now.');
+  });
+});
 ```
 
-You'll find that it quickly becomes very verbose, so it is wise to define some crucial ids in a single place. This project saves the ids of important content in [DefaultContent.cs](./Domain/DefaultContent.cs). References to content type ids and template ids are stored as static properties on each model, on the [HomepageContent](./Domain/HomepageContent.cs) for example. You should also consider an extension method for creating specific content types:
-
-```csharp
-public static class BaseContentScenario
-{
-    public static PageModel<DetailPageContentModel> AddNotFound(this ScenarioBuilder scenario)
-    {
-        var result = scenario.Add<DetailPageContentModel>(
-            id: DefaultContent.NotFoundPageId,
-            contentType: DetailPageContentModel.ContentType,
-            template: DetailPageContentModel.Template,
-            parent: DefaultContent.HomepageId);
-
-        result.AddVariation(new VariationModel(Variant.Culture("en-US"), "404 Page not found"));
-
-        return result;
-    } 
-}
-
-var detailpage = Scenario.AddNotFound();
-```
-
-When you have extensions for your essential content types, you can create a single extension to set up your base scenario:
-
-```csharp
-public static class BaseContentScenario
-{
-    public static ScenarioBuilder WithBasicContent(this ScenarioBuilder builder)
-    {
-        builder.AddWebsiteRoot();
-        builder.AddHomepage();
-        builder.AddNotFoundPage();
-        builder.AddPrivacyPolicy();
-
-        return builder;
-    }
-}
-```
-
-At this point, you should write a dummy test and let the scenario builder build this content tree for you.
-
-```csharp
-[Collection(nameof(UmbracoWebsiteFixture))]
-public sealed class HomepageTests(UmbracoWebsiteFixture website)
-{
-    public UmbracoWebsiteFixture Website { get; } = website;
-    public ScenarioBuilder Scenario { get; } = website.NewScenario().WithBasicContent();
-
-    [Fact]
-    public async Task ShouldProduceContentTree()
-    {
-        await Scenario.BuildAsync(TestContext.Current.CancellationToken);
-
-        // Let's fail the test for now, because it's not really testing anything yet, we're just setting up the content
-        Assert.Fail();
-    }
-}
-```
-
-After you run the test, do you see the content in the backoffice that you defined?
+Run the test; do you see the content that you defined in the backoffice?
 
 ### Populate properties and publish
-To populate the properties on your content, you need to add operations to your content model. These operations should reflect the structure of your content. For example: your homepage could have a title and an introduction, which together form a "header". In that case, define a method `WithHeader( ... )` on your homepage content model:
+The next step is to populate your content items with property values. The best way to do this, is by adding functions to your models that reflect the structure of you content. For example: your homepage could have a title and an introduction, which together form a "header". In that case, define a function `.HasHeader( ... )` on your homepage content model:
 
-```csharp
-public class HomePageContentModel(VariationModel variation, PageModel<HomePageContentModel> page)
-    : ContentModel<HomePageContentModel>(variation, page)
-{
-    public HomePageContentModel WithHeader(string title, string intro)
-        => this
-        .SetValue("title", title)
-        .SetValue("intro", intro);
+```typescript
+import { ContentPage, type Scenario, type Variation } from 'scenario-builder';
+
+type HomepageHeader = {
+  title?: string;
+  description?: string;
+};
+
+export class Homepage extends ContentPage {
+  constructor(scenario: Scenario) {
+    super(scenario, 'f0cf962b-6398-477c-aa04-e4fbb4d69162');
+  }
+  public hasHeader(variation: Variation, header: HomepageHeader): Homepage {
+    this.hasValue(variation, 'title', header.title);
+    this.hasValue(variation, 'description', header.description);
+    return this;
+  }
 }
 ```
 
-The string `"title"` is the alias of the property as defined in the backoffice. The value is an object, same as what Umbraco would post to the management api when editing content in the backoffice.
+The strings `'title'` and `'description'` are the aliasses of the fields that we want to populate. `variation` is the culture and segment for which you want to populate the fields.
 
-Your base content method can be updated to configure the content, to add domains and to publish the content:
+If you need to know what the value is that you need to assign, the best way is to check what Umbraco sends over the network:
 
-```csharp
-public static class BaseContentScenario
-{
-    public static ScenarioBuilder WithBasicContent(this ScenarioBuilder builder)
-    {
-        builder.AddWebsiteRoot()
-            .HasContent(Variation.Culture("en-US"), content => content.IsPublished())
-            .HasDomain(CultureInfo.GetCultureInfo("en-US"), builder.BaseUri.ToString());
-        
-        builder.AddHomepage()
-            .HasContent(Variation.Culture("en-US"), content => content
-                .WithHeader(title: "Welcome to our website", intro: "Find all our services below.")
-                .IsPublished());
-        
-        builder.AddNotFoundPage();
-        builder.AddPrivacyPolicy();
+![Umbraco sends for the title field a string value to the backend.](./docs/contentsavepayload.png)
 
-        return builder;
-    }
-}
-```
+In this example, the title field receives a string value, so the value that you set in your model should also be a string value.
 
-Run your dummy test again. Is the content published? Does it have the properties that you configured? Can you visit the website and see the content in your browser?
+When your property values are configured, run your dummy test again. Is the content published? Does it have the properties that you configured? Can you visit the website and see the content in your browser?
 
-You are now ready to simulate scenario's and run automated tests.
+You are now ready to simulate scenarios and run automated tests.

@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": false,
+    "types": ["node"]
+  },
+  "include": ["src/**/*"]
+}
