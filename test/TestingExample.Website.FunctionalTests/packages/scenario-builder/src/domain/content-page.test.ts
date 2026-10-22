@@ -57,16 +57,15 @@ describe('ContentPage', () => {
     // given
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
-    const culture = 'en';
     const url = new URL('https://example.com');
 
     // when
-    content.hasDomain(culture, url);
+    content.hasDomain('en', url);
 
     // then
     const contentItem = scenario.registered_content.find((item) => item.id === content.id);
     expect(contentItem!.domains).toHaveLength(1);
-    expect(contentItem!.domains![0]).toEqual({ culture, url: url.toString() });
+    expect(contentItem!.domains![0]).toEqual({ culture: 'en', url: url.toString() });
   });
 
   it('should add variant', () => {
@@ -74,15 +73,14 @@ describe('ContentPage', () => {
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
     const variation = cultureVariant('en');
-    const name = 'English variant';
 
     // when
-    content.hasVariation(variation, name);
+    content.hasVariation(variation, 'English variant');
 
     // then
     const contentItem = scenario.registered_content.find((item) => item.id === content.id);
     expect(contentItem!.variants).toHaveLength(1);
-    expect(contentItem!.variants[0]).toEqual({ variation, name });
+    expect(contentItem!.variants[0]).toEqual({ variation, name: 'English variant' });
   });
 
   it('should mark variation as published', () => {
@@ -90,10 +88,9 @@ describe('ContentPage', () => {
     const scenario = new SpyScenario();
     const content = new TestContentType(scenario);
     const variation = cultureVariant('en');
-    const name = 'English variant';
 
     // when
-    content.hasVariation(variation, name);
+    content.hasVariation(variation, 'English variant');
     content.isPublishedIn(variation);
 
     // then
@@ -218,18 +215,15 @@ describe('ContentPage', () => {
     const content = new TestContentType(scenario);
     const variation = cultureVariant('en');
     const alias = 'heading';
-    const initialValue = 'Welcome to our site';
-    const newValue = 'Updated heading';
-
-    content.hasValue(variation, alias, initialValue);
+    content.hasValue(variation, alias, 'Welcome to our site');
 
     // when
-    content.hasValue(variation, alias, newValue);
+    content.hasValue(variation, alias, 'Updated heading');
 
     // then
     const contentItem = scenario.registered_content.find((item) => item.id === content.id);
     expect(contentItem!.values).toHaveLength(1);
-    expect(contentItem!.values[0]).toEqual({ variation, alias, value: newValue });
+    expect(contentItem!.values[0]).toEqual({ variation, alias, value: 'Updated heading' });
   });
 
   it('should read url from content item', () => {
