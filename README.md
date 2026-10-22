@@ -1,6 +1,6 @@
-# Umbraco 17 automated testing setup
+# Umbraco 18 automated testing setup
 
-This project is a fully functioning setup for automated testing with Umbraco 17. You can use this project as a reference or starting point to get started with testing on your Umbraco website. The tests are set up with Test Driven Development (TDD) in mind.
+This project is a fully functioning setup for automated testing with Umbraco 18. You can use this project as a reference or starting point to get started with testing on your Umbraco website. The tests are set up with Test Driven Development (TDD) in mind.
 
 ## Tools
 
